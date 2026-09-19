@@ -48,15 +48,21 @@ void BambuPrinter::begin(const SystemConfig &cfg) {
   mqttClient->setServer(config.printerIP, config.printerPort);
   mqttClient->setCallback(staticMqttCallback);
   mqttClient->setBufferSize(MQTT_BUFFER_SIZE);
+  mqttClient->setSocketTimeout(2);
+  mqttClient->setKeepAlive(30);
   Serial.printf("[MQTT] Client ready id=%s\n", mqttClientId);
 }
 
 void BambuPrinter::update() {
   if (!config.mqttEnabled || !mqttClient) return;
+  if (!config.printerIP[0] || !config.printerSerial[0]) {
+    state = PRINTER_ERROR;
+    return;
+  }
 
   if (!mqttClient->connected()) {
     unsigned long now = millis();
-    if (now - lastReconnectAttempt > 15000) {
+    if (now - lastReconnectAttempt > 30000) {
       lastReconnectAttempt = now;
       reconnect();
     }
@@ -84,9 +90,15 @@ void BambuPrinter::reconnect() {
   state = PRINTER_CONNECTING;
   Serial.printf("[MQTT] Connecting to %s:%u\n", config.printerIP, config.printerPort);
 
-  // Set TCP timeout to avoid long blocks when printer is offline
-  if (config.mqttUseTLS && tlsClient) tlsClient->setTimeout(2);
-  else if (tcpClient) tcpClient->setTimeout(2);
+  // Keep these attempts short so the ESP32 web server and RFID loop keep working
+  // while the broker is unreachable.
+  if (config.mqttUseTLS && tlsClient) tlsClient->setTimeout(2000);
+  else if (tcpClient) tcpClient->setTimeout(2000);
+
+  if (mqttClient) {
+    mqttClient->setSocketTimeout(2);
+    mqttClient->setKeepAlive(15);
+  }
 
   char username[48];
   snprintf(username, sizeof(username), "bblp");
