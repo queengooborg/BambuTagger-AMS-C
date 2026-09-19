@@ -131,6 +131,7 @@ void RfidManager::loop() {
 bool RfidManager::readNtag(uint8_t slot, SpoolInfo &info) {
   MFRC522* reader = mfrc522[slot];
 
+  yield();
   if (!reader->PICC_IsNewCardPresent()) return false;
   if (!reader->PICC_ReadCardSerial()) return false;
 
@@ -230,6 +231,7 @@ authOk2:
     for (uint8_t block = startBlock; block < endBlock; block++) {
       byte readBuf[18];
       byte readSize = sizeof(readBuf);
+      yield();
       MFRC522::StatusCode status = reader->MIFARE_Read(block, readBuf, &readSize);
       if (status != MFRC522::STATUS_OK) break;
 

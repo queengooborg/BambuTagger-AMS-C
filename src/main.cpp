@@ -141,26 +141,38 @@ void loop() {
   static unsigned long lastLedUpdate = 0;
   static unsigned long lastDisplayUpdate = 0;
   static unsigned long lastMqttUpdate = 0;
+  static unsigned long lastWifiStateCheck = 0;
   unsigned long now = millis();
+
+  if (now - lastWifiStateCheck > 1000) {
+    lastWifiStateCheck = now;
+
+    if (WiFi.status() == WL_CONNECTED) {
+      if (!wifiConnected || apMode) {
+        wifiConnected = true;
+        apMode = false;
+        localIP = WiFi.localIP().toString();
+        dnsServer.stop();
+        Serial.print(F("WiFi connected! IP: "));
+        Serial.println(localIP);
+        displayManager.showOtaProgress("WiFi Connected", localIP.c_str());
+        bambuPrinter.begin(cfg);
+        if (MDNS.begin(cfg.deviceName)) {
+          Serial.println(F("mDNS responder started"));
+        }
+      }
+    } else if (!apMode && strlen(cfg.wifiSSID) > 0 && now - lastReconnectCheck > 15000) {
+      lastReconnectCheck = now;
+      Serial.println(F("WiFi not connected yet — retrying in background..."));
+      WiFi.disconnect(false);
+      WiFi.begin(cfg.wifiSSID, cfg.wifiPassword);
+    }
+  }
 
   if (apMode && strlen(cfg.wifiSSID) > 0 && now - lastReconnectCheck > 30000) {
     lastReconnectCheck = now;
     Serial.println(F("AP Mode: retrying STA connection..."));
     WiFi.begin(cfg.wifiSSID, cfg.wifiPassword);
-  }
-
-  if (WiFi.status() == WL_CONNECTED && apMode) {
-    apMode = false;
-    wifiConnected = true;
-    localIP = WiFi.localIP().toString();
-    dnsServer.stop();
-    Serial.print(F("WiFi connected! IP: "));
-    Serial.println(localIP);
-    displayManager.showOtaProgress("WiFi Connected", localIP.c_str());
-    bambuPrinter.begin(cfg);
-    if (MDNS.begin(cfg.deviceName)) {
-      Serial.println(F("mDNS responder started"));
-    }
   }
 
   static unsigned long lastBmeRead = 0;
@@ -232,31 +244,10 @@ void connectWiFi() {
   ledManager.setAllLeds(LED_WIFI_DISCONNECTED);
   ledManager.update();
 
-  int attempts = 0;
-  while (WiFi.status() != WL_CONNECTED && attempts < 30) {
-    delay(500);
-    Serial.print(".");
-    attempts++;
-  }
-  Serial.println();
-
-  if (WiFi.status() == WL_CONNECTED) {
-    wifiConnected = true;
-    apMode = false;
-    localIP = WiFi.localIP().toString();
-    Serial.print(F("Connected! IP: "));
-    Serial.println(localIP);
-    displayManager.showOtaProgress("WiFi Connected", localIP.c_str());
-
-    if (MDNS.begin(cfg.deviceName)) {
-      Serial.println(F("mDNS responder started"));
-    }
-  } else {
-    wifiConnected = false;
-    Serial.println(F("WiFi connection failed — starting AP"));
-    displayManager.showOtaProgress("WiFi Failed!", "Opening AP mode...");
-    startCaptivePortal();
-  }
+  // Do not block the main loop here. The ESP32 web server must keep responding
+  // while the WiFi stack connects in the background.
+  wifiConnected = false;
+  apMode = false;
 }
 
 void startCaptivePortal() {

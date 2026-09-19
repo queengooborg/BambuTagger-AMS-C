@@ -317,8 +317,34 @@ if(ams.count==1&&ams.configuredUnit!=ams.units.find(function(u){return u.connect
 document.getElementById('amsUnit').value=ams.units.find(function(u){return u.connected}).id}
 }}
 
-function fetchStatus(){fetch('/api/status').then(function(r){return r.json()}).then(updateSlots)
-.catch(function(){})}
+var statusFetchInFlight = false;
+function fetchStatus(){
+  if (statusFetchInFlight) {
+    console.log('Status fetch already in flight');
+    return;
+  }
+  console.log('Fetching status...');
+  statusFetchInFlight = true;
+  var controller = new AbortController();
+  var timeout = setTimeout(function(){controller.abort("Timeout");}, 20000);
+  fetch('/api/status', { signal: controller.signal })
+    .then(function(r){
+      if (!r.ok) {
+        console.log('HTTP error during status fetch: ' + r.status);
+        throw new Error('HTTP ' + r.status);
+      }
+      console.log("Status fetch successful");
+      return r.json();
+    })
+    .then(updateSlots)
+    .catch(function(e){
+      console.log('Error during status fetch: ' + e.message);
+    })
+    .finally(function(){
+      clearTimeout(timeout);
+      statusFetchInFlight = false;
+    });
+}
 
 function scanAll(){fetch('/api/scan',{method:'POST'}).then(function(r){return r.json()})
 .then(function(d){showToast('Scan triggered',true);fetchStatus()})
@@ -425,8 +451,8 @@ function toggleLayout() {
 
 loadConfig();
 fetchStatus();
-setInterval(fetchStatus,3000);
-setTimeout(function(){checkOta()},5000)
+setInterval(fetchStatus,15000);
+setTimeout(function(){checkOta()},15000)
 </script>
 <div id="otaOverlay"><div class="spinner"></div><div class="msg">Installing update...</div><div class="sub" id="otaOverlaySub"></div><div class="bar"><div class="barFill" id="otaBar" style="width:0%"></div></div></div>
 <footer>&copy; 2026 by <a href="https://www.bambutagger.de" target="_blank" style="color:#484f58;text-decoration:none" onmouseover="this.style.color='#c9d1d9'" onmouseout="this.style.color='#484f58'">BambuTagger</a></footer>

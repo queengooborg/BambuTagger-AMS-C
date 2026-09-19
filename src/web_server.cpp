@@ -64,7 +64,9 @@ void WebInterface::handleRoot() {
 }
 
 void WebInterface::handleStatus() {
-  DynamicJsonDocument doc(8192);
+  // Keep the JSON as small as possible. On the ESP32, serializing a very large
+  // status blob on each poll is a major cause of latency and timeouts.
+  DynamicJsonDocument doc(2048);
   doc["wifiConnected"] = wifiStatus;
   doc["ipAddress"] = ipAddress;
   doc["mqttConnected"] = mqttStatus;
@@ -76,18 +78,17 @@ void WebInterface::handleStatus() {
     doc["humidity"] = bmeHumidity;
   }
 
-  JsonObject amsInfo = doc.createNestedObject("detectedAms");
-  amsInfo["bits"] = bambuPrinter ? bambuPrinter->getAmsExistBits() : 0;
-  amsInfo["count"] = bambuPrinter ? bambuPrinter->getDetectedAmsCount() : 0;
-  JsonArray amsList = amsInfo.createNestedArray("units");
-  if (bambuPrinter) {
+  if (bambuPrinter && bambuPrinter->getDetectedAmsCount() > 0) {
+    JsonObject amsInfo = doc.createNestedObject("detectedAms");
+    amsInfo["bits"] = bambuPrinter->getAmsExistBits();
+    amsInfo["count"] = bambuPrinter->getDetectedAmsCount();
+    JsonArray amsList = amsInfo.createNestedArray("units");
     for (uint8_t a = 0; a < 4; a++) {
+      if (!bambuPrinter->isAmsDetected(a)) continue;
       JsonObject unit = amsList.createNestedObject();
       unit["id"] = a;
-      unit["label"] = (const char*)(a == 0 ? "A" : a == 1 ? "B"
-                                                 : a == 2 ? "C"
-                                                          : "D");
-      unit["connected"] = bambuPrinter->isAmsDetected(a);
+      unit["label"] = (const char*)(a == 0 ? "A" : a == 1 ? "B" : a == 2 ? "C" : "D");
+      unit["connected"] = true;
       unit["fwVer"] = bambuPrinter->getAmsFwVer(a);
       unit["productName"] = bambuPrinter->getAmsProductName(a);
       unit["serial"] = bambuPrinter->getAmsSerial(a);
@@ -111,8 +112,8 @@ void WebInterface::handleStatus() {
         }
       }
     }
+    amsInfo["configuredUnit"] = config->amsUnit;
   }
-  amsInfo["configuredUnit"] = config->amsUnit;
 
   JsonArray slots = doc.createNestedArray("slots");
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
@@ -144,7 +145,7 @@ void WebInterface::handleStatus() {
       ps["trayType"] = ttype;
       ps["material"] = bambuPrinter->getAmsTrayMaterial(amsUnit, t);
       ps["color"] = bambuPrinter->getAmsTrayColor(amsUnit, t);
-      ps["remain"] = bambuPrinter->getAmsTrayRemain(amsUnit, t);   // 0-100 %
+      ps["remain"] = bambuPrinter->getAmsTrayRemain(amsUnit, t);
       ps["hasSpool"] = (ttype && ttype[0] != '\0');
       ps["amsConnected"] = amsConnected;
       SpoolInfo psInfo;
@@ -449,5 +450,7 @@ void WebInterface::handleLedPost() {
 void WebInterface::sendJsonResponse(JsonDocument& doc, int code) {
   String response;
   serializeJson(doc, response);
+  server->sendHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  server->sendHeader("Connection", "close");
   server->send(code, "application/json", response);
 }

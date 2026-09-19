@@ -33,8 +33,8 @@ const uint8_t RST_PINS[NUM_SLOTS] = {26, 25, 33, 32};
 #define TFT_SDA  17
 
 // --- RFID Settings ---
-#define RFID_POLL_INTERVAL_MS  100
-#define RFID_DEBOUNCE_MS       500
+#define RFID_POLL_INTERVAL_MS  250
+#define RFID_DEBOUNCE_MS       750
 #define NTAG_PAGE_SIZE         4
 #define NTAG_USER_START_PAGE   4
 #define NTAG_MAX_PAGES         231
