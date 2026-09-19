@@ -20,6 +20,7 @@ void WebInterface::begin(SystemConfig& cfg, RfidManager* rfid, BambuPrinter* pri
   server = new WebServer(80);
   setupRoutes();
   server->begin();
+  Serial.println(F("[WEB] HTTP server initialized on port 80"));
   wifiStatus = false;
   mqttStatus = false;
   printerOnlineStatus = false;
@@ -200,6 +201,7 @@ void WebInterface::handleConfigGet() {
 }
 
 void WebInterface::handleConfigPost() {
+  Serial.println(F("[WEB] Config update requested"));
   if (!server->hasArg("plain")) {
     DynamicJsonDocument doc(128);
     doc["ok"] = false;
@@ -211,6 +213,7 @@ void WebInterface::handleConfigPost() {
   DynamicJsonDocument postDoc(1024);
   DeserializationError err = deserializeJson(postDoc, server->arg("plain"));
   if (err) {
+    Serial.printf("[WEB] Config update rejected: JSON parse failed (%s)\n", err.c_str());
     DynamicJsonDocument doc(128);
     doc["ok"] = false;
     doc["error"] = err.c_str();
@@ -272,6 +275,9 @@ void WebInterface::handleConfigPost() {
 
   if (changed) {
     saveConfig(*config);
+    Serial.println(F("[WEB] Configuration saved; rebooting"));
+  } else {
+    Serial.println(F("[WEB] Configuration unchanged"));
   }
 
   DynamicJsonDocument resp(128);
@@ -286,6 +292,7 @@ void WebInterface::handleConfigPost() {
 }
 
 void WebInterface::handleScan() {
+  Serial.println(F("[WEB] Scan requested for all RFID slots"));
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     rfidManager->forceRescan(i);
   }
@@ -314,6 +321,9 @@ void WebInterface::handleSend() {
     doc["sent"] = 0;
   }
 
+  Serial.printf("[WEB] Send request completed ok=%s count=%d\n",
+                doc["ok"] ? "yes" : "no", sent);
+
   sendJsonResponse(doc);
 }
 
@@ -327,6 +337,7 @@ void WebInterface::handleSync() {
     doc["ok"] = false;
     doc["error"] = bambuPrinter ? "MQTT not connected" : "MQTT not configured";
   }
+  Serial.printf("[WEB] Sync request completed ok=%s\n", doc["ok"] ? "yes" : "no");
   sendJsonResponse(doc);
 }
 
@@ -345,6 +356,8 @@ void WebInterface::handleAmsGetRfid() {
     doc["ok"] = false;
     doc["error"] = "MQTT not connected";
   }
+  Serial.printf("[WEB] AMS RFID request tray=%s ok=%s\n",
+                server->arg("tray").c_str(), doc["ok"] ? "yes" : "no");
   sendJsonResponse(doc);
 }
 
@@ -360,6 +373,7 @@ void WebInterface::handleOtaCheck() {
   String url = String("https://github.com/") + OTA_REPO + "/releases/latest";
 
   if (!http.begin(client, url)) {
+    Serial.println(F("[WEB] OTA check failed to initialize HTTP client"));
     doc["error"] = "begin failed";
     sendJsonResponse(doc);
     return;
@@ -380,6 +394,7 @@ void WebInterface::handleOtaCheck() {
   http.end();
 
   if (latest.isEmpty()) {
+    Serial.printf("[WEB] OTA check found no release (HTTP %d)\n", code);
     doc["error"] = String("HTTP ") + code;
     sendJsonResponse(doc);
     return;
@@ -397,10 +412,13 @@ void WebInterface::handleOtaCheck() {
   sscanf(l, "%d.%d.%d", &lMaj, &lMin, &lPat);
 
   doc["newer"] = ((rMaj * 10000 + rMin * 100 + rPat) > (lMaj * 10000 + lMin * 100 + lPat));
+  Serial.printf("[WEB] OTA check current=%s latest=%s newer=%s\n",
+                FIRMWARE_VERSION, latest.c_str(), doc["newer"] ? "yes" : "no");
   sendJsonResponse(doc);
 }
 
 void WebInterface::handleOta() {
+  Serial.println(F("[WEB] OTA update requested"));
   DynamicJsonDocument doc(128);
   doc["ok"] = true;
   doc["message"] = "OTA update started";
@@ -439,10 +457,12 @@ void WebInterface::handleLedPost() {
     prefs.begin("bambu-ams", false);
     prefs.putUChar("brightness", brightness);
     prefs.end();
+    Serial.printf("[WEB] LED brightness set to %d\n", brightness);
     doc["brightness"] = String(brightness);
     sendJsonResponse(doc);
     return;
   }
+  Serial.printf("[WEB] Invalid LED brightness: %d\n", brightness);
   doc["error"] = "Invalid brightness value (0-255)";
   sendJsonResponse(doc);
 }

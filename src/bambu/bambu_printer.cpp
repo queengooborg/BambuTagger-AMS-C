@@ -11,6 +11,10 @@ void BambuPrinter::begin(const SystemConfig &cfg) {
   instance = this;
   amsDetected = false;
   amsExistBits = 0;
+  Serial.printf("[MQTT] Initializing enabled=%s tls=%s printer=%s:%u serial=%s\n",
+                config.mqttEnabled ? "yes" : "no",
+                config.mqttUseTLS ? "yes" : "no",
+                config.printerIP, config.printerPort, config.printerSerial);
 
   for (uint8_t i = 0; i < MAX_DETECTED_AMS; i++) {
     detectedAms[i].id = i;
@@ -26,7 +30,10 @@ void BambuPrinter::begin(const SystemConfig &cfg) {
   tlsClient = nullptr;
   mqttClient = nullptr;
 
-  if (!config.mqttEnabled) return;
+  if (!config.mqttEnabled) {
+    Serial.println(F("[MQTT] Disabled by configuration"));
+    return;
+  }
 
   if (config.mqttUseTLS) {
     tlsClient = new WiFiClientSecure();
@@ -41,6 +48,7 @@ void BambuPrinter::begin(const SystemConfig &cfg) {
   mqttClient->setServer(config.printerIP, config.printerPort);
   mqttClient->setCallback(staticMqttCallback);
   mqttClient->setBufferSize(MQTT_BUFFER_SIZE);
+  Serial.printf("[MQTT] Client ready id=%s\n", mqttClientId);
 }
 
 void BambuPrinter::update() {
@@ -68,9 +76,13 @@ void BambuPrinter::update() {
 }
 
 void BambuPrinter::reconnect() {
-  if (!config.mqttEnabled || !mqttClient || !config.printerIP[0]) return;
+  if (!config.mqttEnabled || !mqttClient || !config.printerIP[0]) {
+    Serial.println(F("[MQTT] Reconnect skipped: incomplete configuration"));
+    return;
+  }
 
   state = PRINTER_CONNECTING;
+  Serial.printf("[MQTT] Connecting to %s:%u\n", config.printerIP, config.printerPort);
 
   // Set TCP timeout to avoid long blocks when printer is offline
   if (config.mqttUseTLS && tlsClient) tlsClient->setTimeout(2);
@@ -84,7 +96,7 @@ void BambuPrinter::reconnect() {
     char topic[128];
     snprintf(topic, sizeof(topic), "%s/%s/report",
              config.mqttTopicPrefix, config.printerSerial);
-    mqttClient->subscribe(topic);
+    bool subscribed = mqttClient->subscribe(topic);
 
     char reqTopic[128];
     snprintf(reqTopic, sizeof(reqTopic), "%s/%s/request",
@@ -92,9 +104,12 @@ void BambuPrinter::reconnect() {
     char payload2[128];
     snprintf(payload2, sizeof(payload2),
              "{\"info\":{\"sequence_id\":\"0\",\"command\":\"get_version\"}}");
-    mqttClient->publish(reqTopic, payload2);
+    bool published = mqttClient->publish(reqTopic, payload2);
+    Serial.printf("[MQTT] Connected subscribed=%s versionRequest=%s\n",
+                  subscribed ? "yes" : "no", published ? "sent" : "failed");
   } else {
     state = PRINTER_ERROR;
+    Serial.printf("[MQTT] Connection failed state=%d\n", mqttClient->state());
   }
 }
 
@@ -114,7 +129,9 @@ void BambuPrinter::sendBmeData(float temp, float humidity) {
            "\"ams_user_humidity\":%.0f}}",
            millis(), config.amsUnit, temp, humidity);
 
-  mqttClient->publish(topic, payload);
+  if (!mqttClient->publish(topic, payload)) {
+    Serial.println(F("[MQTT] BME publish failed"));
+  }
 }
 
 void BambuPrinter::sendAmsGetRfid(uint8_t trayId) {
@@ -132,7 +149,9 @@ void BambuPrinter::sendAmsGetRfid(uint8_t trayId) {
            "\"slot_id\":%d}}",
            millis(), config.amsUnit, trayId);
 
-  mqttClient->publish(topic, payload);
+  if (!mqttClient->publish(topic, payload)) {
+    Serial.printf("[MQTT] AMS RFID request failed tray=%u\n", trayId);
+  }
 }
 
 void BambuPrinter::sendSpoolData(uint8_t slot, const SpoolInfo &info) {
@@ -180,8 +199,11 @@ void BambuPrinter::sendSpoolData(uint8_t slot, const SpoolInfo &info) {
   snprintf(topic, sizeof(topic), "%s/%s/request",
            config.mqttTopicPrefix, config.printerSerial);
 
-  // Serial.printf("SEND: %s\n", payload);
-  mqttClient->publish(topic, payload);
+  if (!mqttClient->publish(topic, payload)) {
+    Serial.printf("[MQTT] Spool publish failed slot=%u\n", slot);
+  } else {
+    Serial.printf("[MQTT] Spool sent slot=%u material=%s\n", slot, info.materialType);
+  }
 }
 
 void BambuPrinter::requestPrinterStatus() {
@@ -194,26 +216,27 @@ void BambuPrinter::requestPrinterStatus() {
   char payload[128];
   snprintf(payload, sizeof(payload),
            "{\"info\":{\"sequence_id\":\"0\",\"command\":\"get_version\"}}");
-  mqttClient->publish(topic, payload);
+  bool versionSent = mqttClient->publish(topic, payload);
 
   snprintf(payload, sizeof(payload),
            "{\"pushing\":{\"sequence_id\":\"0\",\"command\":\"pushall\",\"version\":1,\"push_target\":1}}");
-  mqttClient->publish(topic, payload);
+  bool statusSent = mqttClient->publish(topic, payload);
+  Serial.printf("[MQTT] Status requested version=%s pushall=%s\n",
+                versionSent ? "sent" : "failed", statusSent ? "sent" : "failed");
 }
 
 void BambuPrinter::mqttCallback(char* topic, byte* payload, unsigned int length) {
   printerOnline = true;
 
-  // Serial.printf("MQTT [%s] %u\n", topic, length);
-  // Serial.write(payload, length);  // mute raw JSON
-  // Serial.println();
-
-  if (length >= MQTT_BUFFER_SIZE) return;
+  if (length >= MQTT_BUFFER_SIZE) {
+    Serial.printf("[MQTT] Message dropped: %u bytes exceeds buffer\n", length);
+    return;
+  }
 
   DynamicJsonDocument doc(MQTT_BUFFER_SIZE);
   DeserializationError err = deserializeJson(doc, payload, length);
   if (err) {
-//    Serial.printf("JSON deser error: %s\n", err.c_str());
+    Serial.printf("[MQTT] JSON parse failed: %s\n", err.c_str());
     return;
   }
 
@@ -221,6 +244,7 @@ void BambuPrinter::mqttCallback(char* topic, byte* payload, unsigned int length)
 }
 
 void BambuPrinter::parseReport(JsonDocument &doc) {
+  uint8_t previousAmsBits = amsExistBits;
   JsonObject printObj = doc["print"];
   JsonObject infoObj = doc["info"];
 
@@ -311,6 +335,10 @@ void BambuPrinter::parseReport(JsonDocument &doc) {
         snprintf(detectedAms[i].productName, 31, "AMS %c", 'A' + i);
       }
     }
+  }
+  if (amsExistBits != previousAmsBits) {
+    Serial.printf("[MQTT] AMS presence changed bits=0x%02X count=%u\n",
+                  amsExistBits, getDetectedAmsCount());
   }
 }
 

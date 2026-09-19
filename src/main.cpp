@@ -109,12 +109,6 @@ void setup() {
 
   webInterface.begin(cfg, &rfidManager, &bambuPrinter, handleReboot, performOTAUpdate);
   webInterface.updateStatus(wifiConnected, localIP.c_str(), false, false);
-  if (wifiConnected) {
-    Serial.println(F("Web server started on port 80"));
-    Serial.println(localIP);
-  } else {
-    Serial.println(F("Web server started on AP 192.168.4.1"));
-  }
 
   ledManager.setAllLeds(wifiConnected ? LED_WIFI_CONNECTED : LED_WIFI_DISCONNECTED);
   ledManager.update();
