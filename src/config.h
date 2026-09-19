@@ -86,7 +86,7 @@ inline SystemConfig getDefaultConfig() {
   strcpy(cfg.deviceName, "BambuTagger-AMS");
   cfg.amsUnit = 0;
   cfg.mqttEnabled = false;
-  cfg.mqttUseTLS = false;
+  cfg.mqttUseTLS = true;
   cfg.mqttUpdateIntervalMs = 3000;
   strcpy(cfg.mqttTopicPrefix, "device");
   cfg.layoutVertical = false;
