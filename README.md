@@ -39,53 +39,41 @@ Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament sp
 | Component | Notes | Buy |
 |-----------|-------|-----
 | **ESP32** Dev Module | Base board | https://de.aliexpress.com/item/1005006589341221.html |
-| **4x RC522** RFID/NFC readers | SPI interface, shared bus | https://de.aliexpress.com/item/1005006233005745.html |
-| **4x WS2812** addressable LEDs | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html |
-| **240×240 1.3" TFT** | ST7789VW SPI display | https://www.aliexpress.com/item/1005007094147766.html |
-| **BME280** sensor | Temperature/humidity, I2C | https://de.aliexpress.com/item/1005006824236173.html |
-| **PCB** | DIY PCB from JLPCB<br/>only > v1.2 | https://oshwlab.com/bambutagger/project_hdkkdlsn |
+| **4x RC522** RFID/NFC Readers | SPI interface, shared bus | https://de.aliexpress.com/item/1005006233005745.html |
+| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html |
+| **240×240 1.3" TFT** | ST7789VW SPI Display | https://www.aliexpress.com/item/1005007094147766.html |
+| **BME280** Sensor | Temperature/Humidity, I2C | https://de.aliexpress.com/item/1005006824236173.html |
+| Custom **PCB** | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn |
 
-### Pin Assignments
+> [!NOTE]
+> The 40-pin ESP32-S3-DevKitC-1 is a compatible alternative for development; however, the PCB only works with the 30-pin ESP-WROOM-32.
 
-**SPI Bus (shared by all RC522 readers)**
+### Wiring / Pin Assignments
 
-| Signal | GPIO |
-|--------|------|
-| MOSI | 23 |
-| MISO | 19 |
-| SCK | 18 |
+If you are not using the custom PCB
 
-**RC522 Readers**
+Connect the ESP32 to a 5V power input, either via the USB port or via the VCC/Vin pin.
 
-| Reader | SS Pin | RST Pin | Slot | WS2812 Pixel |
-|--------|--------|---------|------|--------------|
-| #1 | 13 | 26 | 1 | 0 |
-| #2 | 12 | 25 | 2 | 1 |
-| #3 | 14 | 33 | 3 | 2 |
-| #4 | 27 | 32 | 4 | 3 |
+The WS2812 LED must also be powered by 5V. If the ESP32 is powered via the USB port, the VCC/Vin pin becomes a 5V output, and can be used to power the LEDs. On some boards, you may need to short two pads (usually labeled VIN->VOUT) via soldering.
 
-**TFT Display (ST7789VW SPI)**
+All other components will be powered by the 3.3V pin on the ESP32 board.
 
-| Signal | GPIO |
-|--------|------|
-| SDA (MOSI) | 17 |
-| SCL (SCK) | 16 |
-| DC | 4 |
-| RES | 5 |
-| BLK (Backlight) | 2 |
+| Function | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
+|----------|-----------------|-------------------|
+| **RC522 SPI MOSI (Shared)** | 23 | 11 |
+| **RC522 SPI MISO (Shared)** | 19 | 13 |
+| **RC522 SPI SCK (Shared)** | 18 | 12 |
+| **RC522 #1 SS / RST** | 13 / 26 | 10 / 1 |
+| **RC522 #2 SS / RST** | 12 / 25 | 9 / 2 |
+| **RC522 #3 SS / RST** | 14 / 33 | 8 / 4 |
+| **RC522 #4 SS / RST** | 27 / 32 | 7 / 35 |
+| **TFT MOSI / SCK** | 17 / 16 | 21 / 18 |
+| **TFT DC / RES / BLK** | 4 / 5 / 2 | 16 / 17 / 15 |
+| **WS2812 Data** | 15 | 14 |
+| **BME280 SDA / SCL** | 22 / 21 | 6 / 5 |
 
-**WS2812 LEDs**
 
-| Signal | GPIO |
-|--------|------|
-| Data | 15 |
 
-**BME280**
-
-| Signal | GPIO |
-|--------|------|
-| SCL | 21 |
-| SDA | 22 |
 
 ---
 
@@ -133,7 +121,15 @@ source .venv/bin/activate
 
 #### Build and Upload
 
-To build, run `pio run build`. To upload to the board, run `pio run -t upload`.
+```sh
+# ESP32-WROOM / ESP32 Dev Module
+pio run -e esp32-ams-c
+pio run -e esp32-ams-c -t upload
+
+# ESP32-S3-DevKitC-1
+pio run -e esp32-s3-devkitc-1
+pio run -e esp32-s3-devkitc-1 -t upload
+```
 
 ---
 

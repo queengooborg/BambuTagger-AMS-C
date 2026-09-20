@@ -74,7 +74,7 @@ void setup() {
   displayManager.setLayout(cfg.layoutVertical);
   delay(2000);
 
-  Wire.begin();
+  Wire.begin(I2C_SDA, I2C_SCL);
   bmeOk = bme.begin(0x76);
   if (!bmeOk) bmeOk = bme.begin(0x77);
   if (bmeOk) {
