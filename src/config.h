@@ -5,7 +5,7 @@
 #include <Preferences.h>
 
 #define FIRMWARE_VERSION "1.2.0"
-#define OTA_REPO "VID-PRO/BambuTagger-AMS-C"
+#define OTA_REPO "queengooborg/BambuTagger-AMS-C" // "VID-PRO/BambuTagger-AMS-C" -- XXX restore once forked changes are merged upstream
 
 #define NUM_SLOTS 4
 
