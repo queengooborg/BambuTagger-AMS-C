@@ -22,7 +22,18 @@ permissions:
 
 jobs:
   build:
+    name: Build ${{ matrix.name }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: ESP32 Dev Module
+            board: esp32dev
+            chip: esp32
+          - name: ESP32-S3-DevKitC-1
+            board: esp32-s3-devkitc-1
+            chip: esp32s3
 
     steps:
       - name: Checkout repository
@@ -44,74 +55,82 @@ jobs:
         run: pip install platformio esptool
 
       - name: Build firmware
-        run: pio run
+        run: pio run -e "${{ matrix.board }}"
 
       - name: Prepare build artifacts
         run: |
           mkdir -p build
-          cp .pio/build/esp32-ams-c/firmware.bin build/
-          cp .pio/build/esp32-ams-c/bootloader.bin build/
-          cp .pio/build/esp32-ams-c/partitions.bin build/
-          cp ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin build/
+          cp ".pio/build/${{ matrix.board }}/firmware.bin" "build/${{ matrix.board }}-firmware.bin"
+          cp ".pio/build/${{ matrix.board }}/bootloader.bin" "build/${{ matrix.board }}-bootloader.bin"
+          cp ".pio/build/${{ matrix.board }}/partitions.bin" "build/${{ matrix.board }}-partitions.bin"
+          cp ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin build/boot_app0.bin
 
-      - name: Create merged binary
+      - name: Create merged binaries
         run: |
-          esptool.py --chip esp32 merge_bin \
-            --output build/firmware_merged.bin \
+          esptool.py --chip "${{ matrix.chip }}" merge_bin \
+            --output "build/${{ matrix.board }}-firmware_merged.bin" \
             --flash_mode qio \
             --flash_freq 80m \
-            --flash_size 4MB \
-            0x1000   build/bootloader.bin \
-            0x8000   build/partitions.bin \
+            --flash_size keep \
+            0x1000   "build/${{ matrix.board }}-bootloader.bin" \
+            0x8000   "build/${{ matrix.board }}-partitions.bin" \
             0xe000   build/boot_app0.bin \
-            0x10000  build/firmware.bin
+            0x10000  "build/${{ matrix.board }}-firmware.bin"
 
-          echo "=== Build artefacts ==="
+          echo "=== Build artifacts ==="
           ls -lh build/
 
-      - name: Upload firmware artefacts
+      - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: BambuTagger-AMS-C-firmware-${{ github.sha }}
+          name: BambuTagger-AMS-C-firmware-${{ matrix.board }}-${{ github.sha }}
           retention-days: 30
-          path: |
-            build/firmware.bin
-            build/bootloader.bin
-            build/partitions.bin
-            build/firmware_merged.bin
+          path: build/${{ matrix.board }}-*
+
+  release:
+    name: Publish release
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download firmware artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: BambuTagger-AMS-C-firmware-*-${{ github.sha }}
+          path: build
+          merge-multiple: true
 
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           name: "BambuTagger-AMS-C ${{ github.ref_name }}"
           generate_release_notes: true
           files: |
-            build/firmware.bin
-            build/bootloader.bin
-            build/partitions.bin
-            build/firmware_merged.bin
+            build/*
           body: |
             ## Flashing instructions
 
-            ### Easiest — merged binary (single file, address 0x00)
+            Choose the image matching your board:
+            - `esp32dev-firmware_merged.bin` — ESP32-WROOM / ESP32 Dev Module
+            - `esp32-s3-devkitc-1-firmware_merged.bin` — ESP32-S3-DevKitC-1 (requires `--chip esp32s3` in commands)
+
+            ### Easiest - OTA Update
+
+            Upload the appropriate `firmware.bin` via the [web interface](https://www.bambutagger.de/downloads/firmware/flash-bambutagger-ams-c) (Status → Update Firmware).
+
+            ### Manual — merged binary (single file, address 0x00)
+
             ```
-            esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 \
-              write_flash 0x0 firmware_merged.bin
+            esptool.py write_flash 0x0 firmware_merged.bin
             ```
 
             ### Manual — separate files
+
+            Use the matching board-prefixed `bootloader`, `partitions`, and `firmware` files.
+
             ```
-            esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 \
-              write_flash \
+            esptool.py write_flash \
               0x1000   bootloader.bin \
               0x8000   partitions.bin \
               0x10000  firmware.bin
             ```
-
-            > **Board:** ESP32 Dev Module  
-            > **Build system:** PlatformIO  
-            > **Flash:** 4 MB, QIO, 80 MHz
-
-            ### OTA Update
-            Upload `firmware.bin` via the web interface (Status → Update Firmware).

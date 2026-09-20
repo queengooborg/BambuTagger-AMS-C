@@ -79,7 +79,7 @@ All other components will be powered by the 3.3V pin on the ESP32 board.
 
 ### Uploading from Web Interface
 
-The easiest way to flash the board firmware is to use the [web flash utility](https://www.bambutagger.de/en/downloads/firmware/flash-bambutagger-ams-c).
+The easiest way to flash the board firmware is to use the [web flash utility](https://www.bambutagger.de/downloads/firmware/flash-bambutagger-ams-c).
 
 > [!NOTE]
 > The ESP32-S3-DevKitC-1 cannot be flashed via the web utility (yet). It must be flashed by building from source.
