@@ -33,8 +33,8 @@ bool TagParser::parse(uint8_t* data, uint16_t length, const char* uid, SpoolInfo
     if (data[i] == '{') {
       int cl = (length - i) < 255 ? (length - i) : 254;
       char tmp[256]; memcpy(tmp, (const char*)&data[i], cl); tmp[cl] = '\0';
-      StaticJsonDocument<256> jd;
-      if (deserializeJson(jd, tmp) == DeserializationError::Ok && jd.containsKey("protocol")) {
+      JsonDocument jd;
+      if (deserializeJson(jd, tmp) == DeserializationError::Ok && jd["protocol"].is<const char*>()) {
         const char* proto = jd["protocol"] | "";
         const char* jtype = jd["type"] | "";
         if (jtype[0]) strncpy(info.materialType, jtype, sizeof(info.materialType) - 1);
@@ -193,8 +193,8 @@ bool TagParser::parseRawNTAG(uint8_t* data, uint16_t length, const char* uid, Sp
           if (payloadLen > 0 && pos + payloadLen <= length) {
             int cl = payloadLen < (int)(sizeof(info.materialType) - 1) ? payloadLen : (int)(sizeof(info.materialType) - 1);
             memcpy(info.materialType, &data[pos], cl); info.materialType[cl] = '\0';
-            StaticJsonDocument<256> jd;
-            if (deserializeJson(jd, info.materialType) == DeserializationError::Ok && jd.containsKey("protocol")) {
+            JsonDocument jd;
+            if (deserializeJson(jd, info.materialType) == DeserializationError::Ok && jd["protocol"].is<const char*>()) {
               const char* proto = jd["protocol"] | "";
               const char* jtype = jd["type"] | "";
               if (jtype[0]) strncpy(info.materialType, jtype, sizeof(info.materialType) - 1);
@@ -324,8 +324,8 @@ bool TagParser::parseRawNTAG(uint8_t* data, uint16_t length, const char* uid, Sp
             if (data[ps + i] == '{') {
               int cl = (payloadLen - i) < 255 ? (payloadLen - i) : 254;
               char tmp[256]; memcpy(tmp, &data[ps + i], cl); tmp[cl] = '\0';
-              StaticJsonDocument<256> jd;
-              if (deserializeJson(jd, tmp) == DeserializationError::Ok && jd.containsKey("protocol")) {
+              JsonDocument jd;
+              if (deserializeJson(jd, tmp) == DeserializationError::Ok && jd["protocol"].is<const char*>()) {
                 const char* proto = jd["protocol"] | "";
                 const char* jtype = jd["type"] | "";
                 if (jtype[0]) strncpy(info.materialType, jtype, sizeof(info.materialType) - 1);

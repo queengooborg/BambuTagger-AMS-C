@@ -245,7 +245,7 @@ void BambuPrinter::mqttCallback(char* topic, byte* payload, unsigned int length)
     return;
   }
 
-  DynamicJsonDocument doc(MQTT_BUFFER_SIZE);
+  JsonDocument doc;
   DeserializationError err = deserializeJson(doc, payload, length);
   if (err) {
     Serial.printf("[MQTT] JSON parse failed: %s\n", err.c_str());
@@ -263,8 +263,8 @@ void BambuPrinter::parseReport(JsonDocument &doc) {
   if (printObj) {
     JsonObject amsObj = printObj["ams"];
     if (amsObj) {
-      if (amsObj.containsKey("ams_exist_bits")) {
-        JsonVariant v = amsObj["ams_exist_bits"];
+      JsonVariant v = amsObj["ams_exist_bits"];
+      if (!v.isNull()) {
         amsExistBits = v.is<const char*>() ? (uint8_t)strtoul(v.as<const char*>(), nullptr, 10) : v.as<uint8_t>();
       }
       JsonArray arr = amsObj["ams"];

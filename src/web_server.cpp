@@ -65,9 +65,7 @@ void WebInterface::handleRoot() {
 }
 
 void WebInterface::handleStatus() {
-  // Keep the JSON as small as possible. On the ESP32, serializing a very large
-  // status blob on each poll is a major cause of latency and timeouts.
-  DynamicJsonDocument doc(2048);
+  JsonDocument doc;
   doc["wifiConnected"] = wifiStatus;
   doc["ipAddress"] = ipAddress;
   doc["mqttConnected"] = mqttStatus;
@@ -80,13 +78,13 @@ void WebInterface::handleStatus() {
   }
 
   if (bambuPrinter && bambuPrinter->getDetectedAmsCount() > 0) {
-    JsonObject amsInfo = doc.createNestedObject("detectedAms");
+    JsonObject amsInfo = doc["detectedAms"].to<JsonObject>();
     amsInfo["bits"] = bambuPrinter->getAmsExistBits();
     amsInfo["count"] = bambuPrinter->getDetectedAmsCount();
-    JsonArray amsList = amsInfo.createNestedArray("units");
+    JsonArray amsList = amsInfo["units"].to<JsonArray>();
     for (uint8_t a = 0; a < 4; a++) {
       if (!bambuPrinter->isAmsDetected(a)) continue;
-      JsonObject unit = amsList.createNestedObject();
+      JsonObject unit = amsList.add<JsonObject>();
       unit["id"] = a;
       unit["label"] = (const char*)(a == 0 ? "A" : a == 1 ? "B" : a == 2 ? "C" : "D");
       unit["connected"] = true;
@@ -95,9 +93,9 @@ void WebInterface::handleStatus() {
       unit["serial"] = bambuPrinter->getAmsSerial(a);
       unit["temperature"] = bambuPrinter->getAmsTemperature(a);
       unit["humidity"] = bambuPrinter->getAmsHumidity(a);
-      JsonArray trays = unit.createNestedArray("trays");
+      JsonArray trays = unit["trays"].to<JsonArray>();
       for (uint8_t t = 0; t < 4; t++) {
-        JsonObject tray = trays.createNestedObject();
+        JsonObject tray = trays.add<JsonObject>();
         tray["trayId"] = t;
         tray["material"] = bambuPrinter->getAmsTrayMaterial(a, t);
         tray["trayType"] = bambuPrinter->getAmsTrayType(a, t);
@@ -116,11 +114,11 @@ void WebInterface::handleStatus() {
     amsInfo["configuredUnit"] = config->amsUnit;
   }
 
-  JsonArray slots = doc.createNestedArray("slots");
+  JsonArray slots = doc["slots"].to<JsonArray>();
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     SpoolInfo info;
     bool present = rfidManager->getSpoolInfo(i, info);
-    JsonObject slot = slots.createNestedObject();
+    JsonObject slot = slots.add<JsonObject>();
     slot["slot"] = i;
     slot["present"] = present || info.present;
     slot["uid"] = info.uid;
@@ -135,12 +133,12 @@ void WebInterface::handleStatus() {
     slot["tagReadSuccess"] = info.tagReadSuccess;
   }
 
-  JsonArray printerSlots = doc.createNestedArray("printerSlots");
+  JsonArray printerSlots = doc["printerSlots"].to<JsonArray>();
   if (bambuPrinter) {
     uint8_t amsUnit = config->amsUnit;
     bool amsConnected = bambuPrinter->isAmsDetected(amsUnit);
     for (uint8_t t = 0; t < 4; t++) {
-      JsonObject ps = printerSlots.createNestedObject();
+      JsonObject ps = printerSlots.add<JsonObject>();
       ps["slot"] = t;
       const char* ttype = bambuPrinter->getAmsTrayType(amsUnit, t);
       ps["trayType"] = ttype;
@@ -161,7 +159,7 @@ void WebInterface::handleStatus() {
 }
 
 void WebInterface::handleAmsStatus() {
-  DynamicJsonDocument doc(512);
+  JsonDocument doc;
   doc["configuredUnit"] = config->amsUnit;
   doc["configuredLabel"] = (const char*)(config->amsUnit == 0 ? "A" : config->amsUnit == 1 ? "B"
                                                                     : config->amsUnit == 2 ? "C"
@@ -170,11 +168,11 @@ void WebInterface::handleAmsStatus() {
   doc["existBits"] = bambuPrinter ? bambuPrinter->getAmsExistBits() : 0;
   doc["count"] = bambuPrinter ? bambuPrinter->getDetectedAmsCount() : 0;
 
-  JsonArray units = doc.createNestedArray("units");
+  JsonArray units = doc["units"].to<JsonArray>();
   if (bambuPrinter) {
     const char* labels[] = { "A", "B", "C", "D" };
     for (uint8_t a = 0; a < 4; a++) {
-      JsonObject unit = units.createNestedObject();
+      JsonObject unit = units.add<JsonObject>();
       unit["id"] = a;
       unit["label"] = labels[a];
       unit["connected"] = bambuPrinter->isAmsDetected(a);
@@ -184,7 +182,7 @@ void WebInterface::handleAmsStatus() {
 }
 
 void WebInterface::handleConfigGet() {
-  DynamicJsonDocument doc(1024);
+  JsonDocument doc;
   doc["wifiSSID"] = config->wifiSSID;
   doc["wifiPassword"] = "********";
   doc["printerIP"] = config->printerIP;
@@ -203,18 +201,18 @@ void WebInterface::handleConfigGet() {
 void WebInterface::handleConfigPost() {
   Serial.println(F("[WEB] Config update requested"));
   if (!server->hasArg("plain")) {
-    DynamicJsonDocument doc(128);
+    JsonDocument doc;
     doc["ok"] = false;
     doc["error"] = "No body";
     sendJsonResponse(doc, 400);
     return;
   }
 
-  DynamicJsonDocument postDoc(1024);
+  JsonDocument postDoc;
   DeserializationError err = deserializeJson(postDoc, server->arg("plain"));
   if (err) {
     Serial.printf("[WEB] Config update rejected: JSON parse failed (%s)\n", err.c_str());
-    DynamicJsonDocument doc(128);
+    JsonDocument doc;
     doc["ok"] = false;
     doc["error"] = err.c_str();
     sendJsonResponse(doc, 400);
@@ -223,52 +221,52 @@ void WebInterface::handleConfigPost() {
 
   bool changed = false;
 
-  if (postDoc.containsKey("wifiSSID")) {
+  if (postDoc["wifiSSID"].is<const char*>()) {
     strncpy(config->wifiSSID, postDoc["wifiSSID"] | "", sizeof(config->wifiSSID) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("wifiPassword") && strcmp(postDoc["wifiPassword"] | "", "********") != 0) {
+  if (postDoc["wifiPassword"].is<const char*>() && strcmp(postDoc["wifiPassword"] | "", "********") != 0) {
     strncpy(config->wifiPassword, postDoc["wifiPassword"] | "", sizeof(config->wifiPassword) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("printerIP")) {
+  if (postDoc["printerIP"].is<const char*>()) {
     strncpy(config->printerIP, postDoc["printerIP"] | "", sizeof(config->printerIP) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("printerPort")) {
+  if (postDoc["printerPort"].is<int>()) {
     config->printerPort = postDoc["printerPort"] | config->printerPort;
     changed = true;
   }
-  if (postDoc.containsKey("printerAccessCode") && strcmp(postDoc["printerAccessCode"] | "", "********") != 0) {
+  if (postDoc["printerAccessCode"].is<const char*>() && strcmp(postDoc["printerAccessCode"] | "", "********") != 0) {
     strncpy(config->printerAccessCode, postDoc["printerAccessCode"] | "", sizeof(config->printerAccessCode) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("printerSerial")) {
+  if (postDoc["printerSerial"].is<const char*>()) {
     strncpy(config->printerSerial, postDoc["printerSerial"] | "", sizeof(config->printerSerial) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("deviceName")) {
+  if (postDoc["deviceName"].is<const char*>()) {
     strncpy(config->deviceName, postDoc["deviceName"] | "", sizeof(config->deviceName) - 1);
     changed = true;
   }
-  if (postDoc.containsKey("mqttEnabled")) {
+  if (postDoc["mqttEnabled"].is<bool>()) {
     config->mqttEnabled = postDoc["mqttEnabled"] | false;
     changed = true;
   }
-  if (postDoc.containsKey("mqttUseTLS")) {
+  if (postDoc["mqttUseTLS"].is<bool>()) {
     config->mqttUseTLS = postDoc["mqttUseTLS"] | false;
     changed = true;
   }
-  if (postDoc.containsKey("mqttInterval")) {
+  if (postDoc["mqttInterval"].is<int>()) {
     config->mqttUpdateIntervalMs = postDoc["mqttInterval"] | config->mqttUpdateIntervalMs;
     changed = true;
   }
-  if (postDoc.containsKey("amsUnit")) {
+  if (postDoc["amsUnit"].is<int>()) {
     config->amsUnit = postDoc["amsUnit"] | config->amsUnit;
     if (config->amsUnit > 3) config->amsUnit = 0;
     changed = true;
   }
-  if (postDoc.containsKey("layoutVertical")) {
+  if (!postDoc["layoutVertical"].isNull()) {
     config->layoutVertical = !config->layoutVertical;
     changed = true;
   }
@@ -280,7 +278,7 @@ void WebInterface::handleConfigPost() {
     Serial.println(F("[WEB] Configuration unchanged"));
   }
 
-  DynamicJsonDocument resp(128);
+  JsonDocument resp;
   resp["ok"] = true;
   resp["saved"] = changed;
   sendJsonResponse(resp);
@@ -296,13 +294,13 @@ void WebInterface::handleScan() {
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     rfidManager->forceRescan(i);
   }
-  DynamicJsonDocument doc(64);
+  JsonDocument doc;
   doc["ok"] = true;
   sendJsonResponse(doc);
 }
 
 void WebInterface::handleSend() {
-  DynamicJsonDocument doc(256);
+  JsonDocument doc;
   int sent = 0;
 
   if (bambuPrinter && bambuPrinter->isConnected()) {
@@ -328,7 +326,7 @@ void WebInterface::handleSend() {
 }
 
 void WebInterface::handleSync() {
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
   if (bambuPrinter && bambuPrinter->isConnected()) {
     bambuPrinter->requestPrinterStatus();
     doc["ok"] = true;
@@ -342,7 +340,7 @@ void WebInterface::handleSync() {
 }
 
 void WebInterface::handleAmsGetRfid() {
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
   if (bambuPrinter && bambuPrinter->isConnected()) {
     uint8_t tray = (uint8_t)(server->arg("tray").toInt());
     if (tray < 4) {
@@ -362,7 +360,7 @@ void WebInterface::handleAmsGetRfid() {
 }
 
 void WebInterface::handleOtaCheck() {
-  DynamicJsonDocument doc(256);
+  JsonDocument doc;
   doc["current"] = FIRMWARE_VERSION;
 
   WiFiClientSecure client;
@@ -419,7 +417,7 @@ void WebInterface::handleOtaCheck() {
 
 void WebInterface::handleOta() {
   Serial.println(F("[WEB] OTA update requested"));
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
   doc["ok"] = true;
   doc["message"] = "OTA update started";
   sendJsonResponse(doc);
@@ -431,7 +429,7 @@ void WebInterface::handleOta() {
 }
 
 void WebInterface::handleVersion() {
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
   doc["version"] = FIRMWARE_VERSION;
   doc["repo"] = OTA_REPO;
   sendJsonResponse(doc);
@@ -442,13 +440,13 @@ void WebInterface::handleLedGet() {
   prefs.begin("bambu-ams", true);
   int currentBrightness = prefs.getUChar("brightness", 32);
   prefs.end();
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
   doc["brightness"] = String(currentBrightness);
   sendJsonResponse(doc);
 }
 
 void WebInterface::handleLedPost() {
-  DynamicJsonDocument doc(128);
+  JsonDocument doc;
 
   int brightness = 32;
   brightness = server->arg("value").toInt();
