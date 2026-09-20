@@ -156,18 +156,41 @@ Open a browser to the ESP32's IP (shown on TFT), `[Device Name].local`, or `http
 
 ## TFT Display (240×240 1.3" ST7789VW)
 
+The TFT display has two modes:
+
 ```
-┌────────────────────────────────────────┐
-│ Device Name                      WiFi  │  ← status bar (white bg)
-├────────────────────────────────────────┤
-│ 1: PLA          [■] #C0C0C0FF   100%   │  ← color swatch + percentage
-│ 2: empty                               │
-│ 3: empty                               │
-│ 4: empty                               │
-├────────────────────────────────────────┤
-│ 22C        45%                         │  ← BME280 (orange/blue)
-│ MQTT:OK                         PTR:OK │  ← status line
-└────────────────────────────────────────┘
+┌─────────────────────────────────┐
+│ Device Name               WiFi  │  ← status bar (white bg)
+├─────────────────────────────────┤
+│    1       2                    │
+│ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ │  ← color swatch + percentage
+│ │  P  │ │     │ │     │ │     │ │
+│ │  L  │ │     │ │     │ │     │ │
+│ │  A  │ │     │ │     │ │     │ │
+│ │     │ │     │ │     │ │     │ │
+│ │     │ │     │ │     │ │     │ │
+│ └─────┘ └─────┘ └─────┘ └─────┘ │
+│                                 │
+│  100%                           │
+├─────────────────────────────────┤
+│ 22C           45%               │  ← temperature, humidity
+│ MQTT:OK                  PTR:OK │  ← status line
+└─────────────────────────────────┘
+```
+
+
+```
+┌─────────────────────────────────┐
+│ Device Name               WiFi  │  ← status bar (white bg)
+├─────────────────────────────────┤
+│ 1: PLA     [■] #C0C0C0FF  100%  │  ← color swatch + percentage
+│ 2: empty                        │
+│ 3: empty                        │
+│ 4: empty                        │
+├─────────────────────────────────┤
+│ 22C           45%               │  ← temperature, humidity
+│ MQTT:OK                  PTR:OK │  ← status line
+└─────────────────────────────────┘
 ```
 
 OTA progress shown on TFT with header/footer preserved:  
