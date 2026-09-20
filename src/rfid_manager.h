@@ -3,7 +3,11 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <MFRC522.h>
+#include <MFRC522v2.h>
+#include <MFRC522DriverSPI.h>
+#include <MFRC522DriverPinSimple.h>
+#include <MFRC522Constants.h>
+
 #include "config.h"
 
 class RfidManager {
@@ -21,8 +25,9 @@ private:
   bool authenticateAndRead(uint8_t slot, SpoolInfo &info, uint8_t* uid);
   bool readNtagPages(uint8_t slot, SpoolInfo &info);
 
+  MFRC522DriverPinSimple* chipSelectPins[NUM_SLOTS];
+  MFRC522DriverSPI* drivers[NUM_SLOTS];
   MFRC522* mfrc522[NUM_SLOTS];
-  MFRC522_SPI* rfidSPI[NUM_SLOTS];
   SpoolInfo spoolData[NUM_SLOTS];
   unsigned long lastPoll[NUM_SLOTS];
   bool readerOk[NUM_SLOTS];

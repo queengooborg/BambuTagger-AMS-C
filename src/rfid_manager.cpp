@@ -64,11 +64,17 @@ void RfidManager::begin() {
 
   Serial.println(F("[RFID] Initializing readers"));
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
-    rfidSPI[i] = new MFRC522_SPI(SS_PINS[i], RST_PINS[i], &SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
-    mfrc522[i] = new MFRC522(rfidSPI[i]);
+    pinMode(RST_PINS[i], OUTPUT);
+    digitalWrite(RST_PINS[i], LOW);
+    delay(50);
+    digitalWrite(RST_PINS[i], HIGH);
+    delay(50);
+    chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
+    drivers[i] = new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
+    mfrc522[i] = new MFRC522(*drivers[i]);
     mfrc522[i]->PCD_Init();
 
-    byte ver = mfrc522[i]->PCD_ReadRegister(MFRC522::VersionReg);
+    byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
     readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
     Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i,
             SS_PINS[i], RST_PINS[i], ver,
@@ -158,10 +164,10 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo &info) {
   }
 
   bool success = false;
-  if (piccType == MFRC522::PICC_TYPE_MIFARE_1K || piccType == MFRC522::PICC_TYPE_MIFARE_4K) {
+  if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_1K || piccType == MFRC522Constants::PICC_TYPE_MIFARE_4K) {
     success = authenticateAndRead(slot, info, reader->uid.uidByte);
     if (!success) success = readNtagPages(slot, info); // fallback: NDEF on MIFARE
-  } else if (piccType == MFRC522::PICC_TYPE_MIFARE_UL || piccType == MFRC522::PICC_TYPE_MIFARE_UL) {
+  } else if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL || piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL) {
     // NTAG/Ultralight fallback — try reading without auth
     success = readNtagPages(slot, info);
   } else {
@@ -215,22 +221,22 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo &info, uint8_t* ui
     memcpy(kA.keyByte, keysA[sector], 6);
     memcpy(kB.keyByte, keysB[sector], 6);
 
-    MFRC522::StatusCode authStatus = MFRC522::STATUS_ERROR;
+    MFRC522::StatusCode authStatus = MFRC522Constants::STATUS_ERROR;
 
-    authStatus = reader->PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &kA, &(reader->uid));
-    if (authStatus != MFRC522::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &kA, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
     else goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &kB, &(reader->uid));
-    if (authStatus != MFRC522::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &kB, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
     else goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &keyDef, &(reader->uid));
-    if (authStatus != MFRC522::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &keyDef, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
     else goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &keyDef, &(reader->uid));
-    if (authStatus != MFRC522::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &keyDef, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
 
     if (bytesRead > 0) break;
     continue;
@@ -244,7 +250,7 @@ authOk2:
       byte readSize = sizeof(readBuf);
       yield();
       MFRC522::StatusCode status = reader->MIFARE_Read(block, readBuf, &readSize);
-      if (status != MFRC522::STATUS_OK) break;
+      if (status != MFRC522Constants::STATUS_OK) break;
 
       memcpy(dataBuffer + block * 16, readBuf, 16);
       bytesRead += 16;
@@ -326,7 +332,7 @@ bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo &info) {
     byte readBuf[18];
     byte readSize = sizeof(readBuf);
     MFRC522::StatusCode status = reader->MIFARE_Read(page, readBuf, &readSize);
-    if (status != MFRC522::STATUS_OK) continue;
+    if (status != MFRC522Constants::STATUS_OK) continue;
 
     byte bytesThisBlock = (readSize > 16) ? 16 : readSize;
 
