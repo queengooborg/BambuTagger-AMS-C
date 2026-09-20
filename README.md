@@ -72,39 +72,25 @@ All other components will be powered by the 3.3V pin on the ESP32 board.
 | **WS2812 Data** | 15 | 14 |
 | **BME280 SDA / SCL** | 22 / 21 | 6 / 5 |
 
-
-
-
 ---
 
-## Software
+## Firmware
 
-### Required Libraries (Arduino Library Manager)
+### Uploading from Web Interface
 
-| Library | Version | Notes |
-|---------|---------|-------|
-| `MFRC522-spi-i2c-uart-async` | latest | Multi-reader SPI sharing (not standard MFRC522) |
-| `Adafruit NeoPixel` | ≥ 1.12 | WS2812 LED control |
-| `Adafruit GFX Library` | ≥ 1.11 | Graphics primitives |
-| `Adafruit ST7735 and ST7789 Library` | ≥ 1.10 | TFT display driver |
-| `PubSubClient` | ≥ 2.8 | MQTT client |
-| `ArduinoJson` | ≥ 6.x or 7.x | JSON parsing |
-| `Adafruit BME280 Library` | latest | Temperature/humidity sensor |
-| `mbedTLS` | Built-in | HKDF-SHA256 key derivation |
+The easiest way to flash the board firmware is to use the [web flash utility](https://www.bambutagger.de/en/downloads/firmware/flash-bambutagger-ams-c).
 
-### Board Settings (Arduino IDE)
+> [!NOTE]
+> The ESP32-S3-DevKitC-1 cannot be flashed via the web utility (yet). It must be flashed by building from source.
 
-| Setting | Value |
-|---------|-------|
-| Board | **ESP32 Dev Module** |
-| Flash Size | **4 MB** |
-| Partition Scheme | **Default 4MB with spiffs** |
-| Upload Speed | 921600 |
-| Monitor Speed | **115200** |
+### Building from Source
 
-### Building
+To build from source, you may either use Visual Studio Code or run commands in the terminal. The following sections will cover setup for running commands in the terminal.
 
-#### Setup
+#### Initial Setup
+
+> [!NOTE]
+> It is strongly recommended to use a shell plugin to handle virtualenvs for you, such as the [zsh-autoswitch-virtualenv](https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv) plugin for zsh.
 
 Set up a virtual environment with Python 3.13 and install `platformio` and `esptool`:
 
