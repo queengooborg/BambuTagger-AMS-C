@@ -18,7 +18,7 @@ enum LedMode {
 };
 
 class LedManager {
-public:
+ public:
   void begin();
   void setSlotLed(uint8_t slot, LedMode mode);
   void setSlotColor(uint8_t slot, uint8_t r, uint8_t g, uint8_t b);
@@ -26,7 +26,7 @@ public:
   void setBrightness(uint8_t brightness);
   void update();
 
-private:
+ private:
   Adafruit_NeoPixel* strip;
   LedMode currentMode[NUM_SLOTS];
   uint8_t customR[NUM_SLOTS];

@@ -15,20 +15,20 @@ Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament sp
 
 ## Features
 
-| Category | Details |
-|----------|---------|
-| **RFID** | 4x RC522 on shared SPI bus; MIFARE Classic 1K (Bambu Lab) + NTAG (SpoolEase/TigerTag/OpenTag3D/OpenSpool) auto-detection |
-| **Key derivation** | HKDF-SHA256 with Bambu Lab salt — no hardcoded keys |
-| **Tag parsers** | TigerTag v2.1 binary, OpenTag3D MIME binary, OpenSpool JSON, SpoolEase NDEF URI, nested NDEF recursion |
-| **Live AMS sync** | Reads tray data (material, color, type) from printer over MQTT |
-| **BMCU support** | Sends `ams_filament_setting` with correct `tray_type`, `tray_color`, `nozzle_temp_min/max` |
-| **TFT display** | 240×240 1.3" ST7789VW with boot splash, live AMS tray data, OTA progress, BME280 temp/humidity |
-| **LEDs** | 4x WS2812 addressable LEDs with per-slot color from printer AMS tray data |
-| **Web UI** | 3-tab SPA: Status (merged slots + color swatches), Printer Config, WiFi Config |
-| **MQTT bridge** | Subscribes to printer status, publishes `ams_filament_setting` commands |
-| **WiFi** | Auto-STA on boot; AP fallback `192.168.4.1` with captive portal |
-| **OTA updates** | One-click firmware update from GitHub Releases with TFT progress bar |
-| **CI/CD** | GitHub Actions: build on commit, release on version tags |
+| Category           | Details                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **RFID**           | 4x RC522 on shared SPI bus; MIFARE Classic 1K (Bambu Lab) + NTAG (SpoolEase/TigerTag/OpenTag3D/OpenSpool) auto-detection |
+| **Key derivation** | HKDF-SHA256 with Bambu Lab salt — no hardcoded keys                                                                      |
+| **Tag parsers**    | TigerTag v2.1 binary, OpenTag3D MIME binary, OpenSpool JSON, SpoolEase NDEF URI, nested NDEF recursion                   |
+| **Live AMS sync**  | Reads tray data (material, color, type) from printer over MQTT                                                           |
+| **BMCU support**   | Sends `ams_filament_setting` with correct `tray_type`, `tray_color`, `nozzle_temp_min/max`                               |
+| **TFT display**    | 240×240 1.3" ST7789VW with boot splash, live AMS tray data, OTA progress, BME280 temp/humidity                           |
+| **LEDs**           | 4x WS2812 addressable LEDs with per-slot color from printer AMS tray data                                                |
+| **Web UI**         | 3-tab SPA: Status (merged slots + color swatches), Printer Config, WiFi Config                                           |
+| **MQTT bridge**    | Subscribes to printer status, publishes `ams_filament_setting` commands                                                  |
+| **WiFi**           | Auto-STA on boot; AP fallback `192.168.4.1` with captive portal                                                          |
+| **OTA updates**    | One-click firmware update from GitHub Releases with TFT progress bar                                                     |
+| **CI/CD**          | GitHub Actions: build on commit, release on version tags                                                                 |
 
 ---
 
@@ -36,15 +36,15 @@ Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament sp
 
 ### Bill of Materials
 
-| Component | Notes | Buy |
-|-----------|-------|-----
-| **ESP32** Dev Module | Base board | https://de.aliexpress.com/item/1005006589341221.html |
-| **4x RC522** RFID/NFC Readers | SPI interface, shared bus | https://de.aliexpress.com/item/1005006233005745.html |
-| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html |
-| **240×240 1.3" TFT** | ST7789VW SPI Display | https://www.aliexpress.com/item/1005007094147766.html |
-| **BME280** Sensor | Temperature/Humidity, I2C | https://de.aliexpress.com/item/1005006824236173.html |
-| Custom **PCB** | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn |
-| 3D-Printed **Case** | | For [AMS](./3DPrints/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3DPrints/BambuTagger-AMS2Pro.3mf) |
+| Component                      | Notes                                      | Buy                                                                                          |
+| ------------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| **ESP32** Dev Module           | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                         |
+| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus                  | https://de.aliexpress.com/item/1005006233005745.html                                         |
+| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin             | https://de.aliexpress.com/item/32560280169.html                                              |
+| **240×240 1.3" TFT**           | ST7789VW SPI Display                       | https://www.aliexpress.com/item/1005007094147766.html                                        |
+| **BME280** Sensor              | Temperature/Humidity, I2C                  | https://de.aliexpress.com/item/1005006824236173.html                                         |
+| Custom **PCB**                 | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                             |
+| 3D-Printed **Case**            |                                            | For [AMS](./3DPrints/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3DPrints/BambuTagger-AMS2Pro.3mf) |
 
 > [!NOTE]
 > The 40-pin ESP32-S3-DevKitC-1 is a compatible alternative for development; however, the PCB only works with the 30-pin ESP-WROOM-32.
@@ -59,19 +59,19 @@ The WS2812 LED must also be powered by 5V. If the ESP32 is powered via the USB p
 
 All other components will be powered by the 3.3V pin on the ESP32 board.
 
-| Function | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
-|----------|-----------------|-------------------|
-| **RC522 SPI MOSI (Shared)** | 23 | 11 |
-| **RC522 SPI MISO (Shared)** | 19 | 13 |
-| **RC522 SPI SCK (Shared)** | 18 | 12 |
-| **RC522 #1 SS / RST** | 13 / 26 | 10 / 1 |
-| **RC522 #2 SS / RST** | 12 / 25 | 9 / 2 |
-| **RC522 #3 SS / RST** | 14 / 33 | 8 / 4 |
-| **RC522 #4 SS / RST** | 27 / 32 | 7 / 35 |
-| **TFT MOSI / SCK** | 17 / 16 | 21 / 18 |
-| **TFT DC / RES / BLK** | 4 / 5 / 2 | 16 / 17 / 15 |
-| **WS2812 Data** | 15 | 14 |
-| **BME280 SDA / SCL** | 22 / 21 | 6 / 5 |
+| Function                    | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
+| --------------------------- | -------------- | ------------------ |
+| **RC522 SPI MOSI (Shared)** | 23             | 11                 |
+| **RC522 SPI MISO (Shared)** | 19             | 13                 |
+| **RC522 SPI SCK (Shared)**  | 18             | 12                 |
+| **RC522 #1 SS / RST**       | 13 / 26        | 10 / 1             |
+| **RC522 #2 SS / RST**       | 12 / 25        | 9 / 2              |
+| **RC522 #3 SS / RST**       | 14 / 33        | 8 / 4              |
+| **RC522 #4 SS / RST**       | 27 / 32        | 7 / 35             |
+| **TFT MOSI / SCK**          | 17 / 16        | 21 / 18            |
+| **TFT DC / RES / BLK**      | 4 / 5 / 2      | 16 / 17 / 15       |
+| **WS2812 Data**             | 15             | 14                 |
+| **BME280 SDA / SCL**        | 22 / 21        | 6 / 5              |
 
 ---
 
@@ -117,14 +117,15 @@ pio run -e esp32-s3-devkitc-1 -t upload
 
 ### AP Mode
 
-| Scenario | Behavior |
-|----------|----------|
-| No WiFi configured | Opens AP immediately |
-| WiFi connection fails | Opens AP after 15 seconds |
+| Scenario                     | Behavior                                |
+| ---------------------------- | --------------------------------------- |
+| No WiFi configured           | Opens AP immediately                    |
+| WiFi connection fails        | Opens AP after 15 seconds               |
 | AP active, credentials exist | Retries STA connection every 30 seconds |
-| STA connects while AP active | Closes AP, switches to normal mode |
+| STA connects while AP active | Closes AP, switches to normal mode      |
 
 **AP Details:**
+
 - **SSID**: Device name (default: `BambuTagger-AMS`)
 - **Security**: Open (no password)
 - **IP**: `192.168.4.1`
@@ -140,11 +141,11 @@ When the ESP32 module is connected to an existing network, the IP address will d
 
 Open a browser to the ESP32's IP (shown on TFT), `[Device Name].local`, or `http://192.168.4.1` (in AP mode).
 
-| Tab | Description |
-|-----|-------------|
-| **Status** | Merged slot status with AMS data + scanned tag data, color swatches, printer AMS cards, OTA button |
-| **Printer Config** | Printer IP, Port (8883), Access Code, Serial Number, AMS Unit selector (A/B/C/D), MQTT settings |
-| **WiFi Config** | SSID, Password, Device Name |
+| Tab                | Description                                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------------------- |
+| **Status**         | Merged slot status with AMS data + scanned tag data, color swatches, printer AMS cards, OTA button |
+| **Printer Config** | Printer IP, Port (8883), Access Code, Serial Number, AMS Unit selector (A/B/C/D), MQTT settings    |
+| **WiFi Config**    | SSID, Password, Device Name                                                                        |
 
 ---
 
@@ -171,7 +172,6 @@ The TFT display has two modes:
 │ MQTT:OK                  PTR:OK │  ← status line
 └─────────────────────────────────┘
 ```
-
 
 ```
 ┌─────────────────────────────────┐
@@ -231,54 +231,54 @@ OTA progress shown on TFT with header/footer preserved:
 
 ### Supported Tag Types
 
-| Tag Type | Format | Example |
-|----------|--------|---------|
-| **Bambu Lab** | MIFARE Classic 1K | `Bambu - PLA · C12E1FFF · 1000g/1000g` |
-| **SpoolEase** | NTAG, NDEF URI | `SpoolEase - PLA · 000000FF · 1000g/1036g` |
-| **TigerTag** | raw binary v2.1 | `TigerTag - ASA-AF · F078B4FF · 1000g/1000g` |
-| **OpenSpool** | NTAG, NDEF JSON | `OpenSpool - ASA-AF · F078B4FF · 1000g/1000g` |
+| Tag Type                  | Format            | Example                                              |
+| ------------------------- | ----------------- | ---------------------------------------------------- |
+| **Bambu Lab**             | MIFARE Classic 1K | `Bambu - PLA · C12E1FFF · 1000g/1000g`               |
+| **SpoolEase**             | NTAG, NDEF URI    | `SpoolEase - PLA · 000000FF · 1000g/1036g`           |
+| **TigerTag**              | raw binary v2.1   | `TigerTag - ASA-AF · F078B4FF · 1000g/1000g`         |
+| **OpenSpool**             | NTAG, NDEF JSON   | `OpenSpool - ASA-AF · F078B4FF · 1000g/1000g`        |
 | **OpenTag3D** (v1 and v2) | NTAG, MIME binary | `OpenTag3D v2.003 - ASA-AF · F078B4FF · 1000g/1000g` |
 
 ### Bambu Lab (MIFARE Classic 1K)
 
-| Block | Content |
-|-------|---------|
-| 0 | UID (4 bytes) |
-| 1 | Variant ID + Material index (e.g. "GFA00") |
-| 2 | Filament type short name |
-| 4 | Detailed type string (e.g. "PLA Basic") |
-| 5 | RGBA color (bytes 0-3) + spool weight LE (bytes 4-5) |
-| 6 | Nozzle temps (bytes 8-11 LE) |
+| Block | Content                                              |
+| ----- | ---------------------------------------------------- |
+| 0     | UID (4 bytes)                                        |
+| 1     | Variant ID + Material index (e.g. "GFA00")           |
+| 2     | Filament type short name                             |
+| 4     | Detailed type string (e.g. "PLA Basic")              |
+| 5     | RGBA color (bytes 0-3) + spool weight LE (bytes 4-5) |
+| 6     | Nozzle temps (bytes 8-11 LE)                         |
 
 ### SpoolEase (NTAG, NDEF URI)
 
 URL format: `https://tag.spoolease.io/S1/?TG=...&M=PLA&CC=000000FF&SC=GFL99&WL=1000&WE=179&WF=1215&NN=190&NX=240`
 
-| Param | Field | Description |
-|-------|-------|-------------|
-| `M=` | display type | e.g. "PLA", "PETG" |
-| `SC=` | `materialType` | Bambu index for MQTT (e.g. "GFL99") |
-| `CC=` | `colorHex` | RGBA hex (e.g. "000000FF") |
-| `B=` | `manufacturer` | Brand name (e.g. "Jayo") |
-| `WL=` | `remainingGrams` | Remaining filament weight |
-| `WE=` | empty spool | Empty spool weight |
-| `WF=` | full spool | `totalGrams = WF - WE` |
-| `NN=` | `nozzleTempMin` | Min nozzle temp °C |
-| `NX=` | `nozzleTempMax` | Max nozzle temp °C |
+| Param | Field            | Description                         |
+| ----- | ---------------- | ----------------------------------- |
+| `M=`  | display type     | e.g. "PLA", "PETG"                  |
+| `SC=` | `materialType`   | Bambu index for MQTT (e.g. "GFL99") |
+| `CC=` | `colorHex`       | RGBA hex (e.g. "000000FF")          |
+| `B=`  | `manufacturer`   | Brand name (e.g. "Jayo")            |
+| `WL=` | `remainingGrams` | Remaining filament weight           |
+| `WE=` | empty spool      | Empty spool weight                  |
+| `WF=` | full spool       | `totalGrams = WF - WE`              |
+| `NN=` | `nozzleTempMin`  | Min nozzle temp °C                  |
+| `NX=` | `nozzleTempMax`  | Max nozzle temp °C                  |
 
 ### TigerTag (raw binary v2.1)
 
-| Offset | Size | Field |
-|--------|------|-------|
-| +0 | 4 | ID TigerTag magic (0x5BF59264/0xBC0FCB97/0x6C41A2E1) |
-| +4 | 4 | Product ID |
-| +8 | 2 | Material ID → lookup table (PLA/PETG/ABS/TPU...) |
-| +14 | 2 | Brand ID |
-| +16 | 4 | Color 1 RGBA |
-| +20 | 3 | Measure (u24 BE) |
-| +24 | 2 | Nozzle Temp Min |
-| +26 | 2 | Nozzle Temp Max |
-| +76 | 3 | Measure Available |
+| Offset | Size | Field                                                |
+| ------ | ---- | ---------------------------------------------------- |
+| +0     | 4    | ID TigerTag magic (0x5BF59264/0xBC0FCB97/0x6C41A2E1) |
+| +4     | 4    | Product ID                                           |
+| +8     | 2    | Material ID → lookup table (PLA/PETG/ABS/TPU...)     |
+| +14    | 2    | Brand ID                                             |
+| +16    | 4    | Color 1 RGBA                                         |
+| +20    | 3    | Measure (u24 BE)                                     |
+| +24    | 2    | Nozzle Temp Min                                      |
+| +26    | 2    | Nozzle Temp Max                                      |
+| +76    | 3    | Measure Available                                    |
 
 Known material IDs: PLA=38219, PETG=38256, ABS=20562, etc.
 
@@ -299,13 +299,13 @@ The OpenTag3D spec can be read on [their website](https://opentag3d.info/spec).
 
 ### Filament Type Mapping
 
-| Prefix | Type |
-|--------|------|
-| GFA-GFE, GFL | PLA |
-| GFG | PETG |
-| GFH, GFI | ABS |
-| GFJ | ASA |
-| GFK | TPU |
+| Prefix       | Type |
+| ------------ | ---- |
+| GFA-GFE, GFL | PLA  |
+| GFG          | PETG |
+| GFH, GFI     | ABS  |
+| GFJ          | ASA  |
+| GFK          | TPU  |
 
 ---
 
@@ -333,21 +333,21 @@ Workflow at `GHActions/release.yml`:
 
 ## Configuration Defaults
 
-| Setting | Default |
-|---------|---------|
-| WiFi SSID | (empty) |
-| WiFi Password | (empty) |
-| Device Name | BambuTagger-AMS |
-| Printer IP | 192.168.1.100 |
-| Printer Port | 8883 |
-| Access Code | (empty) |
-| Printer Serial | (empty) |
-| AMS Unit | A (0) |
-| MQTT Enabled | Yes |
-| MQTT TLS | No |
-| MQTT Update Interval | 3000 ms |
-| RFID Poll Interval | 100 ms |
-| Firmware Version | 1.0.8 |
+| Setting              | Default         |
+| -------------------- | --------------- |
+| WiFi SSID            | (empty)         |
+| WiFi Password        | (empty)         |
+| Device Name          | BambuTagger-AMS |
+| Printer IP           | 192.168.1.100   |
+| Printer Port         | 8883            |
+| Access Code          | (empty)         |
+| Printer Serial       | (empty)         |
+| AMS Unit             | A (0)           |
+| MQTT Enabled         | Yes             |
+| MQTT TLS             | No              |
+| MQTT Update Interval | 3000 ms         |
+| RFID Poll Interval   | 100 ms          |
+| Firmware Version     | 1.0.8           |
 
 ---
 

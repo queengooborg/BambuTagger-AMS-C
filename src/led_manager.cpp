@@ -22,12 +22,14 @@ void LedManager::begin() {
 }
 
 void LedManager::setSlotLed(uint8_t slot, LedMode mode) {
-  if (slot >= NUM_SLOTS) return;
+  if (slot >= NUM_SLOTS)
+    return;
   currentMode[slot] = mode;
 }
 
 void LedManager::setSlotColor(uint8_t slot, uint8_t r, uint8_t g, uint8_t b) {
-  if (slot >= NUM_SLOTS) return;
+  if (slot >= NUM_SLOTS)
+    return;
   currentMode[slot] = LED_TAG_COLOR;
   customR[slot] = r;
   customG[slot] = g;
@@ -47,7 +49,8 @@ void LedManager::setBrightness(uint8_t b) {
 
 void LedManager::update() {
   unsigned long now = millis();
-  if (now - lastUpdate < 50) return;
+  if (now - lastUpdate < 50)
+    return;
   lastUpdate = now;
 
   bool changed = false;
@@ -56,18 +59,41 @@ void LedManager::update() {
     LedMode mode = currentMode[i];
 
     switch (mode) {
-      case LED_OFF: break;
-      case LED_IDLE: b = 10; break;
-      case LED_TAG_COLOR: r = customR[i]; g = customG[i]; b = customB[i]; break;
-      case LED_TAG_PRESENT: r = 128; g = 128; b = 0; break;
-      case LED_ERROR: r = 255; g = 0; b = 0; break;
-      case LED_WIFI_DISCONNECTED: r = r = 160; g = 40; b = 0; break;  // was 255, 64, 0
-      default: break;
+      case LED_OFF:
+        break;
+      case LED_IDLE:
+        b = 10;
+        break;
+      case LED_TAG_COLOR:
+        r = customR[i];
+        g = customG[i];
+        b = customB[i];
+        break;
+      case LED_TAG_PRESENT:
+        r = 128;
+        g = 128;
+        b = 0;
+        break;
+      case LED_ERROR:
+        r = 255;
+        g = 0;
+        b = 0;
+        break;
+      case LED_WIFI_DISCONNECTED:
+        r = r = 160;
+        g = 40;
+        b = 0;
+        break;  // was 255, 64, 0
+      default:
+        break;
     }
 
     if (r != lastR[i] || g != lastG[i] || b != lastB[i] || mode != lastMode[i]) {
       changed = true;
-      lastR[i] = r; lastG[i] = g; lastB[i] = b; lastMode[i] = mode;
+      lastR[i] = r;
+      lastG[i] = g;
+      lastB[i] = b;
+      lastMode[i] = mode;
     }
     strip->setPixelColor(i, strip->Color(r, g, b));
   }

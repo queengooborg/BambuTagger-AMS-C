@@ -45,11 +45,12 @@ void WebInterface::setupRoutes() {
 }
 
 void WebInterface::handleClient() {
-  if (server) server->handleClient();
+  if (server)
+    server->handleClient();
 }
 
-void WebInterface::updateStatus(bool wifiConnected, const char* ip,
-                                bool mqttConnected, bool printerOnline) {
+void WebInterface::updateStatus(bool wifiConnected, const char* ip, bool mqttConnected,
+                                bool printerOnline) {
   wifiStatus = wifiConnected;
   ipAddress = ip ? String(ip) : "";
   mqttStatus = mqttConnected;
@@ -83,7 +84,8 @@ void WebInterface::handleStatus() {
     amsInfo["count"] = bambuPrinter->getDetectedAmsCount();
     JsonArray amsList = amsInfo["units"].to<JsonArray>();
     for (uint8_t a = 0; a < 4; a++) {
-      if (!bambuPrinter->isAmsDetected(a)) continue;
+      if (!bambuPrinter->isAmsDetected(a))
+        continue;
       JsonObject unit = amsList.add<JsonObject>();
       unit["id"] = a;
       unit["label"] = (const char*)(a == 0 ? "A" : a == 1 ? "B" : a == 2 ? "C" : "D");
@@ -106,7 +108,7 @@ void WebInterface::handleStatus() {
           tray["sub"] = tagInfo.detailedType;
           if (a == config->amsUnit) {
             tray["remainingGrams"] = tagInfo.remainingGrams;
-            tray["totalGrams"]     = tagInfo.totalGrams;
+            tray["totalGrams"] = tagInfo.totalGrams;
           }
         }
       }
@@ -150,7 +152,7 @@ void WebInterface::handleStatus() {
       SpoolInfo psInfo;
       if (rfidManager->getSpoolInfo(t, psInfo) && psInfo.present) {
         ps["remainingGrams"] = psInfo.remainingGrams;
-        ps["totalGrams"]     = psInfo.totalGrams;
+        ps["totalGrams"] = psInfo.totalGrams;
       }
     }
   }
@@ -161,16 +163,17 @@ void WebInterface::handleStatus() {
 void WebInterface::handleAmsStatus() {
   JsonDocument doc;
   doc["configuredUnit"] = config->amsUnit;
-  doc["configuredLabel"] = (const char*)(config->amsUnit == 0 ? "A" : config->amsUnit == 1 ? "B"
-                                                                    : config->amsUnit == 2 ? "C"
-                                                                                           : "D");
+  doc["configuredLabel"] = (const char*)(config->amsUnit == 0   ? "A"
+                                         : config->amsUnit == 1 ? "B"
+                                         : config->amsUnit == 2 ? "C"
+                                                                : "D");
   doc["detected"] = bambuPrinter ? bambuPrinter->isAmsDetected(config->amsUnit) : false;
   doc["existBits"] = bambuPrinter ? bambuPrinter->getAmsExistBits() : 0;
   doc["count"] = bambuPrinter ? bambuPrinter->getDetectedAmsCount() : 0;
 
   JsonArray units = doc["units"].to<JsonArray>();
   if (bambuPrinter) {
-    const char* labels[] = { "A", "B", "C", "D" };
+    const char* labels[] = {"A", "B", "C", "D"};
     for (uint8_t a = 0; a < 4; a++) {
       JsonObject unit = units.add<JsonObject>();
       unit["id"] = a;
@@ -225,7 +228,8 @@ void WebInterface::handleConfigPost() {
     strncpy(config->wifiSSID, postDoc["wifiSSID"] | "", sizeof(config->wifiSSID) - 1);
     changed = true;
   }
-  if (postDoc["wifiPassword"].is<const char*>() && strcmp(postDoc["wifiPassword"] | "", "********") != 0) {
+  if (postDoc["wifiPassword"].is<const char*>() &&
+      strcmp(postDoc["wifiPassword"] | "", "********") != 0) {
     strncpy(config->wifiPassword, postDoc["wifiPassword"] | "", sizeof(config->wifiPassword) - 1);
     changed = true;
   }
@@ -237,12 +241,15 @@ void WebInterface::handleConfigPost() {
     config->printerPort = postDoc["printerPort"] | config->printerPort;
     changed = true;
   }
-  if (postDoc["printerAccessCode"].is<const char*>() && strcmp(postDoc["printerAccessCode"] | "", "********") != 0) {
-    strncpy(config->printerAccessCode, postDoc["printerAccessCode"] | "", sizeof(config->printerAccessCode) - 1);
+  if (postDoc["printerAccessCode"].is<const char*>() &&
+      strcmp(postDoc["printerAccessCode"] | "", "********") != 0) {
+    strncpy(config->printerAccessCode, postDoc["printerAccessCode"] | "",
+            sizeof(config->printerAccessCode) - 1);
     changed = true;
   }
   if (postDoc["printerSerial"].is<const char*>()) {
-    strncpy(config->printerSerial, postDoc["printerSerial"] | "", sizeof(config->printerSerial) - 1);
+    strncpy(config->printerSerial, postDoc["printerSerial"] | "",
+            sizeof(config->printerSerial) - 1);
     changed = true;
   }
   if (postDoc["deviceName"].is<const char*>()) {
@@ -263,7 +270,8 @@ void WebInterface::handleConfigPost() {
   }
   if (postDoc["amsUnit"].is<int>()) {
     config->amsUnit = postDoc["amsUnit"] | config->amsUnit;
-    if (config->amsUnit > 3) config->amsUnit = 0;
+    if (config->amsUnit > 3)
+      config->amsUnit = 0;
     changed = true;
   }
   if (!postDoc["layoutVertical"].isNull()) {
@@ -319,8 +327,7 @@ void WebInterface::handleSend() {
     doc["sent"] = 0;
   }
 
-  Serial.printf("[WEB] Send request completed ok=%s count=%d\n",
-                doc["ok"] ? "yes" : "no", sent);
+  Serial.printf("[WEB] Send request completed ok=%s count=%d\n", doc["ok"] ? "yes" : "no", sent);
 
   sendJsonResponse(doc);
 }
@@ -354,8 +361,8 @@ void WebInterface::handleAmsGetRfid() {
     doc["ok"] = false;
     doc["error"] = "MQTT not connected";
   }
-  Serial.printf("[WEB] AMS RFID request tray=%s ok=%s\n",
-                server->arg("tray").c_str(), doc["ok"] ? "yes" : "no");
+  Serial.printf("[WEB] AMS RFID request tray=%s ok=%s\n", server->arg("tray").c_str(),
+                doc["ok"] ? "yes" : "no");
   sendJsonResponse(doc);
 }
 
@@ -377,7 +384,7 @@ void WebInterface::handleOtaCheck() {
     return;
   }
   http.addHeader("User-Agent", String("BambuTagger-AMS/") + FIRMWARE_VERSION);
-  const char* hdrs[] = { "Location" };
+  const char* hdrs[] = {"Location"};
   http.collectHeaders(hdrs, 1);
 
   int code = http.GET();
@@ -387,7 +394,8 @@ void WebInterface::handleOtaCheck() {
     String loc = http.header("Location");
     // loc looks like: /VID-PRO/BambuTagger-AMS-C/releases/tag/v1.1.1
     int tagIdx = loc.lastIndexOf("/tag/");
-    if (tagIdx >= 0) latest = loc.substring(tagIdx + 5);
+    if (tagIdx >= 0)
+      latest = loc.substring(tagIdx + 5);
   }
   http.end();
 
@@ -401,17 +409,19 @@ void WebInterface::handleOtaCheck() {
   doc["latest"] = latest;
 
   const char* r = latest.c_str();
-  if (r[0] == 'v' || r[0] == 'V') r++;
+  if (r[0] == 'v' || r[0] == 'V')
+    r++;
   const char* l = FIRMWARE_VERSION;
-  if (l[0] == 'v' || l[0] == 'V') l++;
+  if (l[0] == 'v' || l[0] == 'V')
+    l++;
 
   int rMaj = 0, rMin = 0, rPat = 0, lMaj = 0, lMin = 0, lPat = 0;
   sscanf(r, "%d.%d.%d", &rMaj, &rMin, &rPat);
   sscanf(l, "%d.%d.%d", &lMaj, &lMin, &lPat);
 
   doc["newer"] = ((rMaj * 10000 + rMin * 100 + rPat) > (lMaj * 10000 + lMin * 100 + lPat));
-  Serial.printf("[WEB] OTA check current=%s latest=%s newer=%s\n",
-                FIRMWARE_VERSION, latest.c_str(), doc["newer"] ? "yes" : "no");
+  Serial.printf("[WEB] OTA check current=%s latest=%s newer=%s\n", FIRMWARE_VERSION, latest.c_str(),
+                doc["newer"] ? "yes" : "no");
   sendJsonResponse(doc);
 }
 

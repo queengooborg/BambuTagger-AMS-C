@@ -5,23 +5,32 @@ static uint16_t hexToRgb565(const char* hex) {
   for (int i = 0; i < 2; i++) {
     r <<= 4;
     char c = hex[i];
-    if (c >= '0' && c <= '9') r |= (c - '0');
-    else if (c >= 'A' && c <= 'F') r |= (c - 'A' + 10);
-    else if (c >= 'a' && c <= 'f') r |= (c - 'a' + 10);
+    if (c >= '0' && c <= '9')
+      r |= (c - '0');
+    else if (c >= 'A' && c <= 'F')
+      r |= (c - 'A' + 10);
+    else if (c >= 'a' && c <= 'f')
+      r |= (c - 'a' + 10);
   }
   for (int i = 2; i < 4; i++) {
     g <<= 4;
     char c = hex[i];
-    if (c >= '0' && c <= '9') g |= (c - '0');
-    else if (c >= 'A' && c <= 'F') g |= (c - 'A' + 10);
-    else if (c >= 'a' && c <= 'f') g |= (c - 'a' + 10);
+    if (c >= '0' && c <= '9')
+      g |= (c - '0');
+    else if (c >= 'A' && c <= 'F')
+      g |= (c - 'A' + 10);
+    else if (c >= 'a' && c <= 'f')
+      g |= (c - 'a' + 10);
   }
   for (int i = 4; i < 6; i++) {
     b <<= 4;
     char c = hex[i];
-    if (c >= '0' && c <= '9') b |= (c - '0');
-    else if (c >= 'A' && c <= 'F') b |= (c - 'A' + 10);
-    else if (c >= 'a' && c <= 'f') b |= (c - 'a' + 10);
+    if (c >= '0' && c <= '9')
+      b |= (c - '0');
+    else if (c >= 'A' && c <= 'F')
+      b |= (c - 'A' + 10);
+    else if (c >= 'a' && c <= 'f')
+      b |= (c - 'a' + 10);
   }
   return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
@@ -36,7 +45,7 @@ void DisplayManager::begin(const char* devName) {
   display = new Adafruit_ST7789(hspi, TFT_CS, TFT_DC, TFT_RES);
 
   display->init(240, 240, SPI_MODE3);
-  //display->setSPISpeed(40000000);
+  // display->setSPISpeed(40000000);
   display->setRotation(2);
   display->fillScreen(COL_BG);
   display->setTextSize(2);
@@ -46,11 +55,13 @@ void DisplayManager::begin(const char* devName) {
 }
 
 void DisplayManager::update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected,
-                            bool mqttConnected, BambuPrinter* printer,
-                            uint8_t amsUnit, float temp, float humidity) {
-  if (!display) return;
+                            bool mqttConnected, BambuPrinter* printer, uint8_t amsUnit, float temp,
+                            float humidity) {
+  if (!display)
+    return;
   unsigned long now = millis();
-  if (now - lastUpdate < 1000) return;
+  if (now - lastUpdate < 1000)
+    return;
   lastUpdate = now;
 
   if (wifiConnected != wifiConnectedOld) {
@@ -81,9 +92,12 @@ void DisplayManager::update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected
       const char* t = printer->getAmsTrayType(amsUnit, i);
       const char* c = printer->getAmsTrayColor(amsUnit, i);
       uint8_t rem = printer->getAmsTrayRemain(amsUnit, i);
-      if (strcmp(t ? t : "", _lastTrayType[i]) != 0) changed = true;
-      if (strcmp(c ? c : "", _lastTrayColor[i]) != 0) changed = true;
-      if (rem != _lastTrayRemain[i]) changed = true;
+      if (strcmp(t ? t : "", _lastTrayType[i]) != 0)
+        changed = true;
+      if (strcmp(c ? c : "", _lastTrayColor[i]) != 0)
+        changed = true;
+      if (rem != _lastTrayRemain[i])
+        changed = true;
     }
     if (changed) {
       drawPrinterSlots(printer, amsUnit);
@@ -103,7 +117,8 @@ void DisplayManager::update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected
       memcpy(_lastSlots, slots, sizeof(SpoolInfo) * NUM_SLOTS);
     }
   }
-  if (mqttConnected != mqttConnectedOld || temp != tempOld || humidity != humidityOld || printer->isPrinterOnline() != printerOld) {
+  if (mqttConnected != mqttConnectedOld || temp != tempOld || humidity != humidityOld ||
+      printer->isPrinterOnline() != printerOld) {
     drawFooter(mqttConnected, printer ? printer->isPrinterOnline() : false, temp, humidity);
     mqttConnectedOld = mqttConnected;
     tempOld = temp;
@@ -170,8 +185,7 @@ void DisplayManager::drawSlotGrid(const SpoolInfo slots[NUM_SLOTS]) {
 
       if (slots[i].totalGrams > 0) {
         uint8_t pct = (uint16_t)((uint32_t)slots[i].remainingGrams * 100 / slots[i].totalGrams);
-        uint16_t pctColor = (pct > 50) ? COL_GREEN : (pct > 20) ? COL_ORANGE
-                                                                   : COL_RED;
+        uint16_t pctColor = (pct > 50) ? COL_GREEN : (pct > 20) ? COL_ORANGE : COL_RED;
         display->setTextColor(pctColor, COL_BG);
         display->setCursor(SCREEN_WIDTH - 48, y + 20);
         display->printf("%3d%%", pct);
@@ -257,12 +271,14 @@ void DisplayManager::drawPrinterSlots(BambuPrinter* printer, uint8_t amsUnit) {
 }
 
 void DisplayManager::setLayout(bool vertical) {
-  if (vertical == _verticalLayout) return;
+  if (vertical == _verticalLayout)
+    return;
   _verticalLayout = vertical;
   _dirty = true;  // force full redraw on next update()
 }
 
-void drawVerticalText(Adafruit_ST7789* display, int16_t x, int16_t y, const char* text, uint16_t color) {
+void drawVerticalText(Adafruit_ST7789* display, int16_t x, int16_t y, const char* text,
+                      uint16_t color) {
   for (size_t i = 0; text[i] != '\0'; i++) {
     display->setCursor(x, y + (i * 8));  // Assuming textSize(1) height is 8
     display->setTextColor(color, COL_BG);
@@ -314,10 +330,10 @@ void DisplayManager::drawSlotGridVertical(const SpoolInfo slots[NUM_SLOTS]) {
       // Percentage bar + label
       if (slots[i].totalGrams > 0) {
         uint8_t pct = (uint8_t)((uint32_t)slots[i].remainingGrams * 100 / slots[i].totalGrams);
-        uint16_t pctColor = (pct > 50) ? COL_GREEN : (pct > 20) ? COL_ORANGE
-                                                                   : COL_RED;
+        uint16_t pctColor = (pct > 50) ? COL_GREEN : (pct > 20) ? COL_ORANGE : COL_RED;
         display->drawRect(sx, 166, sw, 8, COL_TEXT);
-        if (pct > 0) display->fillRect(sx + 1, 167, (sw - 2) * pct / 100, 6, pctColor);
+        if (pct > 0)
+          display->fillRect(sx + 1, 167, (sw - 2) * pct / 100, 6, pctColor);
         char pctStr[6];
         snprintf(pctStr, sizeof(pctStr), "%d%%", pct);
         display->setTextColor(pctColor, COL_BG);
@@ -386,7 +402,8 @@ void DisplayManager::drawPrinterSlotsVertical(BambuPrinter* printer, uint8_t ams
       uint8_t rem = printer->getAmsTrayRemain(amsUnit, i);
       uint16_t remColor = (rem > 50) ? COL_GREEN : (rem > 20) ? COL_ORANGE : COL_RED;
       display->drawRect(sx, 166, sw, 8, COL_TEXT);
-      if (rem > 0) display->fillRect(sx + 1, 167, (sw - 2) * rem / 100, 6, remColor);
+      if (rem > 0)
+        display->fillRect(sx + 1, 167, (sw - 2) * rem / 100, 6, remColor);
       char remStr[6];
       snprintf(remStr, sizeof(remStr), "%d%%", rem);
       display->setTextColor(remColor, COL_BG);
@@ -405,7 +422,8 @@ void DisplayManager::drawPrinterSlotsVertical(BambuPrinter* printer, uint8_t ams
   }
 }
 
-void DisplayManager::drawFooter(bool mqttConnected, bool printerOnline, float temp, float humidity) {
+void DisplayManager::drawFooter(bool mqttConnected, bool printerOnline, float temp,
+                                float humidity) {
   display->drawFastHLine(0, 198, SCREEN_WIDTH, COL_GREEN);
 
   if (temp > -99) {
@@ -440,9 +458,10 @@ void DisplayManager::drawFooter(bool mqttConnected, bool printerOnline, float te
   display->setTextColor(COL_TEXT, COL_BG);
 }
 
-void DisplayManager::showOtaProgress(const char* line1, const char* line2,
-                                     const char* line3, int pct) {
-  if (!display) return;
+void DisplayManager::showOtaProgress(const char* line1, const char* line2, const char* line3,
+                                     int pct) {
+  if (!display)
+    return;
 
   const int barY = 130;
   const int barW = SCREEN_WIDTH - 16;
@@ -492,23 +511,28 @@ void DisplayManager::showOtaProgress(const char* line1, const char* line2,
   _dirty = true;
 }
 
-void DisplayManager::showMessage(const char* line1, const char* line2,
-                                 const char* line3, const char* line4) {
-  if (!display) return;
+void DisplayManager::showMessage(const char* line1, const char* line2, const char* line3,
+                                 const char* line4) {
+  if (!display)
+    return;
   display->fillScreen(COL_BG);
   display->setTextSize(2);
   display->setTextColor(COL_TEXT, COL_BG);
   display->setCursor(4, 4);
   display->println(line1);
-  if (line2) display->println(line2);
-  if (line3) display->println(line3);
-  if (line4) display->println(line4);
+  if (line2)
+    display->println(line2);
+  if (line3)
+    display->println(line3);
+  if (line4)
+    display->println(line4);
   _lastOtaPct = -1;
   _dirty = true;
 }
 
 void DisplayManager::showBootScreen() {
-  if (!display) return;
+  if (!display)
+    return;
   display->fillScreen(COL_BG);
   int16_t x = (SCREEN_WIDTH - SPLASH_WIDTH) / 2;
   int16_t y = (SCREEN_HEIGHT - SPLASH_HEIGHT) / 2 - 40;

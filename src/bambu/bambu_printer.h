@@ -20,28 +20,25 @@ struct AmsInfo {
   char trays[4][32];
   char trayTypes[4][16];
   char trayColors[4][9];
-  uint8_t trayRemain[4];   // remaining filament 0-100 % from printer
+  uint8_t trayRemain[4];  // remaining filament 0-100 % from printer
   float temperature;
   float humidity;
 };
 
-enum PrinterState {
-  PRINTER_DISCONNECTED,
-  PRINTER_CONNECTING,
-  PRINTER_CONNECTED,
-  PRINTER_ERROR
-};
+enum PrinterState { PRINTER_DISCONNECTED, PRINTER_CONNECTING, PRINTER_CONNECTED, PRINTER_ERROR };
 
 class BambuPrinter {
-public:
-  void begin(const SystemConfig &cfg);
+ public:
+  void begin(const SystemConfig& cfg);
   void update();
-  void sendSpoolData(uint8_t slot, const SpoolInfo &info);
+  void sendSpoolData(uint8_t slot, const SpoolInfo& info);
   void requestPrinterStatus();
   void sendBmeData(float temp, float humidity);
   void sendAmsGetRfid(uint8_t trayId);
   bool isConnected() const;
-  bool isPrinterOnline() const { return printerOnline; }
+  bool isPrinterOnline() const {
+    return printerOnline;
+  }
   PrinterState getState() const;
   bool isAmsDetected(uint8_t amsId) const;
   uint8_t getAmsExistBits() const;
@@ -57,10 +54,10 @@ public:
   float getAmsHumidity(uint8_t amsId) const;
   void reconnect();
 
-private:
+ private:
   void mqttCallback(char* topic, byte* payload, unsigned int length);
   static void staticMqttCallback(char* topic, byte* payload, unsigned int length);
-  void parseReport(JsonDocument &doc);
+  void parseReport(JsonDocument& doc);
 
   WiFiClient* tcpClient;
   WiFiClientSecure* tlsClient;

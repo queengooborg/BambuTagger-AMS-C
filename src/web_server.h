@@ -10,15 +10,14 @@
 #include "bambu_printer.h"
 
 class WebInterface {
-public:
-  void begin(SystemConfig &cfg, RfidManager* rfid, BambuPrinter* printer,
-             void (*rebootCallback)(void) = nullptr,
-             void (*otaCallback)(void) = nullptr);
+ public:
+  void begin(SystemConfig& cfg, RfidManager* rfid, BambuPrinter* printer,
+             void (*rebootCallback)(void) = nullptr, void (*otaCallback)(void) = nullptr);
   void handleClient();
-  void updateStatus(bool wifiConnected, const char* ipAddress,
-                    bool mqttConnected, bool printerOnline);
+  void updateStatus(bool wifiConnected, const char* ipAddress, bool mqttConnected,
+                    bool printerOnline);
 
-private:
+ private:
   void handleRoot();
   void handleFavicon();
   void handleStatus();
@@ -34,7 +33,7 @@ private:
   void handleVersion();
   void handleLedGet();
   void handleLedPost();
-  void sendJsonResponse(JsonDocument &doc, int code = 200);
+  void sendJsonResponse(JsonDocument& doc, int code = 200);
   void setupRoutes();
 
   WebServer* server;

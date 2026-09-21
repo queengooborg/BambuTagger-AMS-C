@@ -2,13 +2,10 @@
 #include "tag_parser.h"
 #include "mbedtls/md.h"
 
-static const uint8_t BAMBU_KDF_SALT[16] = {
-  0x9a, 0x75, 0x9c, 0xf2, 0xc4, 0xf7, 0xca, 0xff,
-  0x22, 0x2c, 0xb9, 0x76, 0x9b, 0x41, 0xbc, 0x96
-};
+static const uint8_t BAMBU_KDF_SALT[16] = {0x9a, 0x75, 0x9c, 0xf2, 0xc4, 0xf7, 0xca, 0xff,
+                                           0x22, 0x2c, 0xb9, 0x76, 0x9b, 0x41, 0xbc, 0x96};
 
-static void hmacSHA256(const uint8_t* key, size_t kLen,
-                       const uint8_t* data, size_t dLen,
+static void hmacSHA256(const uint8_t* key, size_t kLen, const uint8_t* data, size_t dLen,
                        uint8_t* out32) {
   mbedtls_md_context_t ctx;
   mbedtls_md_init(&ctx);
@@ -20,13 +17,11 @@ static void hmacSHA256(const uint8_t* key, size_t kLen,
   mbedtls_md_free(&ctx);
 }
 
-static void hkdf256(const uint8_t* ikm, size_t ikmLen,
-                    const uint8_t* salt, size_t saltLen,
-                    const uint8_t* info, size_t infoLen,
-                    uint8_t* okm, size_t okmLen) {
+static void hkdf256(const uint8_t* ikm, size_t ikmLen, const uint8_t* salt, size_t saltLen,
+                    const uint8_t* info, size_t infoLen, uint8_t* okm, size_t okmLen) {
   uint8_t prk[32];
   hmacSHA256(salt, saltLen, ikm, ikmLen, prk);
-  uint8_t T[32] = { 0 };
+  uint8_t T[32] = {0};
   size_t tLen = 0;
   uint8_t ctr = 0;
   size_t done = 0;
@@ -34,8 +29,10 @@ static void hkdf256(const uint8_t* ikm, size_t ikmLen,
     ctr++;
     size_t inLen = tLen + infoLen + 1;
     uint8_t* input = new uint8_t[inLen];
-    if (!input) return;
-    if (tLen) memcpy(input, T, tLen);
+    if (!input)
+      return;
+    if (tLen)
+      memcpy(input, T, tLen);
     memcpy(input + tLen, info, infoLen);
     input[tLen + infoLen] = ctr;
     hmacSHA256(prk, 32, input, inLen, T);
@@ -47,15 +44,16 @@ static void hkdf256(const uint8_t* ikm, size_t ikmLen,
   }
 }
 
-static void bambuDeriveKeys(const uint8_t uid[4],
-                            uint8_t keysA[16][6], uint8_t keysB[16][6]) {
-  static const uint8_t INFO_A[7] = { 'R', 'F', 'I', 'D', '-', 'A', '\0' };
-  static const uint8_t INFO_B[7] = { 'R', 'F', 'I', 'D', '-', 'B', '\0' };
+static void bambuDeriveKeys(const uint8_t uid[4], uint8_t keysA[16][6], uint8_t keysB[16][6]) {
+  static const uint8_t INFO_A[7] = {'R', 'F', 'I', 'D', '-', 'A', '\0'};
+  static const uint8_t INFO_B[7] = {'R', 'F', 'I', 'D', '-', 'B', '\0'};
   uint8_t okm[96];
   hkdf256(uid, 4, BAMBU_KDF_SALT, 16, INFO_A, 7, okm, 96);
-  for (int i = 0; i < 16; i++) memcpy(keysA[i], okm + i * 6, 6);
+  for (int i = 0; i < 16; i++)
+    memcpy(keysA[i], okm + i * 6, 6);
   hkdf256(uid, 4, BAMBU_KDF_SALT, 16, INFO_B, 7, okm, 96);
-  for (int i = 0; i < 16; i++) memcpy(keysB[i], okm + i * 6, 6);
+  for (int i = 0; i < 16; i++)
+    memcpy(keysB[i], okm + i * 6, 6);
 }
 
 void RfidManager::begin() {
@@ -70,15 +68,15 @@ void RfidManager::begin() {
     digitalWrite(RST_PINS[i], HIGH);
     delay(50);
     chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
-    drivers[i] = new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
+    drivers[i] =
+        new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
     mfrc522[i] = new MFRC522(*drivers[i]);
     mfrc522[i]->PCD_Init();
 
     byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
     readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
-    Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i,
-            SS_PINS[i], RST_PINS[i], ver,
-            readerOk[i] ? "OK" : "FAIL");
+    Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i, SS_PINS[i], RST_PINS[i],
+                  ver, readerOk[i] ? "OK" : "FAIL");
 
     TagParser::clear(spoolData[i]);
     lastPoll[i] = 0;
@@ -87,16 +85,19 @@ void RfidManager::begin() {
   currentSlot = 0;
   initialized = true;
   uint8_t readyCount = 0;
-  for (uint8_t i = 0; i < NUM_SLOTS; i++) if (readerOk[i]) readyCount++;
-  Serial.printf("[RFID] Initialization complete (%u/%u readers ready)\n",
-                readyCount, NUM_SLOTS);
+  for (uint8_t i = 0; i < NUM_SLOTS; i++)
+    if (readerOk[i])
+      readyCount++;
+  Serial.printf("[RFID] Initialization complete (%u/%u readers ready)\n", readyCount, NUM_SLOTS);
 }
 
 void RfidManager::loop() {
-  if (!initialized) return;
+  if (!initialized)
+    return;
 
   unsigned long now = millis();
-  if (now - lastPoll[currentSlot] < RFID_POLL_INTERVAL_MS) return;
+  if (now - lastPoll[currentSlot] < RFID_POLL_INTERVAL_MS)
+    return;
 
   if (!readerOk[currentSlot]) {
     currentSlot = (currentSlot + 1) % NUM_SLOTS;
@@ -124,19 +125,18 @@ void RfidManager::loop() {
       spoolData[currentSlot] = newInfo;
       spoolData[currentSlot].lastSeen = now;
       spoolData[currentSlot].present = true;
-      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n",
-            currentSlot, newInfo.uid,
-            newInfo.tagReadSuccess ? "ok" : "failed",
-            newInfo.materialType[0] ? newInfo.materialType : "unknown");
+      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot,
+                    newInfo.uid, newInfo.tagReadSuccess ? "ok" : "failed",
+                    newInfo.materialType[0] ? newInfo.materialType : "unknown");
     } else {
       spoolData[currentSlot].lastSeen = now;
     }
   } else {
     if (spoolData[currentSlot].present) {
       if (now - spoolData[currentSlot].lastSeen > RFID_DEBOUNCE_MS) {
-        spoolData[currentSlot].present = false; // keep last known data for LED
-        Serial.printf("[RFID] Slot %d tag removed uid=%s\n",
-                currentSlot, spoolData[currentSlot].uid);
+        spoolData[currentSlot].present = false;  // keep last known data for LED
+        Serial.printf("[RFID] Slot %d tag removed uid=%s\n", currentSlot,
+                      spoolData[currentSlot].uid);
       }
     }
   }
@@ -144,12 +144,14 @@ void RfidManager::loop() {
   currentSlot = (currentSlot + 1) % NUM_SLOTS;
 }
 
-bool RfidManager::readNtag(uint8_t slot, SpoolInfo &info) {
+bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
   MFRC522* reader = mfrc522[slot];
 
   yield();
-  if (!reader->PICC_IsNewCardPresent()) return false;
-  if (!reader->PICC_ReadCardSerial()) return false;
+  if (!reader->PICC_IsNewCardPresent())
+    return false;
+  if (!reader->PICC_ReadCardSerial())
+    return false;
 
   MFRC522::PICC_Type piccType = reader->PICC_GetType(reader->uid.sak);
   // Serial.printf("Slot %d: tag type=%s (SAK=0x%02X)\n",
@@ -157,22 +159,26 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo &info) {
 
   char uidStr[16];
   uint8_t uidLen = reader->uid.size;
-  if (uidLen > 7) uidLen = 7;
+  if (uidLen > 7)
+    uidLen = 7;
   uidStr[0] = '\0';
   for (uint8_t b = 0; b < uidLen; b++) {
     snprintf(uidStr + b * 2, 3, "%02X", reader->uid.uidByte[b]);
   }
 
   bool success = false;
-  if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_1K || piccType == MFRC522Constants::PICC_TYPE_MIFARE_4K) {
+  if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_1K ||
+      piccType == MFRC522Constants::PICC_TYPE_MIFARE_4K) {
     success = authenticateAndRead(slot, info, reader->uid.uidByte);
-    if (!success) success = readNtagPages(slot, info); // fallback: NDEF on MIFARE
-  } else if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL || piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL) {
+    if (!success)
+      success = readNtagPages(slot, info);  // fallback: NDEF on MIFARE
+  } else if (piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL ||
+             piccType == MFRC522Constants::PICC_TYPE_MIFARE_UL) {
     // NTAG/Ultralight fallback — try reading without auth
     success = readNtagPages(slot, info);
   } else {
-    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n",
-            slot, reader->uid.sak, uidStr);
+    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n", slot, reader->uid.sak,
+                  uidStr);
   }
 
   strncpy(info.uid, uidStr, sizeof(info.uid) - 1);
@@ -190,7 +196,7 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo &info) {
   return true;
 }
 
-bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo &info, uint8_t* uid) {
+bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* uid) {
   MFRC522* reader = mfrc522[slot];
   // Serial.printf("Slot %d: authenticateAndRead enter\n", slot);
 
@@ -201,11 +207,13 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo &info, uint8_t* ui
   //               uid[0], uid[1], uid[2], uid[3]);
 
   MFRC522::MIFARE_Key keyDef;
-  for (byte i = 0; i < 6; i++) keyDef.keyByte[i] = 0xFF;
+  for (byte i = 0; i < 6; i++)
+    keyDef.keyByte[i] = 0xFF;
 
   const uint16_t bufferSize = 1024;
   uint8_t* dataBuffer = new uint8_t[bufferSize];
-  if (!dataBuffer) return false;
+  if (!dataBuffer)
+    return false;
   memset(dataBuffer, 0, bufferSize);
 
   // Block 0 = UID
@@ -223,25 +231,50 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo &info, uint8_t* ui
 
     MFRC522::StatusCode authStatus = MFRC522Constants::STATUS_ERROR;
 
-    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &kA, &(reader->uid));
-    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
-    else goto authOk2;
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock,
+                                          &kA, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) {
+      reader->PCD_AntennaOff();
+      delay(2);
+      reader->PCD_AntennaOn();
+      delay(2);
+    } else
+      goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &kB, &(reader->uid));
-    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
-    else goto authOk2;
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock,
+                                          &kB, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) {
+      reader->PCD_AntennaOff();
+      delay(2);
+      reader->PCD_AntennaOn();
+      delay(2);
+    } else
+      goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &keyDef, &(reader->uid));
-    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
-    else goto authOk2;
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_A, trailerBlock,
+                                          &keyDef, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) {
+      reader->PCD_AntennaOff();
+      delay(2);
+      reader->PCD_AntennaOn();
+      delay(2);
+    } else
+      goto authOk2;
 
-    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &keyDef, &(reader->uid));
-    if (authStatus != MFRC522Constants::STATUS_OK) { reader->PCD_AntennaOff(); delay(2); reader->PCD_AntennaOn(); delay(2); }
+    authStatus = reader->PCD_Authenticate(MFRC522Constants::PICC_CMD_MF_AUTH_KEY_B, trailerBlock,
+                                          &keyDef, &(reader->uid));
+    if (authStatus != MFRC522Constants::STATUS_OK) {
+      reader->PCD_AntennaOff();
+      delay(2);
+      reader->PCD_AntennaOn();
+      delay(2);
+    }
 
-    if (bytesRead > 0) break;
+    if (bytesRead > 0)
+      break;
     continue;
 
-authOk2:
+  authOk2:
     uint8_t startBlock = (sector == 0) ? (dataBlock + 1) : dataBlock;
     uint8_t endBlock = dataBlock + 3;
 
@@ -250,7 +283,8 @@ authOk2:
       byte readSize = sizeof(readBuf);
       yield();
       MFRC522::StatusCode status = reader->MIFARE_Read(block, readBuf, &readSize);
-      if (status != MFRC522Constants::STATUS_OK) break;
+      if (status != MFRC522Constants::STATUS_OK)
+        break;
 
       memcpy(dataBuffer + block * 16, readBuf, 16);
       bytesRead += 16;
@@ -259,7 +293,7 @@ authOk2:
 
   reader->PCD_StopCrypto1();
 
-//  Serial.printf("Slot %d: MIFARE auth done, bytesRead=%d\n", slot, bytesRead);
+  //  Serial.printf("Slot %d: MIFARE auth done, bytesRead=%d\n", slot, bytesRead);
 
   // Parse using Touch fixed-block offsets (Bambu Lab RFID Tag Guide)
   info.tagReadSuccess = false;
@@ -268,16 +302,20 @@ authOk2:
   memcpy(info.materialType, dataBuffer + 1 * 16 + 8, 8);
   info.materialType[8] = '\0';
   for (int i = 7; i >= 0; i--) {
-    if (info.materialType[i] == ' ' || info.materialType[i] == '\0') info.materialType[i] = '\0';
-    else break;
+    if (info.materialType[i] == ' ' || info.materialType[i] == '\0')
+      info.materialType[i] = '\0';
+    else
+      break;
   }
 
   // Block 4 = detailed type string (e.g. "PLA Basic")
   memcpy(info.detailedType, dataBuffer + 4 * 16, 16);
   info.detailedType[16] = '\0';
   for (int i = 15; i >= 0; i--) {
-    if (info.detailedType[i] == ' ' || info.detailedType[i] == '\0') info.detailedType[i] = '\0';
-    else break;
+    if (info.detailedType[i] == ' ' || info.detailedType[i] == '\0')
+      info.detailedType[i] = '\0';
+    else
+      break;
   }
 
   // Use first word of detailed type as material name, tag label as "Bambu"
@@ -285,17 +323,18 @@ authOk2:
   strncpy(typeName, info.detailedType, sizeof(typeName) - 1);
   typeName[sizeof(typeName) - 1] = '\0';
   char* sp = strchr(typeName, ' ');
-  if (sp) *sp = '\0';
-  if (typeName[0]) strncpy(info.materialType, typeName, sizeof(info.materialType) - 1);
+  if (sp)
+    *sp = '\0';
+  if (typeName[0])
+    strncpy(info.materialType, typeName, sizeof(info.materialType) - 1);
   strcpy(info.detailedType, "Bambu");
   // Serial.printf("Slot %d: block4 raw=", slot);
   // for (int i = 0; i < 16; i++) Serial.printf("%02X ", dataBuffer[4 * 16 + i]);
   // Serial.printf(" sub='%s'\n", info.detailedType);
 
   // Block 5 bytes 0-3 = RGBA → force alpha to FF for printer format
-  snprintf(info.colorHex, sizeof(info.colorHex), "%02X%02X%02XFF",
-           dataBuffer[5 * 16 + 0], dataBuffer[5 * 16 + 1],
-           dataBuffer[5 * 16 + 2]);
+  snprintf(info.colorHex, sizeof(info.colorHex), "%02X%02X%02XFF", dataBuffer[5 * 16 + 0],
+           dataBuffer[5 * 16 + 1], dataBuffer[5 * 16 + 2]);
 
   // Block 5 bytes 4-5 = spool weight (LE uint16)
   info.totalGrams = (uint16_t)dataBuffer[5 * 16 + 4] | ((uint16_t)dataBuffer[5 * 16 + 5] << 8);
@@ -303,14 +342,14 @@ authOk2:
 
   // Block 6 bytes 8-9 = max nozzle temp, bytes 10-11 = min nozzle temp (LE uint16)
   info.nozzleTempMin = (uint16_t)dataBuffer[6 * 16 + 10] | ((uint16_t)dataBuffer[6 * 16 + 11] << 8);
-  info.nozzleTempMax = (uint16_t)dataBuffer[6 * 16 + 8]  | ((uint16_t)dataBuffer[6 * 16 + 9]  << 8);
+  info.nozzleTempMax = (uint16_t)dataBuffer[6 * 16 + 8] | ((uint16_t)dataBuffer[6 * 16 + 9] << 8);
 
   info.tagReadSuccess = (info.materialType[0] != '\0');
   bool result = info.tagReadSuccess;
 
   if (result) {
-    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n",
-                  slot, info.materialType, info.detailedType, bytesRead);
+    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n", slot,
+                  info.materialType, info.detailedType, bytesRead);
   } else {
     Serial.printf("[RFID] Slot %d MIFARE parse failed bytes=%u\n", slot, bytesRead);
   }
@@ -319,12 +358,13 @@ authOk2:
   return result;
 }
 
-bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo &info) {
+bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo& info) {
   MFRC522* reader = mfrc522[slot];
 
   uint16_t bufferSize = 900;
   uint8_t* dataBuffer = new uint8_t[bufferSize];
-  if (!dataBuffer) return false;
+  if (!dataBuffer)
+    return false;
 
   uint16_t bytesRead = 0;
 
@@ -332,7 +372,8 @@ bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo &info) {
     byte readBuf[18];
     byte readSize = sizeof(readBuf);
     MFRC522::StatusCode status = reader->MIFARE_Read(page, readBuf, &readSize);
-    if (status != MFRC522Constants::STATUS_OK) continue;
+    if (status != MFRC522Constants::STATUS_OK)
+      continue;
 
     byte bytesThisBlock = (readSize > 16) ? 16 : readSize;
 
@@ -349,26 +390,29 @@ bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo &info) {
     info.tagReadSuccess = false;
   }
 
-  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n",
-                slot, bytesRead, result ? "ok" : "failed");
+  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n", slot, bytesRead,
+                result ? "ok" : "failed");
 
   delete[] dataBuffer;
   return result;
 }
 
 bool RfidManager::isTagPresent(uint8_t slot) {
-  if (slot >= NUM_SLOTS) return false;
+  if (slot >= NUM_SLOTS)
+    return false;
   return spoolData[slot].present;
 }
 
-bool RfidManager::getSpoolInfo(uint8_t slot, SpoolInfo &info) {
-  if (slot >= NUM_SLOTS) return false;
+bool RfidManager::getSpoolInfo(uint8_t slot, SpoolInfo& info) {
+  if (slot >= NUM_SLOTS)
+    return false;
   info = spoolData[slot];
   return spoolData[slot].present;
 }
 
 void RfidManager::forceRescan(uint8_t slot) {
-  if (slot >= NUM_SLOTS) return;
+  if (slot >= NUM_SLOTS)
+    return;
   lastPoll[slot] = 0;
 }
 

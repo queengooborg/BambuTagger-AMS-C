@@ -5,7 +5,9 @@
 #include <Preferences.h>
 
 #define FIRMWARE_VERSION "1.2.0"
-#define OTA_REPO "queengooborg/BambuTagger-AMS-C" // "VID-PRO/BambuTagger-AMS-C" -- XXX restore once forked changes are merged upstream
+#define OTA_REPO \
+  "queengooborg/BambuTagger-AMS-C"  // "VID-PRO/BambuTagger-AMS-C" -- XXX restore once forked
+                                    // changes are merged upstream
 
 #define NUM_SLOTS 4
 
@@ -16,47 +18,47 @@
 // ESP32-S3-DevKitC-1 wiring
 #define SPI_MOSI 11
 #define SPI_MISO 13
-#define SPI_SCK  12
+#define SPI_SCK 12
 #else
 // ESP32-WROOM / ESP32 Dev Module wiring
 #define SPI_MOSI 23
 #define SPI_MISO 19
-#define SPI_SCK  18
+#define SPI_SCK 18
 #endif
 
 // RC522 CS (SS) pins
 #ifdef BAMBU_TAGGER_ESP32_S3
-const uint8_t SS_PINS[NUM_SLOTS]  = {10, 9, 8, 7};
+const uint8_t SS_PINS[NUM_SLOTS] = {10, 9, 8, 7};
 const uint8_t RST_PINS[NUM_SLOTS] = {1, 2, 4, 35};
 #else
-const uint8_t SS_PINS[NUM_SLOTS]  = {13, 12, 14, 27};
+const uint8_t SS_PINS[NUM_SLOTS] = {13, 12, 14, 27};
 // RC522 RST pins
 const uint8_t RST_PINS[NUM_SLOTS] = {26, 25, 33, 32};
 #endif
 // WS2812 LED daisy chain (single data pin, 4 LEDs in series)
 #ifdef BAMBU_TAGGER_ESP32_S3
-#define LED_DATA_PIN   14
+#define LED_DATA_PIN 14
 #else
-#define LED_DATA_PIN   15
+#define LED_DATA_PIN 15
 #endif
-#define LED_COUNT      4
+#define LED_COUNT 4
 #define LED_BRIGHTNESS 32
 
 // SPI TFT (240x240 1.3" ST7789VW)
 #ifdef BAMBU_TAGGER_ESP32_S3
-#define TFT_BLK  15
-#define TFT_DC   16
-#define TFT_RES  17
-#define TFT_CS   -1
-#define TFT_SCL  18
-#define TFT_SDA  21
+#define TFT_BLK 15
+#define TFT_DC 16
+#define TFT_RES 17
+#define TFT_CS -1
+#define TFT_SCL 18
+#define TFT_SDA 21
 #else
-#define TFT_BLK  2
-#define TFT_DC   4
-#define TFT_RES  5
-#define TFT_CS   -1
-#define TFT_SCL  16
-#define TFT_SDA  17
+#define TFT_BLK 2
+#define TFT_DC 4
+#define TFT_RES 5
+#define TFT_CS -1
+#define TFT_SCL 16
+#define TFT_SDA 17
 #endif
 
 // BME280 I2C pins
@@ -69,11 +71,11 @@ const uint8_t RST_PINS[NUM_SLOTS] = {26, 25, 33, 32};
 #endif
 
 // --- RFID Settings ---
-#define RFID_POLL_INTERVAL_MS  250
-#define RFID_DEBOUNCE_MS       750
-#define NTAG_PAGE_SIZE         4
-#define NTAG_USER_START_PAGE   4
-#define NTAG_MAX_PAGES         231
+#define RFID_POLL_INTERVAL_MS 250
+#define RFID_DEBOUNCE_MS 750
+#define NTAG_PAGE_SIZE 4
+#define NTAG_USER_START_PAGE 4
+#define NTAG_MAX_PAGES 231
 
 // --- Spool Info Structure ---
 struct SpoolInfo {
@@ -130,26 +132,32 @@ inline SystemConfig getDefaultConfig() {
 }
 
 // --- Persistent Config Helpers ---
-inline void loadConfig(SystemConfig &cfg) {
+inline void loadConfig(SystemConfig& cfg) {
   Preferences prefs;
   prefs.begin("bambu-ams", true);
   cfg = getDefaultConfig();
-  if (prefs.isKey("wifiSSID")) prefs.getString("wifiSSID", cfg.wifiSSID, sizeof(cfg.wifiSSID));
-  if (prefs.isKey("wifiPwd")) prefs.getString("wifiPwd", cfg.wifiPassword, sizeof(cfg.wifiPassword));
-  if (prefs.isKey("printerIP")) prefs.getString("printerIP", cfg.printerIP, sizeof(cfg.printerIP));
+  if (prefs.isKey("wifiSSID"))
+    prefs.getString("wifiSSID", cfg.wifiSSID, sizeof(cfg.wifiSSID));
+  if (prefs.isKey("wifiPwd"))
+    prefs.getString("wifiPwd", cfg.wifiPassword, sizeof(cfg.wifiPassword));
+  if (prefs.isKey("printerIP"))
+    prefs.getString("printerIP", cfg.printerIP, sizeof(cfg.printerIP));
   cfg.printerPort = prefs.getUShort("printerPort", cfg.printerPort);
-  if (prefs.isKey("accCode")) prefs.getString("accCode", cfg.printerAccessCode, sizeof(cfg.printerAccessCode));
-  if (prefs.isKey("printerSN")) prefs.getString("printerSN", cfg.printerSerial, sizeof(cfg.printerSerial));
-  if (prefs.isKey("devName")) prefs.getString("devName", cfg.deviceName, sizeof(cfg.deviceName));
+  if (prefs.isKey("accCode"))
+    prefs.getString("accCode", cfg.printerAccessCode, sizeof(cfg.printerAccessCode));
+  if (prefs.isKey("printerSN"))
+    prefs.getString("printerSN", cfg.printerSerial, sizeof(cfg.printerSerial));
+  if (prefs.isKey("devName"))
+    prefs.getString("devName", cfg.deviceName, sizeof(cfg.deviceName));
   cfg.mqttEnabled = prefs.getBool("mqttEn", cfg.mqttEnabled);
   cfg.mqttUseTLS = prefs.getBool("mqttTLS", cfg.mqttUseTLS);
   cfg.mqttUpdateIntervalMs = prefs.getULong("mqttInt", cfg.mqttUpdateIntervalMs);
   cfg.amsUnit = prefs.getUChar("amsUnit", cfg.amsUnit);
-  cfg.layoutVertical = prefs.getBool("layoutVertical", false);  
+  cfg.layoutVertical = prefs.getBool("layoutVertical", false);
   prefs.end();
 }
 
-inline void saveConfig(const SystemConfig &cfg) {
+inline void saveConfig(const SystemConfig& cfg) {
   Preferences prefs;
   prefs.begin("bambu-ams", false);
   prefs.putString("wifiSSID", cfg.wifiSSID);

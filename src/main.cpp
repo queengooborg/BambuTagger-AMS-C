@@ -76,7 +76,8 @@ void setup() {
 
   Wire.begin(I2C_SDA, I2C_SCL);
   bmeOk = bme.begin(0x76);
-  if (!bmeOk) bmeOk = bme.begin(0x77);
+  if (!bmeOk)
+    bmeOk = bme.begin(0x77);
   if (bmeOk) {
     Serial.println(F("BME280 sensor found"));
   } else {
@@ -85,7 +86,6 @@ void setup() {
 
   Serial.print(F("Device: "));
   Serial.println(cfg.deviceName);
-
 
   ledManager.begin();
   Preferences prefs;
@@ -197,8 +197,8 @@ void loop() {
     bool mqttOk = bambuPrinter.isConnected();
     webInterface.updateStatus(wifiConnected, localIP.c_str(), mqttOk,
                               (bambuPrinter.getState() == PRINTER_CONNECTED));
-    displayManager.update(displaySlots, wifiConnected, mqttOk,
-                          &bambuPrinter, cfg.amsUnit, bmeTemp, bmeHumidity);
+    displayManager.update(displaySlots, wifiConnected, mqttOk, &bambuPrinter, cfg.amsUnit, bmeTemp,
+                          bmeHumidity);
   }
 
   if (now - lastMqttUpdate > (cfg.mqttUpdateIntervalMs > 0 ? cfg.mqttUpdateIntervalMs : 5000)) {
@@ -275,9 +275,12 @@ static uint8_t hexToByte(const char* hex) {
   for (uint8_t i = 0; i < 2; i++) {
     char c = hex[i];
     val <<= 4;
-    if (c >= '0' && c <= '9') val |= (c - '0');
-    else if (c >= 'A' && c <= 'F') val |= (c - 'A' + 10);
-    else if (c >= 'a' && c <= 'f') val |= (c - 'a' + 10);
+    if (c >= '0' && c <= '9')
+      val |= (c - '0');
+    else if (c >= 'A' && c <= 'F')
+      val |= (c - 'A' + 10);
+    else if (c >= 'a' && c <= 'f')
+      val |= (c - 'a' + 10);
   }
   return val;
 }
@@ -313,7 +316,8 @@ void handleReboot() {
 
 void performOTAUpdate() {
   static bool otaRunning = false;
-  if (otaRunning) return;
+  if (otaRunning)
+    return;
   otaRunning = true;
   displayManager.showOtaProgress("OTA Update", "Checking version...");
 
@@ -330,7 +334,7 @@ void performOTAUpdate() {
     http.setFollowRedirects(HTTPC_DISABLE_FOLLOW_REDIRECTS);
     http.begin(client, String("https://github.com/") + OTA_REPO + "/releases/latest");
     http.addHeader("User-Agent", String("BambuTagger-AMS/") + FIRMWARE_VERSION);
-    const char* hdrs[] = { "Location" };
+    const char* hdrs[] = {"Location"};
     http.collectHeaders(hdrs, 1);
 
     int code = http.GET();
@@ -338,7 +342,8 @@ void performOTAUpdate() {
     if ((code == 301 || code == 302) && http.hasHeader("Location")) {
       String loc = http.header("Location");
       int tagIdx = loc.lastIndexOf("/tag/");
-      if (tagIdx >= 0) latest = loc.substring(tagIdx + 5);
+      if (tagIdx >= 0)
+        latest = loc.substring(tagIdx + 5);
     }
     http.end();
 
@@ -352,9 +357,11 @@ void performOTAUpdate() {
     // Version check
     tag = latest;
     const char* r = latest.c_str();
-    if (r[0] == 'v' || r[0] == 'V') r++;
+    if (r[0] == 'v' || r[0] == 'V')
+      r++;
     const char* l = FIRMWARE_VERSION;
-    if (l[0] == 'v' || l[0] == 'V') l++;
+    if (l[0] == 'v' || l[0] == 'V')
+      l++;
     int rMaj = 0, rMin = 0, rPat = 0, lMaj = 0, lMin = 0, lPat = 0;
     sscanf(r, "%d.%d.%d", &rMaj, &rMin, &rPat);
     sscanf(l, "%d.%d.%d", &lMaj, &lMin, &lPat);
@@ -366,9 +373,8 @@ void performOTAUpdate() {
     }
 
     // Construct download URL directly — no asset JSON needed
-    dlUrl = String("https://github.com/") + OTA_REPO
-            + "/releases/download/" + latest
-            + "/firmware.bin";
+    dlUrl =
+        String("https://github.com/") + OTA_REPO + "/releases/download/" + latest + "/firmware.bin";
     Serial.printf("[OTA] tag: %s\n", latest.c_str());
     Serial.printf("[OTA] dlUrl: %s\n", dlUrl.c_str());
   }  // ← client, http destroyed here — heap reclaimed
@@ -388,7 +394,7 @@ void performOTAUpdate() {
     rc.setInsecure();
     rc.setTimeout(10000);
     HTTPClient rh;
-    const char* hdrs[] = { "Location" };
+    const char* hdrs[] = {"Location"};
     rh.collectHeaders(hdrs, 1);
     rh.begin(rc, dlUrl);
     rh.addHeader("User-Agent", String("BambuTagger-AMS/") + FIRMWARE_VERSION);
@@ -402,11 +408,12 @@ void performOTAUpdate() {
     rh.end();
   }
 
-    // Raw WiFiClientSecure — same as redirect blocks, bypasses IDF TLS enforcement
+  // Raw WiFiClientSecure — same as redirect blocks, bypasses IDF TLS enforcement
   String dlHost, dlPath;
   {
     String u = finalUrl;
-    if (u.startsWith("https://")) u = u.substring(8);
+    if (u.startsWith("https://"))
+      u = u.substring(8);
     int si = u.indexOf('/');
     dlHost = (si >= 0) ? u.substring(0, si) : u;
     dlPath = (si >= 0) ? u.substring(si) : "/";
@@ -420,7 +427,9 @@ void performOTAUpdate() {
   if (!dlClient.connect(dlHost.c_str(), 443)) {
     Serial.println("[OTA] CDN connect failed");
     displayManager.showOtaProgress("OTA Update", "", "Connect failed");
-    otaRunning = false; delay(3000); return;
+    otaRunning = false;
+    delay(3000);
+    return;
   }
 
   // Send raw HTTP/1.1 GET
@@ -434,13 +443,16 @@ void performOTAUpdate() {
   {
     String line = dlClient.readStringUntil('\n');
     line.trim();
-    if (line.length() > 9) httpStatus = line.substring(9, 12).toInt();
+    if (line.length() > 9)
+      httpStatus = line.substring(9, 12).toInt();
     Serial.printf("[OTA] HTTP status: %d\n", httpStatus);
     while (true) {
       line = dlClient.readStringUntil('\n');
       line.trim();
-      if (line.isEmpty()) break;
-      String lower = line; lower.toLowerCase();
+      if (line.isEmpty())
+        break;
+      String lower = line;
+      lower.toLowerCase();
       if (lower.startsWith("content-length:")) {
         String val = line.substring(15);
         val.trim();
@@ -453,15 +465,19 @@ void performOTAUpdate() {
   if (httpStatus != 200 || contentLen <= 0) {
     dlClient.stop();
     displayManager.showOtaProgress("OTA Update", "", "Bad response");
-    otaRunning = false; delay(3000); return;
+    otaRunning = false;
+    delay(3000);
+    return;
   }
 
-  const esp_partition_t *part = esp_ota_get_next_update_partition(NULL);
+  const esp_partition_t* part = esp_ota_get_next_update_partition(NULL);
   esp_ota_handle_t otaHandle = 0;
   if (esp_ota_begin(part, contentLen, &otaHandle) != ESP_OK) {
     dlClient.stop();
     displayManager.showOtaProgress("OTA Update", "", "OTA begin failed");
-    otaRunning = false; delay(3000); return;
+    otaRunning = false;
+    delay(3000);
+    return;
   }
 
   uint8_t buf[2048];
@@ -500,7 +516,8 @@ void performOTAUpdate() {
 
   if (written == contentLen) {
     esp_err_t err = esp_ota_end(otaHandle);
-    if (err == ESP_OK) err = esp_ota_set_boot_partition(part);
+    if (err == ESP_OK)
+      err = esp_ota_set_boot_partition(part);
     if (err == ESP_OK) {
       displayManager.showOtaProgress("OTA Update", "", "Update OK", 100);
       otaRunning = false;
