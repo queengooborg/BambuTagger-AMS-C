@@ -11,6 +11,16 @@ Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament sp
 <img src="pictures/pcb-c.png" width="400px"/>
 </p>
 
+Supported Tag Formats:
+
+| Tag Type                  | Format            |
+| ------------------------- | ----------------- |
+| **Bambu Lab**             | MIFARE Classic 1K |
+| **SpoolEase**             | NTAG, NDEF URI    |
+| **TigerTag**              | raw binary v2.1   |
+| **OpenSpool**             | NTAG, NDEF JSON   |
+| **OpenTag3D** (v1 and v2) | NTAG, MIME binary |
+
 ---
 
 ## Features
@@ -113,9 +123,35 @@ pio run -e esp32-s3-devkitc-1 -t upload
 
 ---
 
-## WiFi & Connectivity
+## How to Use
 
-### AP Mode
+### Initial Setup
+
+Once the firmware has been flashed for the first time, the ESP32 will initialize and create its own WiFi access point called "BambuTagger-AMS". Connect to the WiFi network to access the web-based configuration panel.
+
+> [!NOTE]
+> The configuration panel should automatically appear as a captive portal. If it does not, manually go to it by going to `http://192.168.4.1` in your browser.
+
+Configure your WiFi network first by typing in the SSID name and password, then click "Save WiFi Settings". The ESP32 will reboot automatically. If the network configuration succeeded, you can now switch to your primary WiFi. If it did not, the WiFi access point will reinitialize, allowing you to reconnect.
+
+Once WiFi configuration is completed, reconnect to your device by navigating to `[Device Name].local` (default: `BambuTagger-AMS.local`) or via the IP address displayed on the TFT screen.
+
+Enter in your printer settings on the printer config page, including the IP, serial number and access code.
+
+> [!IMPORTANT]
+> Your printer MUST be in LAN Only Mode and Developer Mode. The printer will refuse all connections otherwise.
+
+### Using with Printer
+
+The project is designed with the intent of placing a reader at each AMS slot, similar to how the existing readers are placed. With each reader placed, tag scanning will happen automatically as filament is loaded normally.
+
+--
+
+## Technical Details
+
+### WiFi & Connectivity
+
+#### AP Mode
 
 | Scenario                     | Behavior                                |
 | ---------------------------- | --------------------------------------- |
@@ -131,13 +167,13 @@ pio run -e esp32-s3-devkitc-1 -t upload
 - **IP**: `192.168.4.1`
 - **Captive portal**: DNS redirects all domains to the config page
 
-### SSID Mode
+#### SSID Mode
 
 When the ESP32 module is connected to an existing network, the IP address will display on the TFT screen. Alternatively, you may navigate to `[Device Name].local` (default: `BambuTagger-AMS.local`).
 
 ---
 
-## Web Interface
+### Web Interface
 
 Open a browser to the ESP32's IP (shown on TFT), `[Device Name].local`, or `http://192.168.4.1` (in AP mode).
 
@@ -149,7 +185,7 @@ Open a browser to the ESP32's IP (shown on TFT), `[Device Name].local`, or `http
 
 ---
 
-## TFT Display (240×240 1.3" ST7789VW)
+### TFT Display (240×240 1.3" ST7789VW)
 
 The TFT display has two modes:
 
@@ -192,14 +228,14 @@ OTA progress shown on TFT with header/footer preserved:
 
 ---
 
-## Printer Communication
+### Printer Communication
 
-### Subscribe
+#### Subscribe
 
 - **Topic**: `device/<serial>/report`
 - **Data**: `push_status` (periodic, ~3KB), `get_version` responses
 
-### Publish
+#### Publish
 
 - **Topic**: `device/<serial>/request`
 
@@ -227,9 +263,9 @@ OTA progress shown on TFT with header/footer preserved:
 
 ---
 
-## Tag Format & Reading
+### Tag Format & Reading
 
-### Supported Tag Types
+The following tag types are supported:
 
 | Tag Type                  | Format            | Example                                              |
 | ------------------------- | ----------------- | ---------------------------------------------------- |
@@ -239,7 +275,7 @@ OTA progress shown on TFT with header/footer preserved:
 | **OpenSpool**             | NTAG, NDEF JSON   | `OpenSpool - ASA-AF · F078B4FF · 1000g/1000g`        |
 | **OpenTag3D** (v1 and v2) | NTAG, MIME binary | `OpenTag3D v2.003 - ASA-AF · F078B4FF · 1000g/1000g` |
 
-### Bambu Lab (MIFARE Classic 1K)
+#### Bambu Lab (MIFARE Classic 1K)
 
 | Block | Content                                              |
 | ----- | ---------------------------------------------------- |
@@ -250,7 +286,7 @@ OTA progress shown on TFT with header/footer preserved:
 | 5     | RGBA color (bytes 0-3) + spool weight LE (bytes 4-5) |
 | 6     | Nozzle temps (bytes 8-11 LE)                         |
 
-### SpoolEase (NTAG, NDEF URI)
+#### SpoolEase (NTAG, NDEF URI)
 
 URL format: `https://tag.spoolease.io/S1/?TG=...&M=PLA&CC=000000FF&SC=GFL99&WL=1000&WE=179&WF=1215&NN=190&NX=240`
 
@@ -266,7 +302,7 @@ URL format: `https://tag.spoolease.io/S1/?TG=...&M=PLA&CC=000000FF&SC=GFL99&WL=1
 | `NN=` | `nozzleTempMin`  | Min nozzle temp °C                  |
 | `NX=` | `nozzleTempMax`  | Max nozzle temp °C                  |
 
-### TigerTag (raw binary v2.1)
+#### TigerTag (raw binary v2.1)
 
 | Offset | Size | Field                                                |
 | ------ | ---- | ---------------------------------------------------- |
@@ -282,7 +318,7 @@ URL format: `https://tag.spoolease.io/S1/?TG=...&M=PLA&CC=000000FF&SC=GFL99&WL=1
 
 Known material IDs: PLA=38219, PETG=38256, ABS=20562, etc.
 
-### OpenTag3D (NTAG, MIME binary)
+#### OpenTag3D (NTAG, MIME binary)
 
 The OpenTag3D spec can be read on [their website](https://opentag3d.info/spec).
 
@@ -309,7 +345,7 @@ The OpenTag3D spec can be read on [their website](https://opentag3d.info/spec).
 
 ---
 
-## OTA Updates
+### OTA Updates
 
 - **Button**: "Update Firmware" on Status page (shows "Update to vX.Y.Z" or "up to date")
 - **Overlay**: full-screen progress overlay with spinner, status text, progress bar
@@ -321,17 +357,7 @@ The OpenTag3D spec can be read on [their website](https://opentag3d.info/spec).
 
 ---
 
-## CI / CD
-
-Workflow at `GHActions/release.yml`:
-
-- **On push/PR**: compiles sketch, uploads artifacts
-- **On release tag**: creates merged flash binary + OTA binary, attaches to GitHub Release
-- Arduino cache for fast rebuilds, pinned esp32:esp32@3.0.7 core
-
----
-
-## Configuration Defaults
+### Configuration Defaults
 
 | Setting              | Default         |
 | -------------------- | --------------- |
@@ -362,5 +388,6 @@ Workflow at `GHActions/release.yml`:
 
 ## License
 
+This project is licened under AGPLv3.
 This project is provided as-is for personal and educational use.  
 Bambu Lab trademarks and spool tag data formats are the property of Bambu Lab.
