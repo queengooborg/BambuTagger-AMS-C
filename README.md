@@ -68,19 +68,27 @@ The WS2812 LED must also be powered by 5V. If the ESP32 is powered via the USB p
 
 All other components will be powered by the 3.3V pin on the ESP32 board.
 
-| Function                       | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
-| ------------------------------ | -------------- | ------------------ |
-| **RC522 SPI MOSI (Shared)**    | 23             | 11                 |
-| **RC522 SPI MISO (Shared)**    | 19             | 13                 |
-| **RC522 SPI SCK (Shared)**     | 18             | 12                 |
-| **RC522 #1 SS (SDA) / RST**    | 13 / 26        | 10 / 1             |
-| **RC522 #2 SS (SDA) / RST**    | 12 / 25        | 9 / 2              |
-| **RC522 #3 SS (SDA) / RST**    | 14 / 33        | 8 / 4              |
-| **RC522 #4 SS (SDA) / RST**    | 27 / 32        | 7 / 35             |
-| **TFT SDA (MOSI) / SCL (SCK)** | 17 / 16        | 21 / 18            |
-| **TFT DC / RES / BLK**         | 4 / 5 / 2      | 16 / 17 / 15       |
-| **WS2812 Data**                | 15             | 14                 |
-| **BME280 SDA / SCL**           | 22 / 21        | 6 / 5              |
+| Function                    | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
+| --------------------------- | -------------- | ------------------ |
+| **RC522 SPI MOSI (Shared)** | 23             | 11                 |
+| **RC522 SPI MISO (Shared)** | 19             | 13                 |
+| **RC522 SPI SCK (Shared)**  | 18             | 12                 |
+| **RC522 #1 SS (SDA)**       | 13             | 4                  |
+| **RC522 #1 RST**            | 26             | 15                 |
+| **RC522 #2 SS (SDA)**       | 12             | 5                  |
+| **RC522 #2 RST**            | 25             | 16                 |
+| **RC522 #3 SS (SDA)**       | 14             | 6                  |
+| **RC522 #3 RST**            | 33             | 17                 |
+| **RC522 #4 SS (SDA)**       | 27             | 7                  |
+| **RC522 #4 RST**            | 32             | 18                 |
+| **TFT SDA (MOSI)**          | 17             | 35                 |
+| **TFT SCL (SCK)**           | 16             | 36                 |
+| **TFT DC**                  | 4              | 37                 |
+| **TFT RES**                 | 5              | 0                  |
+| **TFT BLK**                 | 2              | 45                 |
+| **WS2812 Data**             | 15             | 14                 |
+| **BME280 SDA**              | 22             | 48                 |
+| **BME280 SCL**              | 21             | 47                 |
 
 ---
 
