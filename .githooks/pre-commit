@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$repo_root"
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACMR)
+clang_files=
+prettier_files=
+
+for file in $staged_files; do
+  case "$file" in
+    *.cpp|*.h) clang_files="$clang_files $file" ;;
+  esac
+
+  case "$file" in
+    *.css|*.html|*.js|*.json|*.jsx|*.md|*.scss|*.ts|*.tsx|*.yaml|*.yml|.prettierrc)
+      prettier_files="$prettier_files $file"
+      ;;
+  esac
+done
+
+if [ -n "$clang_files" ] && command -v clang-format >/dev/null 2>&1; then
+  set -- $clang_files
+  clang-format --dry-run --Werror "$@"
+fi
+
+if [ -n "$prettier_files" ] && command -v prettier >/dev/null 2>&1; then
+  set -- $prettier_files
+  prettier --check "$@"
+fi

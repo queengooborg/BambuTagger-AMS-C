@@ -1,0 +1,24 @@
+name: Formatting
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install --yes clang-format
+
+      - name: Check C++ formatting
+        run: ./scripts/format.sh --check
+
+      - name: Check Prettier formatting
+        run: npx --yes prettier@3.6.2 --check
