@@ -90,21 +90,14 @@ To build from source, you may either use Visual Studio Code or run commands in t
 
 #### Initial Setup
 
+To setup the local development environment, you can either use Visual Studio Code, or run the `./setup.sh` command. The command will create a Python virtual environment, using the virtualenv manager if one is available, and install dependencies.
+
 > [!NOTE]
-> It is strongly recommended to use a shell plugin to handle virtualenvs for you, such as the [zsh-autoswitch-virtualenv](https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv) plugin for zsh.
-
-Set up a virtual environment with Python 3.13 and install `platformio` and `esptool`:
-
-```sh
-python3.13 -m venv .venv
-pip install platformio esptool
-```
-
-To reactivate the virtualenv at a later time, simply run:
-
-```sh
-source .venv/bin/activate
-```
+> To reactivate the virtualenv at a later time (if you don't have a virtualenv manager), simply run:
+>
+> ```sh
+> source .venv/bin/activate
+> ```
 
 #### Build and Upload
 

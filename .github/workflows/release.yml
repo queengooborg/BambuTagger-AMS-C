@@ -52,7 +52,7 @@ jobs:
           restore-keys: pio-${{ runner.os }}-
 
       - name: Install PlatformIO
-        run: pip install platformio esptool
+        run: pip install -r requirements.txt
 
       - name: Build firmware
         run: pio run -e "${{ matrix.board }}"
