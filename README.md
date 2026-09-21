@@ -1,14 +1,14 @@
-# <img alt="logo" src="Logo/bambutagger.png" height="36" /> BambuTagger-AMS-C
+# <img alt="logo" src="logo/bambutagger.png" height="36" /> BambuTagger-AMS-C
 
 Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament spool tags via RC522, displays live printer AMS tray data over MQTT, and sends RFID tag data to the printer/BMCU. Fully configurable via web interface with automatic AP fallback and OTA firmware updates.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G8M220JASY)
 
 <p align="center">
-<img src="Pics/printer.png" width="400px" />
-<img src="Pics/status.png" width="400px" />
-<img src="Pics/tft01.jpg" width="400px" />
-<img src="Pics/pcb-c.png" width="400px"/>
+<img src="pictures/printer.png" width="400px" />
+<img src="pictures/status.png" width="400px" />
+<img src="pictures/tft01.jpg" width="400px" />
+<img src="pictures/pcb-c.png" width="400px"/>
 </p>
 
 ---
@@ -36,15 +36,15 @@ Multi-spool NFC tag reader for Bambu Lab printers. Reads 4 Bambu Lab filament sp
 
 ### Bill of Materials
 
-| Component                      | Notes                                      | Buy                                                                                          |
-| ------------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| **ESP32** Dev Module           | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                         |
-| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus                  | https://de.aliexpress.com/item/1005006233005745.html                                         |
-| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin             | https://de.aliexpress.com/item/32560280169.html                                              |
-| **240×240 1.3" TFT**           | ST7789VW SPI Display                       | https://www.aliexpress.com/item/1005007094147766.html                                        |
-| **BME280** Sensor              | Temperature/Humidity, I2C                  | https://de.aliexpress.com/item/1005006824236173.html                                         |
-| Custom **PCB**                 | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                             |
-| 3D-Printed **Case**            |                                            | For [AMS](./3DPrints/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3DPrints/BambuTagger-AMS2Pro.3mf) |
+| Component                      | Notes                                      | Buy                                                                                            |
+| ------------------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| **ESP32** Dev Module           | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                           |
+| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus                  | https://de.aliexpress.com/item/1005006233005745.html                                           |
+| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin             | https://de.aliexpress.com/item/32560280169.html                                                |
+| **240×240 1.3" TFT**           | ST7789VW SPI Display                       | https://www.aliexpress.com/item/1005007094147766.html                                          |
+| **BME280** Sensor              | Temperature/Humidity, I2C                  | https://de.aliexpress.com/item/1005006824236173.html                                           |
+| Custom **PCB**                 | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                               |
+| 3D-Printed **Case**            |                                            | For [AMS](./3d-prints/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3d-prints/BambuTagger-AMS2Pro.3mf) |
 
 > [!NOTE]
 > The 40-pin ESP32-S3-DevKitC-1 is a compatible alternative for development; however, the PCB only works with the 30-pin ESP-WROOM-32.
