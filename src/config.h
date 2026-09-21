@@ -15,49 +15,49 @@
 // Pin assignments differ because the S3 DevKitC and classic ESP32 expose
 // different GPIOs on their headers.
 #ifdef BAMBU_TAGGER_ESP32_S3
-  // RC522 SPI pins
-  #define SPI_MOSI 11
-  #define SPI_MISO 13
-  #define SPI_SCK 12
-  const uint8_t SS_PINS[NUM_SLOTS] = {4, 5, 6, 7};
-  const uint8_t RST_PINS[NUM_SLOTS] = {15, 16, 17, 18};
+// RC522 SPI pins
+#define SPI_MOSI 11
+#define SPI_MISO 13
+#define SPI_SCK 12
+const uint8_t SS_PINS[NUM_SLOTS] = {4, 5, 6, 7};
+const uint8_t RST_PINS[NUM_SLOTS] = {15, 16, 17, 18};
 
-  // WS2812 LED daisy chain (single data pin, 4 LEDs in series)
-  #define LED_DATA_PIN 14
+// WS2812 LED daisy chain (single data pin, 4 LEDs in series)
+#define LED_DATA_PIN 14
 
-  // SPI TFT (240x240 1.3" ST7789VW)
-  #define TFT_BLK 45
-  #define TFT_DC 37
-  #define TFT_RES 0
-  #define TFT_CS -1
-  #define TFT_SCL 36
-  #define TFT_SDA 35
+// SPI TFT (240x240 1.3" ST7789VW)
+#define TFT_BLK 45
+#define TFT_DC 37
+#define TFT_RES 0
+#define TFT_CS -1
+#define TFT_SCL 36
+#define TFT_SDA 35
 
-  // BME280 I2C pins
-  #define I2C_SDA 48
-  #define I2C_SCL 47
+// BME280 I2C pins
+#define I2C_SDA 48
+#define I2C_SCL 47
 #else
-  // RC522 SPI pins
-  #define SPI_MOSI 23
-  #define SPI_MISO 19
-  #define SPI_SCK 18
-  const uint8_t SS_PINS[NUM_SLOTS] = {13, 12, 14, 27};
-  const uint8_t RST_PINS[NUM_SLOTS] = {26, 25, 33, 32};
+// RC522 SPI pins
+#define SPI_MOSI 23
+#define SPI_MISO 19
+#define SPI_SCK 18
+const uint8_t SS_PINS[NUM_SLOTS] = {13, 12, 14, 27};
+const uint8_t RST_PINS[NUM_SLOTS] = {26, 25, 33, 32};
 
-  // WS2812 LED daisy chain (single data pin, 4 LEDs in series)
-  #define LED_DATA_PIN 15
+// WS2812 LED daisy chain (single data pin, 4 LEDs in series)
+#define LED_DATA_PIN 15
 
-  // SPI TFT (240x240 1.3" ST7789VW)
-  #define TFT_BLK 2
-  #define TFT_DC 4
-  #define TFT_RES 5
-  #define TFT_CS -1
-  #define TFT_SCL 16
-  #define TFT_SDA 17
+// SPI TFT (240x240 1.3" ST7789VW)
+#define TFT_BLK 2
+#define TFT_DC 4
+#define TFT_RES 5
+#define TFT_CS -1
+#define TFT_SCL 16
+#define TFT_SDA 17
 
-  // BME280 I2C pins
-  #define I2C_SDA 21
-  #define I2C_SCL 22
+// BME280 I2C pins
+#define I2C_SDA 21
+#define I2C_SCL 22
 #endif
 
 #define LED_COUNT 4
