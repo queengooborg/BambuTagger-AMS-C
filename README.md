@@ -60,7 +60,7 @@ Supported Tag Formats:
 
 ### Wiring / Pin Assignments
 
-If you are not using the custom PCB
+If you are not using the custom PCB, you can manually wire all the components.
 
 Connect the ESP32 to a 5V power input, either via the USB port or via the VCC/Vin pin.
 
