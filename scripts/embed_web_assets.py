@@ -19,8 +19,9 @@ header = """#pragma once
 #include <Arduino.h>
 
 """
-header += format_asset("INDEX_HTML", data_dir / "index.html")
-header += format_asset("FAVICON_ICO", data_dir / "favicon.ico")
+
+for f in data_dir.iterdir():
+    header += format_asset(f.name.replace(r"[.-]", "_").upper(), f)
 
 if not output_path.exists() or output_path.read_text() != header:
     output_path.write_text(header)
