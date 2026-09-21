@@ -28,7 +28,7 @@ void WebInterface::begin(SystemConfig& cfg, RfidManager* rfid, BambuPrinter* pri
 
 void WebInterface::setupRoutes() {
   server->on("/", std::bind(&WebInterface::handleRoot, this));
-  server->on("/favicon.ico", std::bind(&WebInterface::handleFavicon, this));
+  server->on("/favicon.png", std::bind(&WebInterface::handleFavicon, this));
   server->on("/api/status", HTTP_GET, std::bind(&WebInterface::handleStatus, this));
   server->on("/api/ams", HTTP_GET, std::bind(&WebInterface::handleAmsStatus, this));
   server->on("/api/config", HTTP_GET, std::bind(&WebInterface::handleConfigGet, this));
@@ -58,8 +58,8 @@ void WebInterface::updateStatus(bool wifiConnected, const char* ip, bool mqttCon
 }
 
 void WebInterface::handleFavicon() {
-  Serial.println(F("[WEB] Serving /favicon.ico"));
-  server->send_P(200, "image/x-icon", reinterpret_cast<PGM_P>(FAVICON_ICO));
+  Serial.println(F("[WEB] Serving /favicon.png"));
+  server->send_P(200, "image/png", reinterpret_cast<PGM_P>(FAVICON_PNG));
 }
 
 void WebInterface::handleRoot() {
