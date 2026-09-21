@@ -21,7 +21,7 @@ header = """#pragma once
 """
 
 for f in data_dir.iterdir():
-    header += format_asset(f.name.replace(r"[.-]", "_").upper(), f)
+    header += format_asset(f.name.replace(".", "_").upper(), f)
 
 if not output_path.exists() or output_path.read_text() != header:
     output_path.write_text(header)
