@@ -7,8 +7,8 @@
 #include <Adafruit_ST7789.h>
 #include "config.h"
 #include "bambu_printer.h"
-#include "splash_logo.h"
-#include "wifi_icon.h"
+#include "ui/splash_logo.h"
+#include "ui/wifi_icon.h"
 
 #define SCREEN_WIDTH 240
 #define SCREEN_HEIGHT 240
