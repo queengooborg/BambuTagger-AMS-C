@@ -27,9 +27,6 @@ bool TagParser::parse(uint8_t* data, uint16_t length, const char* uid, SpoolInfo
     return false;
   }
 
-  if (parseTigerTag(data, length, uid, info))
-    return true;
-
   for (uint16_t i = 0; i + 5 < length; i++) {
     if (data[i] == '{') {
       int cl = (length - i) < 255 ? (length - i) : 254;
@@ -75,173 +72,6 @@ static uint32_t readU32BE(const uint8_t* d, int off) {
 }
 static uint16_t readU16BE(const uint8_t* d, int off) {
   return ((uint16_t)d[off] << 8) | d[off + 1];
-}
-
-bool TagParser::parseTigerTag(uint8_t* data, uint16_t length, const char* uid, SpoolInfo& info) {
-  if (length < 48)
-    return false;
-  uint32_t magic = readU32BE(data, 0);
-  if (magic != 0x5BF59264 && magic != 0xBC0FCB97 && magic != 0x6C41A2E1)
-    return false;
-
-  const char* ttLabel = "TigerTag";
-  if (magic == 0xBC0FCB97)
-    ttLabel = "TigerTag+";
-  else if (magic == 0x6C41A2E1)
-    ttLabel = "TigerTag Init";
-
-  snprintf(info.colorHex, sizeof(info.colorHex), "%02X%02X%02X%02X", data[16], data[17], data[18],
-           data[19]);
-
-  uint16_t matId = readU16BE(data, 8);
-  const char* matName = nullptr;
-  switch (matId) {
-    case 38219:
-      matName = "PLA";
-      break;
-    case 24629:
-      matName = "PLA HS";
-      break;
-    case 46591:
-      matName = "PLA+";
-      break;
-    case 10602:
-      matName = "PLA Silk";
-      break;
-    case 8345:
-      matName = "PLA+Silk";
-      break;
-    case 48310:
-      matName = "PLA-CF";
-      break;
-    case 9456:
-      matName = "PLA Marble";
-      break;
-    case 48001:
-      matName = "PLA Wood";
-      break;
-    case 38256:
-      matName = "PETG";
-      break;
-    case 57469:
-      matName = "PETG HF";
-      break;
-    case 7649:
-      matName = "PETG HS";
-      break;
-    case 55418:
-      matName = "PETG-CF";
-      break;
-    case 34944:
-      matName = "PETG-GF";
-      break;
-    case 20562:
-      matName = "ABS";
-      break;
-    case 49074:
-      matName = "ABS-GF";
-      break;
-    case 425:
-      matName = "ABS-CF";
-      break;
-    case 43518:
-      matName = "TPU";
-      break;
-    case 48047:
-      matName = "TPU HS";
-      break;
-    case 12844:
-      matName = "ASA";
-      break;
-    case 49804:
-      matName = "ASA-AF";
-      break;
-    case 27676:
-      matName = "ASA-CF";
-      break;
-    case 30458:
-      matName = "PC";
-      break;
-    case 59328:
-      matName = "PA";
-      break;
-    case 39944:
-      matName = "PA-CF";
-      break;
-    case 30594:
-      matName = "PA-GF";
-      break;
-    case 30884:
-      matName = "PP";
-      break;
-    case 50497:
-      matName = "PP-CF";
-      break;
-    case 42962:
-      matName = "PP-GF";
-      break;
-    case 9483:
-      matName = "PVA";
-      break;
-    case 34049:
-      matName = "BVOH";
-      break;
-    case 26029:
-      matName = "HIPS";
-      break;
-    case 3368:
-      matName = "PC-ABS";
-      break;
-    case 15041:
-      matName = "PCTG";
-      break;
-    case 11053:
-      matName = "PET-CF";
-      break;
-    case 9691:
-      matName = "EVA";
-      break;
-    default:
-      break;
-  }
-  if (matName)
-    snprintf(info.materialType, sizeof(info.materialType), "%s", matName);
-  else
-    snprintf(info.materialType, sizeof(info.materialType), "%d", matId);
-
-  uint16_t brandId = readU16BE(data, 14);
-  snprintf(info.manufacturer, sizeof(info.manufacturer), "%d", brandId);
-
-  snprintf(info.detailedType, sizeof(info.detailedType), "%s", ttLabel);
-
-  info.totalGrams = ((uint32_t)data[20] << 16) | ((uint32_t)data[21] << 8) | data[22];
-  if (length >= 80) {
-    info.remainingGrams = ((uint32_t)data[76] << 16) | ((uint32_t)data[77] << 8) | data[78];
-  } else {
-    info.remainingGrams = info.totalGrams;
-  }
-
-  info.nozzleTempMin = readU16BE(data, 24);
-  info.nozzleTempMax = readU16BE(data, 26);
-
-  if (length >= 76) {
-    char msg[29];
-    memcpy(msg, data + 48, 28);
-    msg[28] = '\0';
-    for (int i = 27; i >= 0; i--) {
-      if (msg[i] == ' ' || msg[i] == '\0')
-        msg[i] = '\0';
-      else
-        break;
-    }
-    if (msg[0]) {
-      strncat(info.manufacturer, " ", sizeof(info.manufacturer) - strlen(info.manufacturer) - 1);
-      strncat(info.manufacturer, msg, sizeof(info.manufacturer) - strlen(info.manufacturer) - 1);
-    }
-  }
-
-  info.tagReadSuccess = true;
-  return true;
 }
 
 bool TagParser::parseBambuTLV(uint8_t* data, uint16_t length, SpoolInfo& info) {
@@ -381,8 +211,6 @@ bool TagParser::parseRawNTAG(uint8_t* data, uint16_t length, const char* uid, Sp
                          strstr(info.detailedType, "openspooltag"));
             if (isSE)
               tagLabel = "SpoolEase";
-            else if (strstr(info.detailedType, "tigertag"))
-              tagLabel = "TigerTag";
 
             if (isSE) {
               char seType[16] = "";
@@ -598,8 +426,6 @@ bool TagParser::parseRawNTAG(uint8_t* data, uint16_t length, const char* uid, Sp
         strcpy(info.materialType, "OpenSpool");
       else if (strstr(buf, "opentag3d") || strstr(buf, "OpenTag3D"))
         strcpy(info.materialType, "OpenTag3D");
-      else if (strstr(buf, "tigertag"))
-        strcpy(info.materialType, "TigerTag");
       else if (strstr(buf, "tag.spoolease.io"))
         strcpy(info.materialType, "SpoolEase");
       else

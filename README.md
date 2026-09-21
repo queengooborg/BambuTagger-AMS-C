@@ -17,7 +17,6 @@ Supported Tag Formats:
 | ------------------------- | ----------------- |
 | **Bambu Lab**             | MIFARE Classic 1K |
 | **SpoolEase**             | NTAG, NDEF URI    |
-| **TigerTag**              | raw binary v2.1   |
 | **OpenSpool**             | NTAG, NDEF JSON   |
 | **OpenTag3D** (v1 and v2) | NTAG, MIME binary |
 
@@ -25,20 +24,20 @@ Supported Tag Formats:
 
 ## Features
 
-| Category           | Details                                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| **RFID**           | 4x RC522 on shared SPI bus; MIFARE Classic 1K (Bambu Lab) + NTAG (SpoolEase/TigerTag/OpenTag3D/OpenSpool) auto-detection |
-| **Key derivation** | HKDF-SHA256 with Bambu Lab salt — no hardcoded keys                                                                      |
-| **Tag parsers**    | TigerTag v2.1 binary, OpenTag3D MIME binary, OpenSpool JSON, SpoolEase NDEF URI, nested NDEF recursion                   |
-| **Live AMS sync**  | Reads tray data (material, color, type) from printer over MQTT                                                           |
-| **BMCU support**   | Sends `ams_filament_setting` with correct `tray_type`, `tray_color`, `nozzle_temp_min/max`                               |
-| **TFT display**    | 240×240 1.3" ST7789VW with boot splash, live AMS tray data, OTA progress, BME280 temp/humidity                           |
-| **LEDs**           | 4x WS2812 addressable LEDs with per-slot color from printer AMS tray data                                                |
-| **Web UI**         | 3-tab SPA: Status (merged slots + color swatches), Printer Config, WiFi Config                                           |
-| **MQTT bridge**    | Subscribes to printer status, publishes `ams_filament_setting` commands                                                  |
-| **WiFi**           | Auto-STA on boot; AP fallback `192.168.4.1` with captive portal                                                          |
-| **OTA updates**    | One-click firmware update from GitHub Releases with TFT progress bar                                                     |
-| **CI/CD**          | GitHub Actions: build on commit, release on version tags                                                                 |
+| Category           | Details                                                                                                         |
+| ------------------ | --------------------------------------------------------------------------------------------------------------- |
+| **RFID**           | 4x RC522 on shared SPI bus; MIFARE Classic 1K (Bambu Lab) + NTAG (SpoolEase/OpenTag3D/OpenSpool) auto-detection |
+| **Key derivation** | HKDF-SHA256 with Bambu Lab salt — no hardcoded keys                                                             |
+| **Tag parsers**    | OpenTag3D MIME binary, OpenSpool JSON, SpoolEase NDEF URI, nested NDEF recursion                                |
+| **Live AMS sync**  | Reads tray data (material, color, type) from printer over MQTT                                                  |
+| **BMCU support**   | Sends `ams_filament_setting` with correct `tray_type`, `tray_color`, `nozzle_temp_min/max`                      |
+| **TFT display**    | 240×240 1.3" ST7789VW with boot splash, live AMS tray data, OTA progress, BME280 temp/humidity                  |
+| **LEDs**           | 4x WS2812 addressable LEDs with per-slot color from printer AMS tray data                                       |
+| **Web UI**         | 3-tab SPA: Status (merged slots + color swatches), Printer Config, WiFi Config                                  |
+| **MQTT bridge**    | Subscribes to printer status, publishes `ams_filament_setting` commands                                         |
+| **WiFi**           | Auto-STA on boot; AP fallback `192.168.4.1` with captive portal                                                 |
+| **OTA updates**    | One-click firmware update from GitHub Releases with TFT progress bar                                            |
+| **CI/CD**          | GitHub Actions: build on commit, release on version tags                                                        |
 
 ---
 
@@ -271,7 +270,6 @@ The following tag types are supported:
 | ------------------------- | ----------------- | ---------------------------------------------------- |
 | **Bambu Lab**             | MIFARE Classic 1K | `Bambu - PLA · C12E1FFF · 1000g/1000g`               |
 | **SpoolEase**             | NTAG, NDEF URI    | `SpoolEase - PLA · 000000FF · 1000g/1036g`           |
-| **TigerTag**              | raw binary v2.1   | `TigerTag - ASA-AF · F078B4FF · 1000g/1000g`         |
 | **OpenSpool**             | NTAG, NDEF JSON   | `OpenSpool - ASA-AF · F078B4FF · 1000g/1000g`        |
 | **OpenTag3D** (v1 and v2) | NTAG, MIME binary | `OpenTag3D v2.003 - ASA-AF · F078B4FF · 1000g/1000g` |
 
@@ -301,22 +299,6 @@ URL format: `https://tag.spoolease.io/S1/?TG=...&M=PLA&CC=000000FF&SC=GFL99&WL=1
 | `WF=` | full spool       | `totalGrams = WF - WE`              |
 | `NN=` | `nozzleTempMin`  | Min nozzle temp °C                  |
 | `NX=` | `nozzleTempMax`  | Max nozzle temp °C                  |
-
-#### TigerTag (raw binary v2.1)
-
-| Offset | Size | Field                                                |
-| ------ | ---- | ---------------------------------------------------- |
-| +0     | 4    | ID TigerTag magic (0x5BF59264/0xBC0FCB97/0x6C41A2E1) |
-| +4     | 4    | Product ID                                           |
-| +8     | 2    | Material ID → lookup table (PLA/PETG/ABS/TPU...)     |
-| +14    | 2    | Brand ID                                             |
-| +16    | 4    | Color 1 RGBA                                         |
-| +20    | 3    | Measure (u24 BE)                                     |
-| +24    | 2    | Nozzle Temp Min                                      |
-| +26    | 2    | Nozzle Temp Max                                      |
-| +76    | 3    | Measure Available                                    |
-
-Known material IDs: PLA=38219, PETG=38256, ABS=20562, etc.
 
 #### OpenTag3D (NTAG, MIME binary)
 
