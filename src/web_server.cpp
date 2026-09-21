@@ -1,7 +1,7 @@
 #include <functional>
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
-#include <SPIFFS.h>
+#include "generated_web_assets.h"
 #include "web_server.h"
 
 extern float bmeTemp;
@@ -17,12 +17,6 @@ void WebInterface::begin(SystemConfig& cfg, RfidManager* rfid, BambuPrinter* pri
   otaFn = otaCallback;
 
   server = new WebServer(80);
-
-  if (!SPIFFS.begin(true)) {
-    Serial.println(F("[WEB] SPIFFS mount failed"));
-  } else {
-    Serial.println(F("[WEB] SPIFFS ready"));
-  }
 
   setupRoutes();
   server->begin();
@@ -64,27 +58,13 @@ void WebInterface::updateStatus(bool wifiConnected, const char* ip, bool mqttCon
 }
 
 void WebInterface::handleFavicon() {
-  File faviconFile = SPIFFS.open("/favicon.ico", "r");
-  if (!faviconFile) {
-    Serial.println(F("[WEB] /favicon.ico not found in SPIFFS"));
-    server->send(404, "text/plain", "favicon.ico not found");
-    return;
-  }
-
-  server->streamFile(faviconFile, "image/x-icon");
-  faviconFile.close();
+  Serial.println(F("[WEB] Serving /favicon.ico"));
+  server->send_P(200, "image/x-icon", reinterpret_cast<PGM_P>(FAVICON_ICO));
 }
 
 void WebInterface::handleRoot() {
-  File indexFile = SPIFFS.open("/index.html", "r");
-  if (!indexFile) {
-    Serial.println(F("[WEB] /index.html not found in SPIFFS"));
-    server->send(500, "text/plain", "index.html not found");
-    return;
-  }
-
-  server->streamFile(indexFile, "text/html");
-  indexFile.close();
+  Serial.println(F("[WEB] Serving /index.html"));
+  server->send_P(200, "text/html", reinterpret_cast<PGM_P>(INDEX_HTML));
 }
 
 void WebInterface::handleStatus() {
