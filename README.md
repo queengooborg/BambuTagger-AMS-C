@@ -90,8 +90,8 @@ All other components will be powered by the 3.3V pin on the ESP32 board.
 | **TFT RES**                 | 5              | 0                  |
 | **TFT BLK**                 | 2              | 45                 |
 | **WS2812 Data**             | 15             | 14                 |
-| **BME280 SDA**              | 22             | 48                 |
-| **BME280 SCL**              | 21             | 47                 |
+| **BME280 SDA**              | 21             | 48                 |
+| **BME280 SCL**              | 22             | 47                 |
 
 ---
 
