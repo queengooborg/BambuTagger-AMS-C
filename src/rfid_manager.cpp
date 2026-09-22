@@ -62,24 +62,45 @@ void RfidManager::begin() {
 
   Serial.println(F("[RFID] Initializing readers"));
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
-    pinMode(RST_PINS[i], OUTPUT);
-    digitalWrite(RST_PINS[i], LOW);
-    delay(50);
-    digitalWrite(RST_PINS[i], HIGH);
-    delay(50);
-    chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
-    drivers[i] =
-        new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
-    mfrc522[i] = new MFRC522(*drivers[i]);
-    mfrc522[i]->PCD_Init();
+    for (uint8_t tries = 0; tries < 3; tries++) {
+      if (tries > 0) {
+        Serial.printf("[RFID] Initializing reader %d (try %d of 3)\n", i, tries + 1);
+      } else {
+        Serial.printf("[RFID] Initializing reader %d\n", i);
+      }
 
-    byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
-    readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
-    Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i, SS_PINS[i], RST_PINS[i],
-                  ver, readerOk[i] ? "OK" : "FAIL");
+      pinMode(RST_PINS[i], OUTPUT);
+      digitalWrite(RST_PINS[i], LOW);
+      delay(50);
+      digitalWrite(RST_PINS[i], HIGH);
+      delay(50);
+      chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
+      drivers[i] =
+          new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
+      mfrc522[i] = new MFRC522(*drivers[i]);
+      mfrc522[i]->PCD_Init();
 
-    TagParser::clear(spoolData[i]);
-    lastPoll[i] = 0;
+      byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
+      readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
+
+      Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i, SS_PINS[i], RST_PINS[i], ver, readerOk[i] ? "OK" : "FAIL");
+
+      if (readerOk[i]) {
+        TagParser::clear(spoolData[i]);
+        lastPoll[i] = 0;
+        break;
+      }
+
+      if (!readerOk[i]) {
+        delay(100);
+        if (tries == 2) {
+          Serial.println("");
+          Serial.printf("[RFID] Slot %d initialization failed\n", i);
+          MFRC522Debug::PCD_DumpVersionToSerial(*mfrc522[i], Serial);
+          Serial.println("");
+        }
+      }
+    }
   }
 
   currentSlot = 0;

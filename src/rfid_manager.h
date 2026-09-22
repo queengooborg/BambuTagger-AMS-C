@@ -7,6 +7,7 @@
 #include <MFRC522DriverSPI.h>
 #include <MFRC522DriverPinSimple.h>
 #include <MFRC522Constants.h>
+#include <MFRC522Debug.h>
 
 #include "config.h"
 
