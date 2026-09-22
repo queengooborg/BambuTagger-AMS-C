@@ -48,6 +48,7 @@ Supported Tag Formats:
 | Component                      | Notes                                      | Buy                                                                                            |
 | ------------------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
 | **ESP32** Dev Module           | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                           |
+| **100µF Capacitor**            | Regulates power for components             |                                                                                                |
 | **4x RC522** RFID/NFC Readers  | SPI interface, shared bus                  | https://de.aliexpress.com/item/1005006233005745.html                                           |
 | **4x WS2812** Addressable LEDs | Daisy-chained, single data pin             | https://de.aliexpress.com/item/32560280169.html                                                |
 | **240×240 1.3" TFT**           | ST7789VW SPI Display                       | https://www.aliexpress.com/item/1005007094147766.html                                          |
@@ -65,6 +66,8 @@ If you are not using the custom PCB, you can manually wire all the components.
 Connect the ESP32 to a 5V power input, either via the USB port or via the VCC/Vin pin.
 
 The WS2812 LED must also be powered by 5V. If the ESP32 is powered via the USB port, the VCC/Vin pin becomes a 5V output, and can be used to power the LEDs. On some boards, you may need to short two pads (usually labeled VIN->VOUT) via soldering.
+
+Connect the 100µF capacitor from the 3.3V to the ground. This capacitor helps regulate power and prevents back-powering the RC522 readers.
 
 All other components will be powered by the 3.3V pin on the ESP32 board.
 
