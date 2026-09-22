@@ -64,9 +64,9 @@ void RfidManager::begin() {
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     for (uint8_t tries = 0; tries < 3; tries++) {
       if (tries > 0) {
-        Serial.printf("[RFID] Initializing reader %d (try %d of 3)\n", i, tries + 1);
+        Serial.printf("[RFID] Initializing reader %d (try %d of 3)\n", i+1, tries + 1);
       } else {
-        Serial.printf("[RFID] Initializing reader %d\n", i);
+        Serial.printf("[RFID] Initializing reader %d\n", i+1);
       }
 
       pinMode(RST_PINS[i], OUTPUT);
@@ -83,7 +83,7 @@ void RfidManager::begin() {
       byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
       readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
 
-      Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i, SS_PINS[i], RST_PINS[i], ver, readerOk[i] ? "OK" : "FAIL");
+      Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i+1, SS_PINS[i], RST_PINS[i], ver, readerOk[i] ? "OK" : "FAIL");
 
       if (readerOk[i]) {
         TagParser::clear(spoolData[i]);
@@ -95,7 +95,7 @@ void RfidManager::begin() {
         delay(100);
         if (tries == 2) {
           Serial.println("");
-          Serial.printf("[RFID] Slot %d initialization failed\n", i);
+          Serial.printf("[RFID] Slot %d initialization failed\n", i+1);
           MFRC522Debug::PCD_DumpVersionToSerial(*mfrc522[i], Serial);
           Serial.println("");
         }
@@ -130,7 +130,7 @@ void RfidManager::loop() {
   static unsigned long lastCycle = 0;
   if (now - lastCycle > 1000) {
     lastCycle = now;
-    // Serial.printf("RFID: poll slot %d (SS=%d)\n", currentSlot, SS_PINS[currentSlot]);
+    // Serial.printf("RFID: poll slot %d (SS=%d)\n", currentSlot+1, SS_PINS[currentSlot]);
   }
 
   SpoolInfo newInfo;
@@ -146,7 +146,7 @@ void RfidManager::loop() {
       spoolData[currentSlot] = newInfo;
       spoolData[currentSlot].lastSeen = now;
       spoolData[currentSlot].present = true;
-      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot,
+      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot+1,
                     newInfo.uid, newInfo.tagReadSuccess ? "ok" : "failed",
                     newInfo.materialType[0] ? newInfo.materialType : "unknown");
     } else {
@@ -156,7 +156,7 @@ void RfidManager::loop() {
     if (spoolData[currentSlot].present) {
       if (now - spoolData[currentSlot].lastSeen > RFID_DEBOUNCE_MS) {
         spoolData[currentSlot].present = false;  // keep last known data for LED
-        Serial.printf("[RFID] Slot %d tag removed uid=%s\n", currentSlot,
+        Serial.printf("[RFID] Slot %d tag removed uid=%s\n", currentSlot+1,
                       spoolData[currentSlot].uid);
       }
     }
@@ -176,7 +176,7 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
 
   MFRC522::PICC_Type piccType = reader->PICC_GetType(reader->uid.sak);
   // Serial.printf("Slot %d: tag type=%s (SAK=0x%02X)\n",
-  //               slot, reader->PICC_GetTypeName(piccType), reader->uid.sak);
+  //               slot+1, reader->PICC_GetTypeName(piccType), reader->uid.sak);
 
   char uidStr[16];
   uint8_t uidLen = reader->uid.size;
@@ -198,7 +198,7 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
     // NTAG/Ultralight fallback — try reading without auth
     success = readNtagPages(slot, info);
   } else {
-    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n", slot, reader->uid.sak,
+    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n", slot+1, reader->uid.sak,
                   uidStr);
   }
 
@@ -219,12 +219,12 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
 
 bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* uid) {
   MFRC522* reader = mfrc522[slot];
-  // Serial.printf("Slot %d: authenticateAndRead enter\n", slot);
+  // Serial.printf("Slot %d: authenticateAndRead enter\n", slot+1);
 
   uint8_t keysA[16][6], keysB[16][6];
   bambuDeriveKeys(uid, keysA, keysB);
 
-  // Serial.printf("Slot %d: UID=%02X%02X%02X%02X\n", slot,
+  // Serial.printf("Slot %d: UID=%02X%02X%02X%02X\n", slot+1,
   //               uid[0], uid[1], uid[2], uid[3]);
 
   MFRC522::MIFARE_Key keyDef;
@@ -314,7 +314,7 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* ui
 
   reader->PCD_StopCrypto1();
 
-  //  Serial.printf("Slot %d: MIFARE auth done, bytesRead=%d\n", slot, bytesRead);
+  //  Serial.printf("Slot %d: MIFARE auth done, bytesRead=%d\n", slot+1, bytesRead);
 
   // Parse using Touch fixed-block offsets (Bambu Lab RFID Tag Guide)
   info.tagReadSuccess = false;
@@ -349,7 +349,7 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* ui
   if (typeName[0])
     strncpy(info.materialType, typeName, sizeof(info.materialType) - 1);
   strcpy(info.detailedType, "Bambu");
-  // Serial.printf("Slot %d: block4 raw=", slot);
+  // Serial.printf("Slot %d: block4 raw=", slot+1);
   // for (int i = 0; i < 16; i++) Serial.printf("%02X ", dataBuffer[4 * 16 + i]);
   // Serial.printf(" sub='%s'\n", info.detailedType);
 
@@ -369,10 +369,10 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* ui
   bool result = info.tagReadSuccess;
 
   if (result) {
-    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n", slot,
+    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n", slot+1,
                   info.materialType, info.detailedType, bytesRead);
   } else {
-    Serial.printf("[RFID] Slot %d MIFARE parse failed bytes=%u\n", slot, bytesRead);
+    Serial.printf("[RFID] Slot %d MIFARE parse failed bytes=%u\n", slot+1, bytesRead);
   }
 
   delete[] dataBuffer;
@@ -411,7 +411,7 @@ bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo& info) {
     info.tagReadSuccess = false;
   }
 
-  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n", slot, bytesRead,
+  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n", slot+1, bytesRead,
                 result ? "ok" : "failed");
 
   delete[] dataBuffer;
