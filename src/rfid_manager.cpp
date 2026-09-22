@@ -64,9 +64,9 @@ void RfidManager::begin() {
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     for (uint8_t tries = 0; tries < 3; tries++) {
       if (tries > 0) {
-        Serial.printf("[RFID] Initializing reader %d (try %d of 3)\n", i+1, tries + 1);
+        Serial.printf("[RFID] Initializing reader %d (try %d of 3)\n", i + 1, tries + 1);
       } else {
-        Serial.printf("[RFID] Initializing reader %d\n", i+1);
+        Serial.printf("[RFID] Initializing reader %d\n", i + 1);
       }
 
       pinMode(RST_PINS[i], OUTPUT);
@@ -83,7 +83,8 @@ void RfidManager::begin() {
       byte ver = static_cast<byte>(mfrc522[i]->PCD_GetVersion());
       readerOk[i] = (ver == 0x92 || ver == 0x91 || ver == 0xB2);
 
-      Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i+1, SS_PINS[i], RST_PINS[i], ver, readerOk[i] ? "OK" : "FAIL");
+      Serial.printf("[RFID] Slot %d SS=%d RST=%d version=0x%02X %s\n", i + 1, SS_PINS[i],
+                    RST_PINS[i], ver, readerOk[i] ? "OK" : "FAIL");
 
       if (readerOk[i]) {
         TagParser::clear(spoolData[i]);
@@ -95,7 +96,7 @@ void RfidManager::begin() {
         delay(100);
         if (tries == 2) {
           Serial.println("");
-          Serial.printf("[RFID] Slot %d initialization failed\n", i+1);
+          Serial.printf("[RFID] Slot %d initialization failed\n", i + 1);
           MFRC522Debug::PCD_DumpVersionToSerial(*mfrc522[i], Serial);
           Serial.println("");
         }
@@ -146,7 +147,7 @@ void RfidManager::loop() {
       spoolData[currentSlot] = newInfo;
       spoolData[currentSlot].lastSeen = now;
       spoolData[currentSlot].present = true;
-      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot+1,
+      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot + 1,
                     newInfo.uid, newInfo.tagReadSuccess ? "ok" : "failed",
                     newInfo.materialType[0] ? newInfo.materialType : "unknown");
     } else {
@@ -156,7 +157,7 @@ void RfidManager::loop() {
     if (spoolData[currentSlot].present) {
       if (now - spoolData[currentSlot].lastSeen > RFID_DEBOUNCE_MS) {
         spoolData[currentSlot].present = false;  // keep last known data for LED
-        Serial.printf("[RFID] Slot %d tag removed uid=%s\n", currentSlot+1,
+        Serial.printf("[RFID] Slot %d tag removed uid=%s\n", currentSlot + 1,
                       spoolData[currentSlot].uid);
       }
     }
@@ -198,7 +199,7 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
     // NTAG/Ultralight fallback — try reading without auth
     success = readNtagPages(slot, info);
   } else {
-    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n", slot+1, reader->uid.sak,
+    Serial.printf("[RFID] Slot %d unsupported tag type 0x%02X uid=%s\n", slot + 1, reader->uid.sak,
                   uidStr);
   }
 
@@ -369,10 +370,10 @@ bool RfidManager::authenticateAndRead(uint8_t slot, SpoolInfo& info, uint8_t* ui
   bool result = info.tagReadSuccess;
 
   if (result) {
-    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n", slot+1,
+    Serial.printf("[RFID] Slot %d MIFARE read ok material=%s type=%s bytes=%u\n", slot + 1,
                   info.materialType, info.detailedType, bytesRead);
   } else {
-    Serial.printf("[RFID] Slot %d MIFARE parse failed bytes=%u\n", slot+1, bytesRead);
+    Serial.printf("[RFID] Slot %d MIFARE parse failed bytes=%u\n", slot + 1, bytesRead);
   }
 
   delete[] dataBuffer;
@@ -411,7 +412,7 @@ bool RfidManager::readNtagPages(uint8_t slot, SpoolInfo& info) {
     info.tagReadSuccess = false;
   }
 
-  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n", slot+1, bytesRead,
+  Serial.printf("[RFID] Slot %d NTAG read bytes=%u parse=%s\n", slot + 1, bytesRead,
                 result ? "ok" : "failed");
 
   delete[] dataBuffer;
