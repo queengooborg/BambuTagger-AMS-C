@@ -113,12 +113,17 @@ All other components will be powered by the 3.3V pin on the ESP32 board.
 
 ## Firmware
 
-### Uploading from Web Interface
+### Flashing a Release
 
-The easiest way to flash the board firmware is to use the [web flash utility](https://www.bambutagger.de/downloads/firmware/flash-bambutagger-ams-c).
+The easiest way to flash the board firmware is to use a web flashing utility like [ESPFlasher.app](https://espflasher.app/). Simply download the appropriate `firmware_merged.bin` from the [releases](https://github.com/queengooborg/BambuTagger-AMS-C/releases) page and upload it to the flashing utility.
 
-> [!NOTE]
-> The ESP32-S3-DevKitC-1 cannot be flashed via the web utility (yet). It must be flashed by building from source.
+- ESP-WROOM-32 / ESP32 Dev Module - `esp32dev-firmware_merged.bin`
+- ESP32-S3-DevKitC-1 - `esp32-s3-devkitc-1-firmware_merged.bin`
+
+Alternatively, if you have `esptool` set up locally, you may run the following command:
+
+- ESP-WROOM-32 / ESP32 Dev Module - `esptool write-flash 0x0 esp32dev-firmware_merged.bin`
+- ESP32-S3-DevKitC-1 - `esptool --chip esp32s3 write-flash 0x0 esp32-s3-devkitc-1-firmware_merged.bin`
 
 ### Building from Source
 
