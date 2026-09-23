@@ -145,9 +145,10 @@ void RfidManager::loop() {
 
   if (tagFound) {
     bool wasPresent = spoolData[currentSlot].present;
-    bool sameTag = (strcmp(newInfo.uid, spoolData[currentSlot].uid) == 0);
+    bool hasUid = newInfo.uid[0] != '\0';
+    bool sameTag = hasUid && (strcmp(newInfo.uid, spoolData[currentSlot].uid) == 0);
 
-    if (!wasPresent || !sameTag) {
+    if (!wasPresent || (hasUid && !sameTag)) {
       spoolData[currentSlot] = newInfo;
       spoolData[currentSlot].lastSeen = now;
       spoolData[currentSlot].present = true;
