@@ -31,9 +31,11 @@ jobs:
           - name: ESP32 Dev Module
             board: esp32dev
             chip: esp32
+            offset: 0x1000
           - name: ESP32-S3-DevKitC-1
             board: esp32-s3-devkitc-1
             chip: esp32s3
+            offset: 0x0
 
     steps:
       - name: Checkout repository
@@ -72,7 +74,7 @@ jobs:
             --flash_mode qio \
             --flash_freq 80m \
             --flash_size keep \
-            0x1000   "build/${{ matrix.board }}-bootloader.bin" \
+            ${{ matrix.offset }}   "build/${{ matrix.board }}-bootloader.bin" \
             0x8000   "build/${{ matrix.board }}-partitions.bin" \
             0xe000   build/boot_app0.bin \
             0x10000  "build/${{ matrix.board }}-firmware.bin"
@@ -103,34 +105,39 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "BambuTagger-AMS-C ${{ github.ref_name }}"
+          name: "${{ github.ref_name }}"
           generate_release_notes: true
           files: |
             build/*
           body: |
             ## Flashing instructions
 
-            Choose the image matching your board:
-            - `esp32dev-firmware_merged.bin` — ESP32-WROOM / ESP32 Dev Module
+            To flash the image onto your board, first, download the image matching your board:
+            - `esp32dev-firmware_merged.bin` — ESP-WROOM-32 / ESP32 Dev Module
             - `esp32-s3-devkitc-1-firmware_merged.bin` — ESP32-S3-DevKitC-1 (requires `--chip esp32s3` in commands)
 
-            ### Easiest - OTA Update
+            Then, you can flash the firmware by either:
+            - Uploading the file to [ESPFlasher.app](https://espflasher.app/)
+            - Writing the flash using `esptool` (`esptool write_flash 0x0 firmware_merged.bin`)
 
-            Upload the appropriate `firmware.bin` via the [web interface](https://www.bambutagger.de/downloads/firmware/flash-bambutagger-ams-c) (Status → Update Firmware).
-
-            ### Manual — merged binary (single file, address 0x00)
-
-            ```
-            esptool.py write_flash 0x0 firmware_merged.bin
-            ```
-
-            ### Manual — separate files
+            ### Manual
 
             Use the matching board-prefixed `bootloader`, `partitions`, and `firmware` files.
+
+            #### ESP-WROOM-32
 
             ```
             esptool.py write_flash \
               0x1000   bootloader.bin \
+              0x8000   partitions.bin \
+              0x10000  firmware.bin
+            ```
+
+            #### ESP32-S3-DevKitC-1
+
+            ```
+            esptool.py --chip esp32s3 write_flash \
+              0x0      bootloader.bin \
               0x8000   partitions.bin \
               0x10000  firmware.bin
             ```

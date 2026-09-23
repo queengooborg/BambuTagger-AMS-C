@@ -86,27 +86,27 @@ Connect the 100µF capacitor from the 3.3V to the ground. This capacitor helps r
 
 All other components will be powered by the 3.3V pin on the ESP32 board.
 
-| Function                    | ESP32-WROOM-32 | ESP32-S3-DevKitC-1 |
-| --------------------------- | -------------- | ------------------ |
-| **RC522 SPI MOSI (Shared)** | 23             | 11                 |
-| **RC522 SPI MISO (Shared)** | 19             | 13                 |
-| **RC522 SPI SCK (Shared)**  | 18             | 12                 |
-| **RC522 #1 SS (SDA)**       | 13             | 4                  |
-| **RC522 #1 RST**            | 26             | 15                 |
-| **RC522 #2 SS (SDA)**       | 12             | 5                  |
-| **RC522 #2 RST**            | 25             | 16                 |
-| **RC522 #3 SS (SDA)**       | 14             | 6                  |
-| **RC522 #3 RST**            | 33             | 17                 |
-| **RC522 #4 SS (SDA)**       | 27             | 7                  |
-| **RC522 #4 RST**            | 32             | 18                 |
-| **TFT SDA (MOSI)**          | 17             | 35                 |
-| **TFT SCL (SCK)**           | 16             | 36                 |
-| **TFT DC**                  | 4              | 37                 |
-| **TFT RES**                 | 5              | 0                  |
-| **TFT BLK**                 | 2              | 45                 |
-| **WS2812 Data**             | 15             | 14                 |
-| **BME280 SDA**              | 21             | 48                 |
-| **BME280 SCL**              | 22             | 47                 |
+| Function                    | ESP-WROOM-32 | ESP32-S3-DevKitC-1 |
+| --------------------------- | ------------ | ------------------ |
+| **RC522 SPI MOSI (Shared)** | 23           | 11                 |
+| **RC522 SPI MISO (Shared)** | 19           | 13                 |
+| **RC522 SPI SCK (Shared)**  | 18           | 12                 |
+| **RC522 #1 SS (SDA)**       | 13           | 4                  |
+| **RC522 #1 RST**            | 26           | 15                 |
+| **RC522 #2 SS (SDA)**       | 12           | 5                  |
+| **RC522 #2 RST**            | 25           | 16                 |
+| **RC522 #3 SS (SDA)**       | 14           | 6                  |
+| **RC522 #3 RST**            | 33           | 17                 |
+| **RC522 #4 SS (SDA)**       | 27           | 7                  |
+| **RC522 #4 RST**            | 32           | 18                 |
+| **TFT SDA (MOSI)**          | 17           | 35                 |
+| **TFT SCL (SCK)**           | 16           | 36                 |
+| **TFT DC**                  | 4            | 37                 |
+| **TFT RES**                 | 5            | 0                  |
+| **TFT BLK**                 | 2            | 45                 |
+| **WS2812 Data**             | 15           | 14                 |
+| **BME280 SDA**              | 21           | 48                 |
+| **BME280 SCL**              | 22           | 47                 |
 
 ---
 
