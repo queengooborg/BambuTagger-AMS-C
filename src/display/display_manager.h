@@ -30,8 +30,8 @@ class DisplayManager {
  public:
   void begin(const char* deviceName);
   void update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected, bool mqttConnected,
-              BambuPrinter* printer = nullptr, uint8_t amsUnit = 0, float temp = -99,
-              float humidity = -1);
+              bool bmeConnected, BambuPrinter* printer = nullptr, uint8_t amsUnit = 0,
+              float temp = -99, float humidity = -1);
   void showMessage(const char* line1, const char* line2 = nullptr, const char* line3 = nullptr,
                    const char* line4 = nullptr);
   void showOtaProgress(const char* line1, const char* line2 = nullptr, const char* line3 = nullptr,
@@ -43,7 +43,8 @@ class DisplayManager {
   void drawStatusBar(bool wifiConnected);
   void drawSlotGrid(const SpoolInfo slots[NUM_SLOTS]);
   void drawPrinterSlots(BambuPrinter* printer, uint8_t amsUnit);
-  void drawFooter(bool mqttConnected, bool printerOnline, float temp = -99, float humidity = -1);
+  void drawFooter(bool mqttConnected, bool printerOnline, bool bmeConnected, float temp = -99,
+                  float humidity = -1);
   void drawSlotGridVertical(const SpoolInfo slots[NUM_SLOTS]);
   void drawPrinterSlotsVertical(BambuPrinter* printer, uint8_t amsUnit);
 

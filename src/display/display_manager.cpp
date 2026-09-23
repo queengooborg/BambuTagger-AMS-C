@@ -55,8 +55,8 @@ void DisplayManager::begin(const char* devName) {
 }
 
 void DisplayManager::update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected,
-                            bool mqttConnected, BambuPrinter* printer, uint8_t amsUnit, float temp,
-                            float humidity) {
+                            bool mqttConnected, bool bmeConnected, BambuPrinter* printer,
+                            uint8_t amsUnit, float temp, float humidity) {
   if (!display)
     return;
   unsigned long now = millis();
@@ -119,7 +119,8 @@ void DisplayManager::update(const SpoolInfo slots[NUM_SLOTS], bool wifiConnected
   }
   if (mqttConnected != mqttConnectedOld || temp != tempOld || humidity != humidityOld ||
       printer->isPrinterOnline() != printerOld) {
-    drawFooter(mqttConnected, printer ? printer->isPrinterOnline() : false, temp, humidity);
+    drawFooter(mqttConnected, printer ? printer->isPrinterOnline() : false, bmeConnected, temp,
+               humidity);
     mqttConnectedOld = mqttConnected;
     tempOld = temp;
     humidityOld = humidity;
@@ -426,25 +427,27 @@ void DisplayManager::drawPrinterSlotsVertical(BambuPrinter* printer, uint8_t ams
   }
 }
 
-void DisplayManager::drawFooter(bool mqttConnected, bool printerOnline, float temp,
-                                float humidity) {
+void DisplayManager::drawFooter(bool mqttConnected, bool printerOnline, bool bmeConnected,
+                                float temp, float humidity) {
   display->drawFastHLine(0, 198, SCREEN_WIDTH, COL_GREEN);
 
-  if (temp > -99) {
-    display->setTextSize(2);
-    display->setTextColor(COL_TEXT, COL_BG);
-    display->setCursor(4, 204);
-    display->printf("%-2.0fC", temp);
-    display->setTextSize(3);
-    if (humidity < 30) {
-      display->setTextColor(COL_GREEN, COL_BG);
-    } else if (humidity < 40) {
-      display->setTextColor(COL_ORANGE, COL_BG);
-    } else {
-      display->setTextColor(COL_RED, COL_BG);
+  if (bmeConnected) {
+    if (temp > -99) {
+      display->setTextSize(2);
+      display->setTextColor(COL_TEXT, COL_BG);
+      display->setCursor(4, 204);
+      display->printf("%-2.0fC", temp);
+      display->setTextSize(3);
+      if (humidity < 30) {
+        display->setTextColor(COL_GREEN, COL_BG);
+      } else if (humidity < 40) {
+        display->setTextColor(COL_ORANGE, COL_BG);
+      } else {
+        display->setTextColor(COL_RED, COL_BG);
+      }
+      display->setCursor(100, 209);
+      display->printf("%-2.0f%%", humidity);  // padded
     }
-    display->setCursor(100, 209);
-    display->printf("%-2.0f%%", humidity);  // padded
   }
   display->setTextSize(2);
   display->setTextColor(COL_TEXT, COL_BG);
@@ -494,7 +497,7 @@ void DisplayManager::showOtaProgress(const char* line1, const char* line2, const
     if (pct >= 0) {
       display->drawRect(4, barY, barW + 8, 24, COL_TEXT);  // bar outline once
     }
-    drawFooter(false, false);
+    drawFooter(false, false, false);
   }
 
   if (pct >= 0) {

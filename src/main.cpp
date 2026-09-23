@@ -197,8 +197,8 @@ void loop() {
     bool mqttOk = bambuPrinter.isConnected();
     webInterface.updateStatus(wifiConnected, localIP.c_str(), mqttOk,
                               (bambuPrinter.getState() == PRINTER_CONNECTED));
-    displayManager.update(displaySlots, wifiConnected, mqttOk, &bambuPrinter, cfg.amsUnit, bmeTemp,
-                          bmeHumidity);
+    displayManager.update(displaySlots, wifiConnected, mqttOk, bmeOk, &bambuPrinter, cfg.amsUnit,
+                          bmeTemp, bmeHumidity);
   }
 
   if (now - lastMqttUpdate > (cfg.mqttUpdateIntervalMs > 0 ? cfg.mqttUpdateIntervalMs : 5000)) {
