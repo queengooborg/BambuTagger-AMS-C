@@ -1,0 +1,6 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "ProPrj_Bam-easyedapro") (type "KiCad") (uri "${KIPRJMOD}/ProPrj_Bam-easyedapro.kicad_sym") (options "") (descr ""))
+	(lib (name "ESP32-S3-DEVKITC-1U-N8R8-1") (type "KiCad") (uri "D:/Kicad Custom libraries/.Per component library repo/ESP32-S3-DEVKITC-1U-N8R8/ESP32-S3-DEVKITC-1U-N8R8.kicad_sym") (options "") (descr "") (disabled) (hidden))
+	(lib (name "ESP32-S3-DEVKITC-1U-N8R8") (type "KiCad") (uri "D:/Kicad Custom libraries/.Per component library repo/ESP32-S3-DEVKITC-1U-N8R8") (options "") (descr ""))
+)

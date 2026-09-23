@@ -1,0 +1,6715 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "15ab8aa1-8302-4e1f-b729-8a037065b500")
+	(paper "User" 297.434 209.804)
+	(lib_symbols
+		(symbol "ESP32-S3-DEVKITC-1U-N8R8:ESP32-S3-DEVKITC-1U-N8R8"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -17.78 33.782 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "ESP32-S3-DEVKITC-1U-N8R8"
+				(at -17.78 -35.56 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "ESP32-S3-DEVKITC-1U-N8R8:MODULE_ESP32-S3-DEVKITC-1U-N8R8"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "The ESP32-S3-DEVKITC-1U-N8R8 from Espressif Systems is an evaluation board designed for wireless communication applications. It features a 32-bit Xtensa dual-core processor running at 240MHz, providing strong processing power for complex tasks. The board supports 802.11 b/g/n Wi-Fi and Bluetooth® 5.x (BLE), operating at 2.4GHz, ensuring seamless wireless communication."
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "MF" "Espressif Systems"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "7.39mm"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "CREATOR" "ASHISH"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "Package" "None"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/ESP32-S3-DEVKITC-1U-N8R8/Espressif+Systems/view-part/?ref=eda"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "PARTREV" "1.1"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "VERIFIER" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/ESP32-S3-DEVKITC-1U-N8R8/Espressif+Systems/view-part/?ref=snap"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "MP" "ESP32-S3-DEVKITC-1U-N8R8"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(property "MANUFACTURER" "Espressif Systems"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+				)
+			)
+			(symbol "ESP32-S3-DEVKITC-1U-N8R8_0_0"
+				(rectangle
+					(start -17.78 -33.02)
+					(end 17.78 33.02)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_in line
+					(at 22.86 27.94 180)
+					(length 5.08)
+					(name "3V3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 27.94 180)
+					(length 5.08)
+					(hide yes)
+					(name "3V3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -22.86 25.4 0)
+					(length 5.08)
+					(name "RST"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 10.16 0)
+					(length 5.08)
+					(name "GPIO4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 7.62 0)
+					(length 5.08)
+					(name "GPIO5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 5.08 0)
+					(length 5.08)
+					(name "GPIO6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 2.54 0)
+					(length 5.08)
+					(name "GPIO7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -17.78 0)
+					(length 5.08)
+					(name "GPIO15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -20.32 0)
+					(length 5.08)
+					(name "GPIO16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -22.86 0)
+					(length 5.08)
+					(name "GPIO17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -25.4 0)
+					(length 5.08)
+					(name "GPIO18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 0 0)
+					(length 5.08)
+					(name "GPIO8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 12.7 0)
+					(length 5.08)
+					(name "GPIO3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 7.62 180)
+					(length 5.08)
+					(name "GPIO46"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -2.54 0)
+					(length 5.08)
+					(name "GPIO9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -5.08 0)
+					(length 5.08)
+					(name "GPIO10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -7.62 0)
+					(length 5.08)
+					(name "GPIO11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -10.16 0)
+					(length 5.08)
+					(name "GPIO12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -12.7 0)
+					(length 5.08)
+					(name "GPIO13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -15.24 0)
+					(length 5.08)
+					(name "GPIO14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 30.48 180)
+					(length 5.08)
+					(name "5V0"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 -30.48 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J1_22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 -30.48 180)
+					(length 5.08)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -15.24 180)
+					(length 5.08)
+					(name "U0TXD/GPIO43"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -17.78 180)
+					(length 5.08)
+					(name "U0RXD/GPIO44"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 17.78 0)
+					(length 5.08)
+					(name "GPIO1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_4"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 15.24 0)
+					(length 5.08)
+					(name "GPIO2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_5"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -10.16 180)
+					(length 5.08)
+					(name "MTMS/GPIO42"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -7.62 180)
+					(length 5.08)
+					(name "MTDI/GPIO41"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_7"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -5.08 180)
+					(length 5.08)
+					(name "MTDO/GPIO40"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -2.54 180)
+					(length 5.08)
+					(name "MTCK/GPIO39"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 12.7 180)
+					(length 5.08)
+					(name "GPIO38"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_10"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 15.24 180)
+					(length 5.08)
+					(name "GPIO37"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_11"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 17.78 180)
+					(length 5.08)
+					(name "GPIO36"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_12"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 20.32 180)
+					(length 5.08)
+					(name "GPIO35"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_13"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 20.32 0)
+					(length 5.08)
+					(name "GPIO0"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_14"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 10.16 180)
+					(length 5.08)
+					(name "GPIO45"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_15"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 2.54 180)
+					(length 5.08)
+					(name "GPIO48"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_16"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 5.08 180)
+					(length 5.08)
+					(name "GPIO47"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_17"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -22.86 -27.94 0)
+					(length 5.08)
+					(name "GPIO21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -25.4 180)
+					(length 5.08)
+					(name "USB_D+/GPIO20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -22.86 180)
+					(length 5.08)
+					(name "USB_D-/GPIO19"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_20"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 -30.48 180)
+					(length 5.08)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_21"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 22.86 -30.48 180)
+					(length 5.08)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "J3_22"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:100uF 16V 5*7"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "100uF"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:CAP-TH_BD5.0-P2.00-D0.8-FD"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://item.szlcsc.com/datasheet/KS107M016D07RR0VH2FP0/44805.html"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Part" "KS107M016D07RR0VH2FP0"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Chengx(承兴)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part" "C43803"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part Name" "100uF ±20% 16V"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "100uF 16V 5*7_1_0"
+				(polyline
+					(pts
+						(xy -2.54 0.762) (xy -1.524 0.762)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 1.27) (xy -2.032 0.254)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy -0.508 0)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 2.032) (xy -0.508 -2.032)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.508 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.2192 1.8542) (xy 0.8382 1.2954) (xy 0.8382 1.2954) (xy 0.5842 0.7112) (xy 0.5842 0.7112)
+						(xy 0.508 0.0762) (xy 0.508 0.0762) (xy 0.5588 -0.5334) (xy 0.5588 -0.5334) (xy 0.762 -1.1684)
+						(xy 0.762 -1.1684) (xy 1.1176 -1.7272)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:240X240 ST7789 TFT SPI DISPLAY"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:240X240 1.3 TFT SPI DISPLAY"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "240X240 ST7789 TFT SPI DISPLAY"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "240X240 ST7789 TFT SPI DISPLAY_1_0"
+				(rectangle
+					(start -12.7 11.43)
+					(end 17.78 -11.43)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -6.35 10.16)
+					(end 16.51 -10.16)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(text "TFT Display"
+					(at -5.08 2.0828 0)
+					(effects
+						(font
+							(size 1.9558 1.9558)
+						)
+						(justify left bottom)
+					)
+				)
+				(text "1.3\" IPS"
+					(at -5.08 -1.7018 0)
+					(effects
+						(font
+							(size 1.9558 1.9558)
+						)
+						(justify left bottom)
+					)
+				)
+				(text "240x240 SPI"
+					(at -5.08 -5.5118 0)
+					(effects
+						(font
+							(size 1.9558 1.9558)
+						)
+						(justify left bottom)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 7.62 0)
+					(length 5.08)
+					(name "BLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 5.08 0)
+					(length 5.08)
+					(name "DC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 2.54 0)
+					(length 5.08)
+					(name "RES"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 0 0)
+					(length 5.08)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 -2.54 0)
+					(length 5.08)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 -5.08 0)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -17.78 -7.62 0)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:Ground-GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.5748 1.5748)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Ground-GND_1_0"
+				(polyline
+					(pts
+						(xy -2.54 -2.54) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -3.302) (xy 1.778 -3.302)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.016 -4.064) (xy 1.016 -4.064)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 -4.826) (xy 0.254 -4.826)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at 0 0 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:PZ254R-11-02P"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "H"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:HDR-TH_2P-P2.54-H-M-W10.4"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://item.szlcsc.com/datasheet/PZ254R-11-02P/502966.html"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Part" "PZ254R-11-02P"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "XFCN(兴飞)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part" "C492410"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part Name" "1x2P 间距:2.54mm 方针 弯插"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PZ254R-11-02P_1_0"
+				(rectangle
+					(start -2.54 3.81)
+					(end 2.54 -3.81)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 1.27 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -1.27 0)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:PZ254V-11-04P_C2691448"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "H"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:HDR-TH_4P-P2.54-V-M"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://item.szlcsc.com/datasheet/PZ254V-11-04P/2801085.html"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Part" "PZ254V-11-04P"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "XFCN(兴飞)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part" "C2691448"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part Name" "1x4P 间距:2.54mm 方针 直插"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PZ254V-11-04P_C2691448_1_0"
+				(rectangle
+					(start -2.54 6.35)
+					(end 2.54 -6.35)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -1.27 5.08)
+					(radius 0.381)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -5.08 3.81 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -5.08 1.27 0)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -5.08 -1.27 0)
+					(length 2.54)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -5.08 -3.81 0)
+					(length 2.54)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:Power-VCC"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.5748 1.5748)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Power-VCC_1_0"
+				(polyline
+					(pts
+						(xy -1.27 2.54) (xy 1.27 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at 0 0 90)
+					(length 1.27)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 0.0254 0.0254)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:ZX-XH2.54-3PWZ"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:HDR-TH_3P-P2.50_ZX-XH2.54-3PWZ"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://item.szlcsc.com/datasheet/ZX-XH2.54-3PWZ/8427559.html"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Part" "ZX-XH2.54-3PWZ"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Megastar(兆星)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part" "C7429642"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part Name" "1x3P 间距:2.5mm 弯插 系列:XH"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "ZX-XH2.54-3PWZ_1_0"
+				(rectangle
+					(start -2.54 5.08)
+					(end 2.54 -5.08)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -1.27 3.81)
+					(radius 0.381)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 2.54 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -2.54 0)
+					(length 2.54)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "ProPrj_Bam-easyedapro:ZX-XH2.54-7PWZ"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "ProPrj_Bam-easyedapro:CONN-TH_7P-P2.50_ZX-XH2.54-7PWZ"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://item.szlcsc.com/datasheet/ZX-XH2.54-7PWZ/8427563.html"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer Part" "ZX-XH2.54-7PWZ"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Megastar(兆星)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier Part" "C7429646"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Supplier" "LCSC"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part Name" "1x7P 间距:2.5mm 弯插 系列:XH"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "ZX-XH2.54-7PWZ_1_0"
+				(rectangle
+					(start -2.54 10.16)
+					(end 2.54 -10.16)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -1.27 8.89)
+					(radius 0.381)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 7.62 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 5.08 0)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 2.54 0)
+					(length 2.54)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -2.54 0)
+					(length 2.54)
+					(name "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -5.08 0)
+					(length 2.54)
+					(name "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -7.62 0)
+					(length 2.54)
+					(name "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 243.84 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "00157f61-672d-4f19-8f9e-f880270256fe")
+	)
+	(junction
+		(at 247.65 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "132c9e70-0d80-4377-ae2f-88dcbe7dc2a7")
+	)
+	(junction
+		(at 247.65 35.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "20cad3aa-0013-4688-93a7-9b5255910fac")
+	)
+	(junction
+		(at 243.84 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "321c4a47-01cc-4495-8c10-34ea7c2b94e2")
+	)
+	(junction
+		(at 240.03 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "398bbf96-5902-4b6c-ae17-0f8f0090ae68")
+	)
+	(junction
+		(at 240.03 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3bc98d74-b8c7-45ae-8b6b-9e6c11ec3927")
+	)
+	(junction
+		(at 247.65 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4d759608-32d4-4606-bbb8-8cdf425f23ae")
+	)
+	(junction
+		(at 228.6 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "62bdc4a3-ed6e-4fd7-8180-ad7fc9b84977")
+	)
+	(junction
+		(at 267.97 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7234dab8-75d9-4274-99a1-53255fa7638f")
+	)
+	(junction
+		(at 228.6 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "76958a0a-e76f-4d1a-9334-3975721449f8")
+	)
+	(junction
+		(at 228.6 48.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "82ad192d-345e-467f-9963-a3d030975deb")
+	)
+	(junction
+		(at 236.22 96.52)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8ba8179b-0d8f-4cce-ae6d-577c777555cd")
+	)
+	(junction
+		(at 236.22 43.18)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "981e3dbd-6ba1-497c-947a-29e19e345fcd")
+	)
+	(junction
+		(at 236.22 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bf3be929-5735-4d99-a968-4a84d607065e")
+	)
+	(junction
+		(at 243.84 64.77)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c8fe6509-042b-458b-860c-442851137186")
+	)
+	(junction
+		(at 240.03 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e1c0efb6-b3e0-4ccb-8fe2-a6f2bdd34c1e")
+	)
+	(wire
+		(pts
+			(xy 267.97 43.18) (xy 236.22 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "099a59f3-dfd3-4509-94ee-78f1f9b4b0d1")
+	)
+	(wire
+		(pts
+			(xy 240.03 120.65) (xy 240.03 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f2cd538-6ce1-40a5-a119-60ee21cce333")
+	)
+	(wire
+		(pts
+			(xy 193.04 20.32) (xy 179.07 20.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "14f8ca4b-1711-4d0a-b303-34b27b1bf482")
+	)
+	(wire
+		(pts
+			(xy 267.97 96.52) (xy 236.22 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ca96e4c-ad30-4cbf-9c6a-711f39041e4b")
+	)
+	(wire
+		(pts
+			(xy 210.82 35.56) (xy 247.65 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f75f2c3-b50f-4dab-b54f-d9e3cea9890f")
+	)
+	(wire
+		(pts
+			(xy 228.6 101.6) (xy 228.6 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24ec4f49-b0dc-4918-8a12-6de18be013c8")
+	)
+	(wire
+		(pts
+			(xy 228.6 101.6) (xy 267.97 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27f662ab-f0fb-48b7-b700-4ae9d5a3658d")
+	)
+	(wire
+		(pts
+			(xy 243.84 64.77) (xy 267.97 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2bedb9bd-a468-4318-8371-a8c92ad3da52")
+	)
+	(wire
+		(pts
+			(xy 236.22 123.19) (xy 236.22 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2fc10e6c-249e-4545-aadd-03a3ff0ed51b")
+	)
+	(wire
+		(pts
+			(xy 267.97 38.1) (xy 243.84 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34419fad-4562-4e49-ae40-5dcee72070ed")
+	)
+	(wire
+		(pts
+			(xy 236.22 43.18) (xy 236.22 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35d4de1b-6503-4cb2-8cf2-3f6bb34abc7b")
+	)
+	(wire
+		(pts
+			(xy 210.82 40.64) (xy 240.03 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41ed0881-ae54-4cd7-9733-b447db79db12")
+	)
+	(wire
+		(pts
+			(xy 166.37 110.49) (xy 161.29 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44546157-ea7b-4ac2-bd2b-dd158632c837")
+	)
+	(wire
+		(pts
+			(xy 53.34 144.78) (xy 63.5 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53587dcd-840d-420e-be32-742b747ccfd8")
+	)
+	(wire
+		(pts
+			(xy 201.93 38.1) (xy 243.84 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58633d55-b795-4ce7-8a69-b84c4ca2269b")
+	)
+	(wire
+		(pts
+			(xy 243.84 118.11) (xy 243.84 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f018458-d7ae-4714-86c8-ee1c35117428")
+	)
+	(wire
+		(pts
+			(xy 162.56 20.32) (xy 171.45 20.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f25d98d-5b27-4ea0-b239-68a4eb1ee291")
+	)
+	(wire
+		(pts
+			(xy 247.65 62.23) (xy 247.65 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63dc9038-eecc-4442-88c7-858cbef69b71")
+	)
+	(wire
+		(pts
+			(xy 267.97 69.85) (xy 236.22 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68e35985-f668-4acd-9b82-240547f19f7f")
+	)
+	(wire
+		(pts
+			(xy 267.97 48.26) (xy 228.6 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6951d201-35be-4d7e-8ecd-6a85ce8f0795")
+	)
+	(wire
+		(pts
+			(xy 267.97 115.57) (xy 247.65 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b1e4b42-d6b7-4b87-9e52-1354b010baee")
+	)
+	(wire
+		(pts
+			(xy 228.6 48.26) (xy 228.6 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89280d2c-338f-4162-998c-ccfabf84f65a")
+	)
+	(wire
+		(pts
+			(xy 247.65 35.56) (xy 247.65 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99c7aa65-0c42-4ecc-90c4-250a339393a9")
+	)
+	(wire
+		(pts
+			(xy 210.82 48.26) (xy 228.6 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d366d92-ed22-43f4-a357-0ba46cbb56eb")
+	)
+	(wire
+		(pts
+			(xy 267.97 128.27) (xy 228.6 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4ca68d8-755c-4ede-b944-85386117150e")
+	)
+	(wire
+		(pts
+			(xy 240.03 67.31) (xy 240.03 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5ba1f89-648f-4ed9-b058-701c633be4af")
+	)
+	(wire
+		(pts
+			(xy 243.84 118.11) (xy 267.97 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac4f552f-a43f-47ba-8a36-6f64c3e21931")
+	)
+	(wire
+		(pts
+			(xy 142.24 113.03) (xy 166.37 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aeb41ff8-afc9-4e49-bd53-7dc77cdd26a6")
+	)
+	(wire
+		(pts
+			(xy 267.97 93.98) (xy 240.03 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b28fec07-7c9a-49fb-a53d-3e3ae9d8d557")
+	)
+	(wire
+		(pts
+			(xy 236.22 69.85) (xy 236.22 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb53c74f-f298-4380-ab08-2c00631bf3dd")
+	)
+	(wire
+		(pts
+			(xy 240.03 67.31) (xy 267.97 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcd8f260-cc5f-4baa-ac94-408d899472aa")
+	)
+	(wire
+		(pts
+			(xy 269.24 118.11) (xy 267.97 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c29fa1e7-d81c-4eb1-9854-a10fba971066")
+	)
+	(wire
+		(pts
+			(xy 267.97 123.19) (xy 236.22 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf070fed-a53e-4593-b444-c503fbdede05")
+	)
+	(wire
+		(pts
+			(xy 243.84 38.1) (xy 243.84 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d27e8468-5684-4542-b75a-5731d934f5eb")
+	)
+	(wire
+		(pts
+			(xy 243.84 64.77) (xy 243.84 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d29c387c-d01a-479f-a2e8-ffed2fed25aa")
+	)
+	(wire
+		(pts
+			(xy 267.97 91.44) (xy 243.84 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d34d6565-e566-480a-ab56-9fdcb2d6f521")
+	)
+	(wire
+		(pts
+			(xy 267.97 88.9) (xy 247.65 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de34acd1-920f-4a8b-9c1e-a5395b813495")
+	)
+	(wire
+		(pts
+			(xy 240.03 40.64) (xy 240.03 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3d2a793-b904-4397-9c27-ccf43561fdf6")
+	)
+	(wire
+		(pts
+			(xy 267.97 62.23) (xy 247.65 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5fadd9c-c9a5-4371-8ead-eac3afae43ef")
+	)
+	(wire
+		(pts
+			(xy 267.97 40.64) (xy 240.03 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e89ee420-02f5-40d1-95f9-e4811e6bd52d")
+	)
+	(wire
+		(pts
+			(xy 228.6 128.27) (xy 228.6 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9b352df-c438-46d5-a39b-e61388c78a0d")
+	)
+	(wire
+		(pts
+			(xy 247.65 115.57) (xy 247.65 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eda4d76e-a8c1-4de3-8669-dfbcbbe83641")
+	)
+	(wire
+		(pts
+			(xy 195.58 43.18) (xy 236.22 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eeea2cca-c41b-437b-9a93-132b84cecad7")
+	)
+	(wire
+		(pts
+			(xy 267.97 120.65) (xy 240.03 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f2abe2ef-fa29-4e21-92ac-783378a23654")
+	)
+	(wire
+		(pts
+			(xy 228.6 74.93) (xy 267.97 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5c3aa3e-5b97-425e-bd63-cd104c0342a2")
+	)
+	(wire
+		(pts
+			(xy 267.97 35.56) (xy 247.65 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa80dc25-7618-428f-ab43-0b0c8fddbb69")
+	)
+	(image
+		(at 153.67 154.178)
+		(scale 1.72524)
+		(uuid "714aa543-6fc6-42dd-9ede-8a3409a25404")
+		(data "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"
+			"AwArQflRaRufMAAAAABJRU5ErkJggg=="
+		)
+	)
+	(global_label "RST4"
+		(shape input)
+		(at 267.97 125.73 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "17d79025-d779-4790-8030-73a5ef46b986")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 125.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "MISO"
+		(shape input)
+		(at 210.82 40.64 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "18864086-b96f-4d1b-a2bf-479012737973")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.82 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "DC"
+		(shape input)
+		(at 72.39 25.4 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "1b195285-b479-4efb-9a5a-364fe3cfe3e5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCL"
+		(shape input)
+		(at 102.87 88.9 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "1f7f288f-08d6-4490-8438-527b96f7ad12")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "WSLED"
+		(shape input)
+		(at 57.15 109.22 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "221568c6-cfd8-43aa-8e3d-d7a2a60dc3c5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "3_3V"
+		(shape input)
+		(at 72.39 35.56 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "2ae3834d-4b2f-4d15-8702-577059ce6623")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST2"
+		(shape input)
+		(at 267.97 72.39 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "2b40d964-e9e5-4b63-96c2-02da45688da1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST3"
+		(shape input)
+		(at 57.15 116.84 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "2b984996-e291-4319-b45c-2cb3ceb880a4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCLTFT"
+		(shape input)
+		(at 102.87 76.2 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "3c452592-8df0-4be4-b857-6d0ee46bd6a6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "DC"
+		(shape input)
+		(at 102.87 78.74 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "408d127f-6b44-423e-8324-c1ceec8d7c2e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST1"
+		(shape input)
+		(at 267.97 45.72 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "41058c3d-20c5-49d3-8c5c-30e770a98b90")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "BLK"
+		(shape input)
+		(at 72.39 22.86 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "4659a04d-24f7-43ab-b75e-151937c84f3f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "3_3V"
+		(shape input)
+		(at 162.56 20.32 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "546e175a-3a35-4145-8cc1-06ebbab30252")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 162.56 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST3"
+		(shape input)
+		(at 267.97 99.06 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "5de5b3a8-e2f9-49dc-b487-926a5f04bea4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS2"
+		(shape input)
+		(at 267.97 59.69 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "5e6d269c-0ebc-4fb5-b037-3ed1fff023a7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST2"
+		(shape input)
+		(at 57.15 114.3 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "5f9c80bf-d859-41ab-8399-8949f44b6f4b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCLTFT"
+		(shape input)
+		(at 72.39 33.02 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "70cf5469-77c8-4ba8-8342-dc10e0194346")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "BLK"
+		(shape input)
+		(at 102.87 83.82 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "725d6c11-6ed0-4c03-8365-e8e3adf7a21d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SDA"
+		(shape input)
+		(at 102.87 91.44 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "74cf8aaa-601a-4161-bf1c-9f63828235b4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SDA"
+		(shape input)
+		(at 142.24 43.18 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "823f0c39-738a-44a5-a79e-27cc8bd4ab94")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST1"
+		(shape input)
+		(at 57.15 111.76 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "87d69b65-fe2a-412c-86a6-572c04bc83f7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "3_3V"
+		(shape input)
+		(at 102.87 66.04 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "8b8ae69e-a73f-451a-b265-5e981c7c24d9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "WSLED"
+		(shape input)
+		(at 166.37 115.57 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "8b993e10-a449-4a53-ba92-5b46e4fccb43")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 166.37 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "3_3V"
+		(shape input)
+		(at 142.24 38.1 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "8fd1efbc-bc81-4409-956c-47dbf9f57e00")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "3_3V"
+		(shape input)
+		(at 210.82 48.26 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "a6436e93-5310-4be2-8648-08dfc54ddeaf")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.82 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS1"
+		(shape input)
+		(at 57.15 83.82 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "b87fd0fa-930c-4717-94c3-90d6a96b0425")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS3"
+		(shape input)
+		(at 57.15 88.9 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "b9ca7772-766c-4a23-acb5-735d839dabf0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS1"
+		(shape input)
+		(at 267.97 33.02 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "bb6f372d-c53c-4afc-8089-644710da5bec")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS4"
+		(shape input)
+		(at 57.15 91.44 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "bba88ff6-f8b9-42a7-b66f-875bb6504b22")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCL"
+		(shape input)
+		(at 142.24 40.64 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "c2cd8167-13e2-46ca-85c6-9cc628907db9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS2"
+		(shape input)
+		(at 57.15 86.36 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "cf89c13d-d012-455e-b740-b1228f2f6d95")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCK"
+		(shape input)
+		(at 57.15 104.14 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "d5cff366-4e59-40c6-8f55-32d14ab7c49c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SDATFT"
+		(shape input)
+		(at 72.39 30.48 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "d724296f-85ba-4919-84ac-6e271019aaf7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SDATFT"
+		(shape input)
+		(at 102.87 73.66 0)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify left)
+		)
+		(uuid "d87f0273-d098-4b24-bded-df000fdeb0e8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 102.87 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "MOSI"
+		(shape input)
+		(at 57.15 101.6 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "d8b79bea-2c32-4138-b797-998b5b2b01c6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "MISO"
+		(shape input)
+		(at 57.15 106.68 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "d8f1f334-1c16-4341-8c3e-ec309fe4e1a3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "SCK"
+		(shape input)
+		(at 210.82 35.56 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "db1ec97c-5744-4d91-97df-08eac348a231")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.82 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS3"
+		(shape input)
+		(at 267.97 86.36 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "e27c4cca-60d7-47b8-aba1-2247b874ac74")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RST4"
+		(shape input)
+		(at 57.15 119.38 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "e38d1d41-b843-452a-8dc9-c910718c5bff")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "CS4"
+		(shape input)
+		(at 267.97 113.03 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "e950d976-209e-48e3-ac28-233e26c698f6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 267.97 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RES"
+		(shape input)
+		(at 72.39 27.94 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "f161ae9d-71cf-4690-b8b4-184be1845345")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "RES"
+		(shape input)
+		(at 57.15 73.66 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "fbf25ce7-bdf4-4e84-8e32-7d9ffa84585a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 57.15 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "MOSI"
+		(shape input)
+		(at 201.93 38.1 180)
+		(effects
+			(font
+				(size 1.5748 1.5748)
+			)
+			(justify right)
+		)
+		(uuid "ff33c7c2-e69d-4c06-9925-99915f97f998")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 201.93 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 57.15 144.78 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bf10e3d0-d02b-4ab4-9044-ee031afd1065")
+		(property "Net Class" "power"
+			(at 57.8485 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at -3.81 -11.43 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 165.1 20.32 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cc23c00e-128d-41ce-9ca6-f030ff8f8419")
+		(property "Net Class" "power"
+			(at 165.7985 17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 104.14 -135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 181.61 20.32 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e6465322-0f4d-4d7b-9181-3cb40c345713")
+		(property "Net Class" "power"
+			(at 182.3085 17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 120.65 -135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Power-VCC")
+		(at 161.29 110.49 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "044d4dc4-67b8-4fb1-a07a-e6c1bf761349")
+		(property "Reference" "#PWR09"
+			(at 161.29 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VCC"
+			(at 161.29 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 161.29 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 161.29 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 161.29 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c98c0613-86d8-4113-8b35-f82432d65377")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 193.04 20.32 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "11fae75b-ba63-4e25-85c7-ea3ef94fc84f")
+		(property "Reference" "#PWR010"
+			(at 193.04 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 193.04 26.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 193.04 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 193.04 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 193.04 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "361a60f0-1933-4d87-9b8e-3a979d6958e7")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:ZX-XH2.54-3PWZ")
+		(at 171.45 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1745a754-f3f2-4f18-bed7-0ae296aa0a09")
+		(property "Reference" "WSLED1"
+			(at 168.91 107.95 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "ZX-XH2.54-3PWZ"
+			(at 168.91 120.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/ZX-XH2.54-3PWZ/8427559.html"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "ZX-XH2.54-3PWZ"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C7429642"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x3P 间距:2.5mm 弯插 系列:XH"
+			(at 171.45 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9f6eaa30-2cd8-4bf8-b398-9dcef1043922")
+		)
+		(pin "3"
+			(uuid "f902ae86-1385-48d1-ac20-9cf444510e32")
+		)
+		(pin "2"
+			(uuid "273f1b13-ef49-449e-bb16-3520db707047")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "WSLED1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:PZ254R-11-02P")
+		(at 68.58 146.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2d873392-648f-436f-a3e6-40fbb676d9d2")
+		(property "Reference" "J1"
+			(at 66.04 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "PZ254R-11-02P"
+			(at 66.04 152.4 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:HDR-TH_2P-P2.54-H-M-W10.4"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/PZ254R-11-02P/502966.html"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "PZ254R-11-02P"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C492410"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x2P 间距:2.54mm 方针 弯插"
+			(at 68.58 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a3643136-d2e3-47a1-a950-5c617168bd3e")
+		)
+		(pin "2"
+			(uuid "29746c0a-31c4-454e-9b64-a5f85066b7e4")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 142.24 35.56 0)
+		(mirror x)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3645f65f-7b99-491c-a07f-ce48e9096e3e")
+		(property "Reference" "#PWR06"
+			(at 142.24 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 142.24 29.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 142.24 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.24 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 142.24 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0e32853b-175d-4efb-9ba1-efd3e3b518b5")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ESP32-S3-DEVKITC-1U-N8R8:ESP32-S3-DEVKITC-1U-N8R8")
+		(at 80.01 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3831a6d7-bf40-40e8-8d51-e20bc567a2c5")
+		(property "Reference" "U1"
+			(at 80.01 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ESP32-S3-DEVKITC-1U-N8R8"
+			(at 80.01 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ESP32-S3-DEVKITC-1U-N8R8:MODULE_ESP32-S3-DEVKITC-1U-N8R8"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Datasheet" ""
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "The ESP32-S3-DEVKITC-1U-N8R8 from Espressif Systems is an evaluation board designed for wireless communication applications. It features a 32-bit Xtensa dual-core processor running at 240MHz, providing strong processing power for complex tasks. The board supports 802.11 b/g/n Wi-Fi and Bluetooth® 5.x (BLE), operating at 2.4GHz, ensuring seamless wireless communication."
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MF" "Espressif Systems"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "7.39mm"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "CREATOR" "ASHISH"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Price" "None"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Package" "None"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/ESP32-S3-DEVKITC-1U-N8R8/Espressif+Systems/view-part/?ref=eda"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "PARTREV" "1.1"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "VERIFIER" ""
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/ESP32-S3-DEVKITC-1U-N8R8/Espressif+Systems/view-part/?ref=snap"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MP" "ESP32-S3-DEVKITC-1U-N8R8"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MANUFACTURER" "Espressif Systems"
+			(at 80.01 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(pin "J1_22"
+			(uuid "7a3ceec3-74d3-48bd-afea-b92aebc8080d")
+		)
+		(pin "J1_5"
+			(uuid "9a44a865-9483-4335-8a6c-9da222d4e815")
+		)
+		(pin "J3_14"
+			(uuid "a4cd3fed-31ef-4ea1-afc5-b061a0297aea")
+		)
+		(pin "J1_6"
+			(uuid "4843d897-1e64-4896-a863-3873b18d2491")
+		)
+		(pin "J3_9"
+			(uuid "1965e5a2-4a5d-4b39-9003-e7a5e3e4272e")
+		)
+		(pin "J3_18"
+			(uuid "4e07b8c9-6be7-48bf-a752-1ce38e9345f2")
+		)
+		(pin "J1_10"
+			(uuid "76aa2992-89fa-4910-9177-25517a1695c2")
+		)
+		(pin "J3_3"
+			(uuid "b3223643-6cc5-4352-9ad9-9f801dba9811")
+		)
+		(pin "J3_2"
+			(uuid "1cfc3e05-2717-4926-98b4-74790d108ded")
+		)
+		(pin "J1_7"
+			(uuid "2648998e-b3ed-4017-a433-bfc640e8e7ed")
+		)
+		(pin "J3_10"
+			(uuid "08ada1cc-16df-44c3-92ff-61cbb76ce259")
+		)
+		(pin "J3_20"
+			(uuid "39690e33-310f-47ea-8f26-5ff59f9b5a0a")
+		)
+		(pin "J1_12"
+			(uuid "ef5c6e05-d542-4f4c-930b-a0e53227954a")
+		)
+		(pin "J1_19"
+			(uuid "70a69345-cc41-4828-9e17-7c3d4d650c51")
+		)
+		(pin "J3_4"
+			(uuid "57b6a61d-2880-4b06-9ba4-26ccda896e81")
+		)
+		(pin "J1_1"
+			(uuid "55a2fc08-00e5-45ab-b13c-36441e263a9d")
+		)
+		(pin "J1_3"
+			(uuid "74f1b99a-9d04-4a71-aea5-5c5155b74626")
+		)
+		(pin "J1_16"
+			(uuid "3284fc84-bd2b-4b49-bbeb-4af9fec9bbf8")
+		)
+		(pin "J1_13"
+			(uuid "40d4cf22-fe9f-4261-9938-63876ba6a0e5")
+		)
+		(pin "J1_20"
+			(uuid "d013c202-3a67-4819-b7a9-db0925ed2a9a")
+		)
+		(pin "J1_18"
+			(uuid "ed410506-cffd-45e9-9ac7-1813151ac4b6")
+		)
+		(pin "J1_8"
+			(uuid "62686e25-53eb-4257-969e-a29b16b1b483")
+		)
+		(pin "J1_14"
+			(uuid "06bdef0c-1a05-46e1-b53c-4d43bc4d5330")
+		)
+		(pin "J1_17"
+			(uuid "cb2bbfa4-2c6b-4e63-99cd-1c06824a6919")
+		)
+		(pin "J1_21"
+			(uuid "c4d19785-620d-4b2c-8634-3e3d5a5c376b")
+		)
+		(pin "J3_1"
+			(uuid "408366c6-efaa-466c-924c-10449fc8993d")
+		)
+		(pin "J1_9"
+			(uuid "dc22ca08-6d76-4911-8787-5b7f179d0bbb")
+		)
+		(pin "J3_5"
+			(uuid "46677464-22af-432a-9155-493c50a4b769")
+		)
+		(pin "J1_2"
+			(uuid "804b7657-89bc-409c-9839-4508792a87cb")
+		)
+		(pin "J1_4"
+			(uuid "93d27c6e-1b3f-4021-9b81-02612390db2b")
+		)
+		(pin "J1_15"
+			(uuid "4ef48fc4-c45e-493f-bc7c-0cd3496e2a82")
+		)
+		(pin "J3_6"
+			(uuid "16cc160f-e6cf-44e2-a9e9-539806f4725a")
+		)
+		(pin "J3_7"
+			(uuid "6bc6fba8-ef2c-42a2-add3-5d00df6cbbac")
+		)
+		(pin "J3_8"
+			(uuid "f4ad50d1-ca6a-479f-ada2-adc36eeb8393")
+		)
+		(pin "J3_11"
+			(uuid "46ada697-dd51-41e2-94b6-2388833d1b84")
+		)
+		(pin "J1_11"
+			(uuid "b76683a1-d004-43a5-82bd-43fa371f7d00")
+		)
+		(pin "J3_12"
+			(uuid "4e17af71-a2a9-415e-af58-196019e58d0c")
+		)
+		(pin "J3_13"
+			(uuid "c626c179-b91f-4b38-b4fd-f0d98579fa17")
+		)
+		(pin "J3_15"
+			(uuid "a9581e3f-3a21-44a3-bec5-40fbfa73f1e5")
+		)
+		(pin "J3_16"
+			(uuid "abb739d6-9e8a-4104-91c4-5cc3e63904c2")
+		)
+		(pin "J3_17"
+			(uuid "b0476ef0-18dc-4a9a-8db8-cd387c0ce4d6")
+		)
+		(pin "J3_19"
+			(uuid "fc83aabe-1c36-4221-aac4-416156334422")
+		)
+		(pin "J3_21"
+			(uuid "89618b69-42b8-4143-a114-364e6f141fef")
+		)
+		(pin "J3_22"
+			(uuid "5653b584-cee6-4758-9382-0c11d8957ca1")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:ZX-XH2.54-7PWZ")
+		(at 273.05 67.31 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3ead210f-6dd0-4661-9227-9c580b3fe8c6")
+		(property "Reference" "SLOT2"
+			(at 270.51 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "ZX-XH2.54-7PWZ"
+			(at 270.51 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S7B-XH-A_1x07_P2.50mm_Horizontal"
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "ZX-XH2.54-7PWZ"
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C7429646"
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x7P 间距:2.5mm 弯插 系列:XH"
+			(at 273.05 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "38cbe5c8-2ef8-49d5-af4e-e5871eddf89b")
+		)
+		(pin "1"
+			(uuid "32ecbaea-6820-43f3-a5be-88cb6331e9b0")
+		)
+		(pin "7"
+			(uuid "7d1213e8-85f0-483f-a598-cd9a2c9f2cd7")
+		)
+		(pin "3"
+			(uuid "7655559e-214e-4b40-aeb4-ea4b80682cd4")
+		)
+		(pin "4"
+			(uuid "72429330-207d-4b45-9de2-9ba4a9c36cd4")
+		)
+		(pin "6"
+			(uuid "d75cee8e-170f-4b9a-b569-fdc30c5af9ad")
+		)
+		(pin "5"
+			(uuid "c6a9d9eb-3475-4006-aa79-92b5e28ded41")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "SLOT2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:240X240 ST7789 TFT SPI DISPLAY")
+		(at 90.17 30.48 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "432f143e-0b91-4ed4-85b3-0fd17e0c0ea6")
+		(property "Reference" "TFT1"
+			(at 77.47 19.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "240X240 ST7789 TFT SPI DISPLAY"
+			(at 77.47 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:240X240 1.3 TFT SPI DISPLAY"
+			(at 90.17 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 90.17 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "240X240 ST7789 TFT SPI DISPLAY"
+			(at 90.17 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "5"
+			(uuid "c60ef796-6383-4c15-ab27-9e7108e05f85")
+		)
+		(pin "7"
+			(uuid "fd80b1b4-f2cc-4290-b3c6-818449d61eb9")
+		)
+		(pin "4"
+			(uuid "f6624629-b120-4e7f-b7c1-6ef5077be310")
+		)
+		(pin "2"
+			(uuid "9b216626-27ea-408c-a04f-55f749a7ec95")
+		)
+		(pin "3"
+			(uuid "b3b502a2-136c-4902-af34-1a4e6107c25d")
+		)
+		(pin "1"
+			(uuid "edc35840-24e7-41bd-b7fa-809f4c34184a")
+		)
+		(pin "6"
+			(uuid "abeb768c-ad8b-4e95-84a2-3b491aa883f6")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "TFT1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 102.87 124.46 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4cebb3a7-6d98-4131-bcf0-bc40c35156dd")
+		(property "Reference" "#PWR05"
+			(at 102.87 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 102.87 130.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 102.87 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 102.87 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 102.87 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "81f17de3-e873-4e6f-b85c-0a6c7b64ec8b")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 72.39 38.1 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "50dbaffe-025d-4fef-a6a7-158e99c50f71")
+		(property "Reference" "#PWR03"
+			(at 72.39 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 72.39 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 72.39 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 72.39 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "785e4792-51ff-4931-8730-44c14406ad3e")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:ZX-XH2.54-7PWZ")
+		(at 273.05 40.64 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "60d4eba2-3aa0-41a0-9c25-8826abd3dd62")
+		(property "Reference" "SLOT1"
+			(at 270.51 30.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "ZX-XH2.54-7PWZ"
+			(at 270.51 53.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S7B-XH-A_1x07_P2.50mm_Horizontal"
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "ZX-XH2.54-7PWZ"
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C7429646"
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x7P 间距:2.5mm 弯插 系列:XH"
+			(at 273.05 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "5"
+			(uuid "882609c0-62b4-4d06-9c02-d54d7a29fb22")
+		)
+		(pin "7"
+			(uuid "15b47dcc-4b5c-4b93-8a54-d4b1bc3d373e")
+		)
+		(pin "1"
+			(uuid "c9a8a7f2-055a-4d36-9048-fe820ec87d2e")
+		)
+		(pin "4"
+			(uuid "05b58c2d-a576-47e4-b5f3-7975865d247b")
+		)
+		(pin "2"
+			(uuid "196e933e-72d9-48f0-b4b5-be2af51c92ad")
+		)
+		(pin "6"
+			(uuid "15a2e2d0-7eaf-4669-9413-063e78de2730")
+		)
+		(pin "3"
+			(uuid "a8902a1b-4531-41b9-9a03-3f6a9fdd6d21")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "SLOT1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Power-VCC")
+		(at 53.34 144.78 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "80276523-12e1-4830-87c8-c6a5046a2ed1")
+		(property "Reference" "#PWR01"
+			(at 53.34 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VCC"
+			(at 53.34 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 53.34 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 53.34 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 53.34 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a2dd33a4-5013-49f7-b7f0-21a8f1a004d9")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:PZ254V-11-04P_C2691448")
+		(at 147.32 39.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "87c6a078-a174-44cc-bb9c-51eaa8600ce6")
+		(property "Reference" "SENSOR1"
+			(at 144.78 33.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.0414 1.0414)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "PZ254V-11-04P"
+			(at 144.78 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:HDR-TH_4P-P2.54-V-M"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/PZ254V-11-04P/2801085.html"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "PZ254V-11-04P"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C2691448"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x4P 间距:2.54mm 方针 直插"
+			(at 147.32 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "4"
+			(uuid "a0151281-d155-4733-8ae1-455c95abd4ea")
+		)
+		(pin "1"
+			(uuid "32775737-9838-459b-8cdb-91e611a15f41")
+		)
+		(pin "2"
+			(uuid "1f352551-35a4-412f-85d7-380a51175957")
+		)
+		(pin "3"
+			(uuid "feab7c2d-b8e8-4d4f-be45-f3c5c5b67041")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "SENSOR1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 142.24 113.03 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "99da2986-395c-4962-8617-7ad4a95bfb28")
+		(property "Reference" "#PWR07"
+			(at 142.24 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 142.24 119.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 142.24 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.24 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 142.24 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "898a80b9-2919-4120-a129-c11314c10e03")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 195.58 43.18 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a5d6fcc1-9dac-463d-9785-885b46fa45d1")
+		(property "Reference" "#PWR011"
+			(at 195.58 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 195.58 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 195.58 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 195.58 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "11fff2b3-5ac9-40cd-9eba-5af49e709166")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Ground-GND")
+		(at 63.5 147.32 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bd70e607-d779-4be5-b155-780995f74e87")
+		(property "Reference" "#PWR02"
+			(at 63.5 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 63.5 153.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 63.5 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b5f0d817-8ea8-4460-833b-fccea6531b24")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:100uF 16V 5*7")
+		(at 175.26 20.32 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d10018f2-434c-4ea8-9ad4-cfb6a99b6ce5")
+		(property "Reference" "C1"
+			(at 172.72 17.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100uF"
+			(at 172.72 25.4 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/KS107M016D07RR0VH2FP0/44805.html"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "KS107M016D07RR0VH2FP0"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C43803"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "100uF ±20% 16V"
+			(at 175.26 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "78870ec9-7214-4755-9b4f-f05404f05a75")
+		)
+		(pin "2"
+			(uuid "c05f8ae7-17f6-4452-bf1e-ce08aa84e717")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:ZX-XH2.54-7PWZ")
+		(at 273.05 93.98 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d178cc9f-1267-4dc8-b247-bce64a193610")
+		(property "Reference" "SLOT3"
+			(at 270.51 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "ZX-XH2.54-7PWZ"
+			(at 270.51 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S7B-XH-A_1x07_P2.50mm_Horizontal"
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "ZX-XH2.54-7PWZ"
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C7429646"
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x7P 间距:2.5mm 弯插 系列:XH"
+			(at 273.05 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "13467312-967b-4023-988c-cf39c624056f")
+		)
+		(pin "4"
+			(uuid "8184f212-bb0c-4d3a-a270-e5ced9d5f24d")
+		)
+		(pin "5"
+			(uuid "c1ae2538-a349-4484-adf9-99803e613c3f")
+		)
+		(pin "6"
+			(uuid "ae4c2fc8-cf80-4c80-90ac-f6da29abd1bb")
+		)
+		(pin "2"
+			(uuid "648fdec2-cfab-42d5-9ab8-683f871f7c70")
+		)
+		(pin "3"
+			(uuid "99d4721f-56e7-4df8-a56a-b94b4f95b085")
+		)
+		(pin "7"
+			(uuid "aecd677a-31b5-49d5-8408-36e1b2e036ac")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "SLOT3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:ZX-XH2.54-7PWZ")
+		(at 273.05 120.65 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "dd112060-e85e-4fda-a556-ed84433f57ab")
+		(property "Reference" "SLOT4"
+			(at 270.51 110.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "ZX-XH2.54-7PWZ"
+			(at 270.51 133.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.2446 1.2446)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S7B-XH-A_1x07_P2.50mm_Horizontal"
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer Part" "ZX-XH2.54-7PWZ"
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part" "C7429646"
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "LCSC"
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part Name" "1x7P 间距:2.5mm 弯插 系列:XH"
+			(at 273.05 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "4"
+			(uuid "162d5e84-9f73-465d-bcc0-43c889893894")
+		)
+		(pin "3"
+			(uuid "b1856cc4-7b82-4c81-aa95-6cca2304b3a8")
+		)
+		(pin "1"
+			(uuid "8767663d-164a-4684-a91e-2babfe400400")
+		)
+		(pin "2"
+			(uuid "20d5627f-e2e5-4162-aeae-12388f0034bc")
+		)
+		(pin "5"
+			(uuid "72768715-5604-4793-b460-3feadc344f19")
+		)
+		(pin "6"
+			(uuid "0473a083-7ba0-4999-bece-056598ce9a5d")
+		)
+		(pin "7"
+			(uuid "585b9205-7876-4093-9036-94469d294b8e")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "SLOT4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ProPrj_Bam-easyedapro:Power-VCC")
+		(at 102.87 63.5 0)
+		(unit 1)
+		(body_style 0)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "fda848f1-5e0e-4395-8385-a505b77e8898")
+		(property "Reference" "#PWR04"
+			(at 102.87 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VCC"
+			(at 102.87 59.69 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5748 1.5748)
+				)
+			)
+		)
+		(property "Footprint" "ProPrj_Bam-easyedapro:"
+			(at 102.87 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 102.87 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 102.87 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2138b2f3-72eb-4056-94c9-eb689ee4426f")
+		)
+		(instances
+			(project "ProPrj_BambuTagger-AMS_2026-09-22(1)"
+				(path "/15ab8aa1-8302-4e1f-b729-8a037065b500"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
