@@ -43,6 +43,8 @@ Supported Tag Formats:
 
 ## Hardware
 
+This build assumes you have a basic level of microprocessor and breadboard/soldering experience.
+
 ### Bill of Materials
 
 There are two options for ESP32 boards: the ESP-WROOM-32 Dev board, or the ESP32-S3-DevKitC-1.
@@ -51,7 +53,7 @@ There are two options for ESP32 boards: the ESP-WROOM-32 Dev board, or the ESP32
 
 This is the original board.
 
-| Component            | Required | Notes                                      | Buy                                                                                                                             |
+| Component            | Required | Notes                                      | Buy/Download/Get                                                                                                                |
 | -------------------- | -------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | **ESP32** Dev Module | **Yes**  | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                            |
 | Custom **PCB**       | Optional | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                                |
@@ -59,14 +61,14 @@ This is the original board.
 
 #### ESP32-S3-DevKitC-1
 
-| Component            | Required | Notes                            | Buy                                      |
+| Component            | Required | Notes                            | Buy/Download/Get                         |
 | -------------------- | -------- | -------------------------------- | ---------------------------------------- |
 | **ESP32** Dev Module | **Yes**  | Base board                       |                                          |
 | Custom **PCB**       | Optional | DIY PCB designed by @Digitalpunk | [Gerber Files](./PCB/ESP32-S3-DevKitC-1) |
 
 #### Common Components
 
-| Component                           | Required        | Notes                          | Buy                                                   |
+| Component                           | Required        | Notes                          | Buy/Download/Get                                      |
 | ----------------------------------- | --------------- | ------------------------------ | ----------------------------------------------------- |
 | **100µF Capacitor**                 | **Yes**         | Regulates power for components |                                                       |
 | **4x RC522** RFID/NFC Readers       | **Yes**         | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
