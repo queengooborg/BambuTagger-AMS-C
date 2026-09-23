@@ -131,6 +131,7 @@ void RfidManager::loop() {
   }
 
   lastPoll[currentSlot] = now;
+  selectReader(currentSlot);
 
   static unsigned long lastCycle = 0;
   if (now - lastCycle > 1000) {
@@ -175,10 +176,16 @@ bool RfidManager::readNtag(uint8_t slot, SpoolInfo& info) {
   MFRC522* reader = mfrc522[slot];
 
   yield();
-  if (!reader->PICC_IsNewCardPresent())
+  bool cardPresent = reader->PICC_IsNewCardPresent();
+  if (!cardPresent) {
+    byte atqa[2];
+    byte atqaSize = sizeof(atqa);
+    cardPresent = reader->PICC_WakeupA(atqa, &atqaSize) == MFRC522Constants::STATUS_OK;
+  }
+  if (!cardPresent)
     return false;
   if (!reader->PICC_ReadCardSerial())
-    return false;
+    return true;
 
   MFRC522::PICC_Type piccType = reader->PICC_GetType(reader->uid.sak);
   // Serial.printf("Slot %d: tag type=%s (SAK=0x%02X)\n",
@@ -446,15 +453,18 @@ void RfidManager::forceRescan(uint8_t slot) {
 void RfidManager::selectReader(uint8_t slot) {
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     digitalWrite(SS_PINS[i], HIGH);
+    if (readerOk[i] && mfrc522[i])
+      mfrc522[i]->PCD_AntennaOff();
   }
-  delayMicroseconds(50);
   if (slot < NUM_SLOTS) {
-    digitalWrite(SS_PINS[slot], LOW);
+    mfrc522[slot]->PCD_AntennaOn();
   }
 }
 
 void RfidManager::deselectAll() {
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     digitalWrite(SS_PINS[i], HIGH);
+    if (readerOk[i] && mfrc522[i])
+      mfrc522[i]->PCD_AntennaOff();
   }
 }
