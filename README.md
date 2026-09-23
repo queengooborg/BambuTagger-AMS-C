@@ -45,19 +45,34 @@ Supported Tag Formats:
 
 ### Bill of Materials
 
-| Component                      | Notes                                      | Buy                                                                                            |
-| ------------------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| **ESP32** Dev Module           | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                           |
-| **100µF Capacitor**            | Regulates power for components             |                                                                                                |
-| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus                  | https://de.aliexpress.com/item/1005006233005745.html                                           |
-| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin             | https://de.aliexpress.com/item/32560280169.html                                                |
-| **240×240 1.3" TFT**           | ST7789VW SPI Display                       | https://www.aliexpress.com/item/1005007094147766.html                                          |
-| **BME280** Sensor              | Temperature/Humidity, I2C                  | https://de.aliexpress.com/item/1005006824236173.html                                           |
-| Custom **PCB**                 | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                               |
-| 3D-Printed **Case**            |                                            | For [AMS](./3d-prints/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3d-prints/BambuTagger-AMS2Pro.3mf) |
+There are two options for ESP32 boards: the ESP-WROOM-32 Dev board, or the ESP32-S3-DevKitC-1.
 
-> [!NOTE]
-> The 40-pin ESP32-S3-DevKitC-1 is a compatible alternative for development; however, the PCB only works with the 30-pin ESP-WROOM-32.
+#### ESP-WROOM-32
+
+This is the original board.
+
+| Component            | Notes                                      | Buy                                                                                                                      |
+| -------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **ESP32** Dev Module | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                     |
+| Custom **PCB**       | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                         |
+| 3D-Printed **Case**  |                                            | For [AMS](./3d-prints/ESP-WROOM-32/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3d-prints/ESP-WROOM-32/BambuTagger-AMS2Pro.3mf) |
+
+#### ESP32-S3-DevKitC-1
+
+| Component            | Notes                            | Buy                                      |
+| -------------------- | -------------------------------- | ---------------------------------------- |
+| **ESP32** Dev Module | Base board                       |                                          |
+| Custom **PCB**       | DIY PCB designed by @Digitalpunk | [Gerber Files](./PCB/ESP32-S3-DevKitC-1) |
+
+#### Common Components
+
+| Component                      | Notes                          | Buy                                                   |
+| ------------------------------ | ------------------------------ | ----------------------------------------------------- |
+| **100µF Capacitor**            | Regulates power for components |                                                       |
+| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
+| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
+| **240×240 1.3" TFT**           | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
+| **BME280** Sensor              | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
 
 ### Wiring / Pin Assignments
 
