@@ -1,5 +1,4 @@
-#ifndef TAG_PARSER_H
-#define TAG_PARSER_H
+#pragma once
 
 #include <Arduino.h>
 #include "config.h"
@@ -45,5 +44,3 @@ class TagParser {
   static const char* materialName(uint8_t id);
   static void bytesToHex(uint8_t* bytes, uint8_t len, char* out);
 };
-
-#endif

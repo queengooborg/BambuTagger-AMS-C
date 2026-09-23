@@ -1,5 +1,4 @@
-#ifndef BAMBU_PRINTER_H
-#define BAMBU_PRINTER_H
+#pragma once
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -74,5 +73,3 @@ class BambuPrinter {
 
   static BambuPrinter* instance;
 };
-
-#endif

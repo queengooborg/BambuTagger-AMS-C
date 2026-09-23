@@ -1,5 +1,4 @@
-#ifndef RFID_MANAGER_H
-#define RFID_MANAGER_H
+#pragma once
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -35,5 +34,3 @@ class RfidManager {
   uint8_t currentSlot;
   bool initialized;
 };
-
-#endif

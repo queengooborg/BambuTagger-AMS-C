@@ -1,5 +1,4 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include <Arduino.h>
 #include <Preferences.h>
@@ -167,5 +166,3 @@ inline void saveConfig(const SystemConfig& cfg) {
   prefs.putBool("layoutVertical", cfg.layoutVertical);
   prefs.end();
 }
-
-#endif

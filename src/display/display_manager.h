@@ -1,5 +1,4 @@
-#ifndef DISPLAY_MANAGER_H
-#define DISPLAY_MANAGER_H
+#pragma once
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -66,5 +65,3 @@ class DisplayManager {
   int _lastOtaPct = -1;
   bool _verticalLayout = false;
 };
-
-#endif

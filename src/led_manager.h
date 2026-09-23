@@ -1,5 +1,4 @@
-#ifndef LED_MANAGER_H
-#define LED_MANAGER_H
+#pragma once
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
@@ -39,5 +38,3 @@ class LedManager {
   unsigned long lastUpdate;
   uint8_t brightness;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef WEB_SERVER_H
-#define WEB_SERVER_H
+#pragma once
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -48,5 +47,3 @@ class WebInterface {
   bool mqttStatus;
   bool printerOnlineStatus;
 };
-
-#endif
