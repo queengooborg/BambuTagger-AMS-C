@@ -69,11 +69,11 @@ jobs:
 
       - name: Create merged binaries
         run: |
-          esptool.py --chip "${{ matrix.chip }}" merge_bin \
+          esptool --chip "${{ matrix.chip }}" merge-bin \
             --output "build/${{ matrix.board }}-firmware_merged.bin" \
-            --flash_mode qio \
-            --flash_freq 80m \
-            --flash_size keep \
+            --flash-mode qio \
+            --flash-freq 80m \
+            --flash-size keep \
             ${{ matrix.offset }}   "build/${{ matrix.board }}-bootloader.bin" \
             0x8000   "build/${{ matrix.board }}-partitions.bin" \
             0xe000   build/boot_app0.bin \
@@ -113,12 +113,12 @@ jobs:
             ## Flashing instructions
 
             To flash the image onto your board, first, download the image matching your board:
-            - `esp32dev-firmware_merged.bin` — ESP-WROOM-32 / ESP32 Dev Module
-            - `esp32-s3-devkitc-1-firmware_merged.bin` — ESP32-S3-DevKitC-1 (requires `--chip esp32s3` in commands)
+            - ESP-WROOM-32 / ESP32 Dev Module - `esp32dev-firmware_merged.bin`
+            - ESP32-S3-DevKitC-1 - `esp32-s3-devkitc-1-firmware_merged.bin` (requires `--chip esp32s3` in commands)
 
             Then, you can flash the firmware by either:
             - Uploading the file to [ESPFlasher.app](https://espflasher.app/)
-            - Writing the flash using `esptool` (`esptool write_flash 0x0 firmware_merged.bin`)
+            - Writing the flash using `esptool` (`esptool write-flash 0x0 firmware_merged.bin`)
 
             ### Manual
 
@@ -127,7 +127,7 @@ jobs:
             #### ESP-WROOM-32
 
             ```
-            esptool.py write_flash \
+            esptool write-flash \
               0x1000   bootloader.bin \
               0x8000   partitions.bin \
               0x10000  firmware.bin
@@ -136,7 +136,7 @@ jobs:
             #### ESP32-S3-DevKitC-1
 
             ```
-            esptool.py --chip esp32s3 write_flash \
+            esptool --chip esp32s3 write-flash \
               0x0      bootloader.bin \
               0x8000   partitions.bin \
               0x10000  firmware.bin
