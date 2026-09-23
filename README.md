@@ -51,29 +51,29 @@ There are two options for ESP32 boards: the ESP-WROOM-32 Dev board, or the ESP32
 
 This is the original board.
 
-| Component            | Notes                                      | Buy                                                                                                                             |
-| -------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| **ESP32** Dev Module | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                            |
-| Custom **PCB**       | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                                |
-| 3D-Printed **Case**  |                                            | For [AMS](./3d-prints/ESP-WROOM-32/BambuTagger-AMS.3mf)<br /> For [AMS 2 Pro](./3d-prints/ESP-WROOM-32/BambuTagger-AMS2Pro.3mf) |
+| Component            | Required | Notes                                      | Buy                                                                                                                             |
+| -------------------- | -------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **ESP32** Dev Module | **Yes**  | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                            |
+| Custom **PCB**       | Optional | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                                |
+| 3D-Printed **Case**  | Optional |                                            | For [AMS](./3d-prints/ESP-WROOM-32/BambuTagger-AMS.3mf)<br /> For [AMS 2 Pro](./3d-prints/ESP-WROOM-32/BambuTagger-AMS2Pro.3mf) |
 
 #### ESP32-S3-DevKitC-1
 
-| Component            | Notes                            | Buy                                      |
-| -------------------- | -------------------------------- | ---------------------------------------- |
-| **ESP32** Dev Module | Base board                       |                                          |
-| Custom **PCB**       | DIY PCB designed by @Digitalpunk | [Gerber Files](./PCB/ESP32-S3-DevKitC-1) |
+| Component            | Required | Notes                            | Buy                                      |
+| -------------------- | -------- | -------------------------------- | ---------------------------------------- |
+| **ESP32** Dev Module | **Yes**  | Base board                       |                                          |
+| Custom **PCB**       | Optional | DIY PCB designed by @Digitalpunk | [Gerber Files](./PCB/ESP32-S3-DevKitC-1) |
 
 #### Common Components
 
-| Component                           | Notes                          | Buy                                                   |
-| ----------------------------------- | ------------------------------ | ----------------------------------------------------- |
-| **100µF Capacitor**                 | Regulates power for components |                                                       |
-| **4x RC522** RFID/NFC Readers       | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
-| **4x WS2812** Addressable LEDs      | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
-| **240×240 1.3" TFT**                | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
-| **BME280** Sensor                   | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
-| **4x JST-XH 7-Pin** Connector+Cable | For PCB connections to RC522s  |                                                       |
+| Component                           | Required        | Notes                          | Buy                                                   |
+| ----------------------------------- | --------------- | ------------------------------ | ----------------------------------------------------- |
+| **100µF Capacitor**                 | **Yes**         | Regulates power for components |                                                       |
+| **4x RC522** RFID/NFC Readers       | **Yes**         | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
+| **240×240 1.3" TFT**                | **Yes**         | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
+| **4x WS2812** Addressable LEDs      | Optional        | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
+| **BME280** Sensor                   | Optional        | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
+| **4x JST-XH 7-Pin** Connector+Cable | With Custom PCB | For PCB connections to RC522s  |                                                       |
 
 ### Wiring / Pin Assignments
 
