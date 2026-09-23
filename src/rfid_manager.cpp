@@ -153,9 +153,11 @@ void RfidManager::loop() {
       spoolData[currentSlot] = newInfo;
       spoolData[currentSlot].lastSeen = now;
       spoolData[currentSlot].present = true;
-      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s material=%s\n", currentSlot + 1,
-                    newInfo.uid, newInfo.tagReadSuccess ? "ok" : "failed",
-                    newInfo.materialType[0] ? newInfo.materialType : "unknown");
+      Serial.printf("[RFID] Slot %d tag detected uid=%s read=%s format=%s material=%s\n",
+            currentSlot + 1, newInfo.uid, newInfo.tagReadSuccess ? "ok" : "failed",
+            newInfo.tagReadSuccess && newInfo.detailedType[0] ? newInfo.detailedType
+                            : "unknown",
+            newInfo.materialType[0] ? newInfo.materialType : "unknown");
     } else {
       spoolData[currentSlot].lastSeen = now;
     }
