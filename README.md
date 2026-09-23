@@ -51,11 +51,11 @@ There are two options for ESP32 boards: the ESP-WROOM-32 Dev board, or the ESP32
 
 This is the original board.
 
-| Component            | Notes                                      | Buy                                                                                                                      |
-| -------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| **ESP32** Dev Module | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                     |
-| Custom **PCB**       | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                         |
-| 3D-Printed **Case**  |                                            | For [AMS](./3d-prints/ESP-WROOM-32/BambuTagger-AMS.3mf) or [AMS 2 Pro](./3d-prints/ESP-WROOM-32/BambuTagger-AMS2Pro.3mf) |
+| Component            | Notes                                      | Buy                                                                                                                             |
+| -------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **ESP32** Dev Module | Base board                                 | https://de.aliexpress.com/item/1005006589341221.html                                                                            |
+| Custom **PCB**       | DIY PCB from JLPCB (use PCB v1.2 or newer) | https://oshwlab.com/bambutagger/project_hdkkdlsn                                                                                |
+| 3D-Printed **Case**  |                                            | For [AMS](./3d-prints/ESP-WROOM-32/BambuTagger-AMS.3mf)<br /> For [AMS 2 Pro](./3d-prints/ESP-WROOM-32/BambuTagger-AMS2Pro.3mf) |
 
 #### ESP32-S3-DevKitC-1
 
@@ -66,13 +66,14 @@ This is the original board.
 
 #### Common Components
 
-| Component                      | Notes                          | Buy                                                   |
-| ------------------------------ | ------------------------------ | ----------------------------------------------------- |
-| **100µF Capacitor**            | Regulates power for components |                                                       |
-| **4x RC522** RFID/NFC Readers  | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
-| **4x WS2812** Addressable LEDs | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
-| **240×240 1.3" TFT**           | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
-| **BME280** Sensor              | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
+| Component                           | Notes                          | Buy                                                   |
+| ----------------------------------- | ------------------------------ | ----------------------------------------------------- |
+| **100µF Capacitor**                 | Regulates power for components |                                                       |
+| **4x RC522** RFID/NFC Readers       | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
+| **4x WS2812** Addressable LEDs      | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
+| **240×240 1.3" TFT**                | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
+| **BME280** Sensor                   | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
+| **4x JST-XH 7-Pin** Connector+Cable | For PCB connections to RC522s  |                                                       |
 
 ### Wiring / Pin Assignments
 
