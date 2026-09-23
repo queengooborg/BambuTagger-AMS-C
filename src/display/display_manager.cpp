@@ -160,9 +160,8 @@ void DisplayManager::drawSlotGrid(const SpoolInfo slots[NUM_SLOTS]) {
     display->fillRect(32, y, 170, 16, COL_BG);
     display->fillRect(24, y + 20, 175, 16, COL_BG);
 
-    uint16_t slotColor = slots[i].present
-                 ? (slots[i].tagReadSuccess ? COL_BLUE : COL_ORANGE)
-                 : COL_GREY;
+    uint16_t slotColor =
+        slots[i].present ? (slots[i].tagReadSuccess ? COL_BLUE : COL_ORANGE) : COL_GREY;
     display->setTextColor(slotColor, COL_BG);
     display->setCursor(4, y);
     display->printf("%d:", i + 1);
@@ -298,9 +297,8 @@ void DisplayManager::drawSlotGridVertical(const SpoolInfo slots[NUM_SLOTS]) {
 
     // Slot number
     display->setTextSize(2);
-    uint16_t slotColor = slots[i].present
-                 ? (slots[i].tagReadSuccess ? COL_BLUE : COL_ORANGE)
-                 : COL_GREY;
+    uint16_t slotColor =
+        slots[i].present ? (slots[i].tagReadSuccess ? COL_BLUE : COL_ORANGE) : COL_GREY;
     display->setTextColor(slotColor, COL_BG);
     display->setCursor(cx + 24, 30);
     display->print(i + 1);
