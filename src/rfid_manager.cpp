@@ -60,6 +60,12 @@ void RfidManager::begin() {
   SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
   SPI.setFrequency(1000000);
 
+  for (uint8_t i = 0; i < NUM_SLOTS; i++) {
+    pinMode(RST_PINS[i], OUTPUT);
+    pinMode(SS_PINS[i], OUTPUT);
+    chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
+  }
+
   Serial.println(F("[RFID] Initializing readers"));
   for (uint8_t i = 0; i < NUM_SLOTS; i++) {
     for (uint8_t tries = 0; tries < 3; tries++) {
@@ -69,12 +75,10 @@ void RfidManager::begin() {
         Serial.printf("[RFID] Initializing reader %d\n", i + 1);
       }
 
-      pinMode(RST_PINS[i], OUTPUT);
       digitalWrite(RST_PINS[i], LOW);
       delay(50);
       digitalWrite(RST_PINS[i], HIGH);
       delay(50);
-      chipSelectPins[i] = new MFRC522DriverPinSimple(SS_PINS[i]);
       drivers[i] =
           new MFRC522DriverSPI(*chipSelectPins[i], SPI, SPISettings(1000000, MSBFIRST, SPI_MODE0));
       mfrc522[i] = new MFRC522(*drivers[i]);
