@@ -74,7 +74,7 @@ This is the original board.
 | **4x RC522** RFID/NFC Readers       | **Yes**         | SPI interface, shared bus      | https://de.aliexpress.com/item/1005006233005745.html  |
 | **240×240 1.3" TFT**                | **Yes**         | ST7789VW SPI Display           | https://www.aliexpress.com/item/1005007094147766.html |
 | **4x WS2812** Addressable LEDs      | Optional        | Daisy-chained, single data pin | https://de.aliexpress.com/item/32560280169.html       |
-| **BME280** Sensor                   | Optional        | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
+| **BME280** 3.3V Sensor              | Optional        | Temperature/Humidity, I2C      | https://de.aliexpress.com/item/1005006824236173.html  |
 | **4x JST-XH 7-Pin** Connector+Cable | With Custom PCB | For PCB connections to RC522s  |                                                       |
 
 ### Wiring / Pin Assignments
