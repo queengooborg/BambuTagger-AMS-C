@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <Preferences.h>
 
-#define FIRMWARE_VERSION "1.3.0-queengooborg"
+#define FIRMWARE_VERSION "1.3.1-queengooborg"
 #define OTA_REPO \
   "queengooborg/BambuTagger-AMS-C"  // "VID-PRO/BambuTagger-AMS-C" -- XXX restore once forked
                                     // changes are merged upstream
